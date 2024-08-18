@@ -1,0 +1,57 @@
+html,
+body {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+
+  scroll-behavior: smooth;
+  text-size-adjust: 100%;
+  font-family: "Noto Sans TC", ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+  color: var(--charm-font-color);
+  background-color: var(--charm-background-color);
+  background-image: url("./../assets/bg.png");
+  background-repeat: repeat;
+  background-attachment: fixed;
+
+  font-feature-settings: normal;
+  font-variation-settings: normal;
+  line-height: 1.75rem;
+  letter-spacing: 0.025em;
+
+  font-size: 16px;
+  text-decoration: none;
+  text-align: justify;
+}
+main {
+}
+
+p,
+span,
+li,
+a,
+div {
+  font-size: 16px;
+  text-decoration: none;
+  text-align: justify;
+}
+p {
+  margin-top: 1.25em;
+  margin-bottom: 0.25em;
+}
+ul {
+  margin-top: 0.5em;
+}
+li {
+  margin-top: 0.025em;
+}
+
+li::marker {
+  content: none;
+}
+::selection {
+  color: var(--charm-highlight-color);
+}

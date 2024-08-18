@@ -1,0 +1,11 @@
+{
+  "name": "charm-root",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "playground:dev": "pnpm --filter playground dev"
+  },
+  "devDependencies": {
+    "astro": "^4.14.2"
+  }
+}

@@ -1,0 +1,7 @@
+@layer charm{
+    :root{
+        --charm-highlight-color: #E06458;
+        --charm-background-color: #FCFAF2;
+        --charm-font-color: #374151;
+    }
+}

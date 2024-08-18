@@ -1,0 +1,29 @@
+---
+import config from "charm:config";
+import "charm:styles";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{config.title}</title>
+  </head>
+  <body>
+    <main class="main-content">
+      <slot />
+    </main>
+  </body>
+</html>
+<style>
+  main.main-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    min-width: 1000px;
+    margin: 0 8rem;
+    gap: 4rem;
+  }
+</style>

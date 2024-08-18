@@ -1,0 +1,18 @@
+{
+  "name": "charm",
+  "version": "0.0.1",
+  "description": "My awesome Astro theme created using `astro-theme-provider`!",
+  "license": "MIT",
+  "keywords": [
+    "astro",
+    "withastro",
+    "astro-integration"
+  ],
+  "scripts": {},
+  "devDependencies": {
+    "astro": "^4.13.1"
+  },
+  "dependencies": {
+    "astro-theme-provider": "^0.6.1"
+  }
+}

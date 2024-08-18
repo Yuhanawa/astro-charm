@@ -1,0 +1,17 @@
+{
+  "name": "playground",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.13.1",
+    "astro-page-insight": "^0.8.5",
+    "charm": "workspace:^"
+  }
+}

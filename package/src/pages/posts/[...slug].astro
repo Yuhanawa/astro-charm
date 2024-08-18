@@ -1,0 +1,14 @@
+---
+import { getPostsStaticPaths as getStaticPaths } from "../../utils/collectionUtils.ts";
+export { getStaticPaths };
+
+import { PostLayout } from "charm:layouts";
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<PostLayout>
+  
+  <Content />
+</PostLayout>

@@ -1,0 +1,33 @@
+---
+import config from "charm:config";
+import { BaseSide } from "charm:components/sides";
+---
+
+<BaseSide>
+  <div class="side-home">
+    <li class="side-home-title"><strong>{config.side.title}</strong></li>
+    <li class="side-home-sub">{config.side.sub}</li>
+    <li class="side-home-bio"><p>{config.side.bio}</p></li>
+  </div>
+</BaseSide>
+<style>
+  .side-home {
+      max-width: 80%;
+  },
+
+  .side-home-title {
+
+  }
+
+  .side-home-sub {
+
+  }
+
+  .side-home-bio {
+    word-break: normal;
+    white-space: pre-line;
+    word-wrap: break-word;
+    margin: 2rem 0;
+    letter-spacing: normal;
+  }
+</style>

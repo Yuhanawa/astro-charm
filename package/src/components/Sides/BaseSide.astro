@@ -1,0 +1,84 @@
+---
+import config from "charm:config";
+---
+
+<div class="side">
+  <div class="side-center-container">
+    <div class="side-center">
+      <nav class="side-nav">
+        {
+          config.side.nav!.map((i) => (
+            <div class="side-nav-item">
+              <a href={i.link}>
+                <span class="side-nav-title">{i.title}</span>
+                <div class={`side-nav-icon icon ${i.icon}`} />
+              </a>
+            </div>
+          ))
+        }
+      </nav>
+      <div class="side-content"><slot /></div>
+    </div>
+  </div>
+
+  <div class="side-footer">
+    {
+      config.side.footer!.map((i) => (
+        <div class="side-footer-item">
+          <a href={i.link}>
+            <span class="side-footer-title">{i.title}</span>
+            <div class={`side-footer-icon icon ${i.icon}`} />
+          </a>
+        </div>
+      ))
+    }
+  </div>
+</div>
+<style>
+  .side {
+    position: sticky;
+    top: 0;
+
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 20rem;
+    height: 100vh;
+  }
+  .side-center-container {
+    display: flex;
+    align-items: flex-end;
+    height: 60%;  }
+  .side-center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+  .side-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .side-nav-item {
+  }
+  .side-nav-title {
+  }
+  .side-nav-icon {
+  }
+  .side-footer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 1rem;
+    padding: 4rem 0;
+  }
+  .side-footer-item {
+  }
+  .side-footer-title {
+  }
+  .side-footer-icon {
+  }
+</style>

@@ -1,0 +1,45 @@
+---
+import { getPostsEntries } from "../utils/collectionUtils";
+const entries = await getPostsEntries();
+let page = Astro.props.page ?? 0;
+---
+
+<div class="post-list">
+  {
+    entries.length > 20 * page
+      ? entries.slice(20 * page, 20 * (page + 1)).map((entry) => (
+          <div class="post-list-item">
+            <a href={`posts/${entry.slug}`}>
+              <span class="post-list-title">{entry.data.title}</span>
+            </a>
+            <p class="post-list-description">{entry.data.description}</p>
+            <span class="post-list-published">{entry.data.published}</span>
+          </div>
+        ))
+      : Astro.redirect("/")
+  }
+  <div class="post-list-pager">
+    {
+      entries.length > 20 * (page + 1) && (
+        <a
+          href={`/?p=${page + 1}`}
+          class={`post-list-pager-item ${page === 0 ? "disabled" : ""}`}
+        >
+          {" "}
+          &#60;{" "}
+        </a>
+      )
+    }
+  </div>
+</div>
+<style>
+  .post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .post-list-item {
+  }
+  .post-list-title {
+  }
+</style>
