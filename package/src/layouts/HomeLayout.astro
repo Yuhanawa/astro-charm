@@ -1,14 +1,12 @@
 ---
-import config from "charm:config";
 import { HomeSide } from "charm:components/sides";
-import { ContentWrapper } from "charm:components";
-import { BaseLayout } from "charm:layouts";
+import { MainLayout } from "charm:layouts";
 import "charm:styles";
+
+const { useH1, ...props } = Astro.props;
 ---
 
-<BaseLayout>
-  <HomeSide />
-  <ContentWrapper>
-      <slot />
-  </ContentWrapper>
-</BaseLayout>
+<MainLayout {...props}>
+  <HomeSide useH1={useH1} slot="side" />
+  <slot />
+</MainLayout>

@@ -1,0 +1,15 @@
+---
+// source: https://fonts.zeoseven.com/items/2/
+// ZSFT 超小~型 CSS 冗余器 Version 2 (LICENSE: MIT, by Qiu, zeoseven.com)
+// CDN 载入出错时直接由源服务器提供文件
+// this script used to load "LXGW ZhenKai" font
+// script not will auto reload when use ViewTransitions, so add listener on astro:page-load
+---
+
+<script is:inline lang="javascript">
+  // prettier-ignore
+  document.addEventListener('astro:page-load', () => ((z,s,f,t)=>{setTimeout(()=>{let a=(b, c)=>{
+   if(s===0){let d=document.createElement('link');d.rel='stylesheet';d.type='text/css';d.href="https://static" + b + "zeoseven.com/zsft/2/main/result.css";
+       d.onerror=function(){document.head.removeChild(d);a(c);s++;};document.head.appendChild(d);};};a(z[0],z[1]);t.fontFamily=f;t.fontWeight='normal';
+},0);})(['.','-host.'],0,"LXGW ZhenKai",document.documentElement.style));
+</script>

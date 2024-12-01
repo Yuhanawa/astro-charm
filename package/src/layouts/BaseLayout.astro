@@ -1,6 +1,45 @@
 ---
+import { SEO } from "astro-seo";
+import { ViewTransitions } from "astro:transitions";
+import { FontLoader } from "charm:components";
 import config from "charm:config";
 import "charm:styles";
+import { calculateStringSimilarity } from "../utils/stringUtils";
+
+type Props = {
+  meta?: {
+    title?: string;
+    description?: string;
+    image?: string;
+  };
+};
+
+const { meta } = Astro.props;
+
+let title = meta?.title || config.title;
+const titleSuffix = config.titleSuffix
+  ? config.titleSuffix === true
+    ? ` | ${config.title.trim()}`
+    : config.titleSuffix
+  : "";
+if (
+  title.length + titleSuffix.length < 60 &&
+  calculateStringSimilarity(title, titleSuffix) < 0.8
+)
+  title += titleSuffix;
+const description = meta?.description || config.description;
+let imgUrl = meta?.image
+  ? meta.image.startsWith("http")
+    ? meta.image
+    : meta.image.length > 0
+      ? `${Astro.url.origin}${meta.image.startsWith("/") ? "" : "/"}${meta.image}`
+      : undefined
+  : undefined;
+imgUrl ??=
+  config.placeholderImage &&
+  (config.placeholderImage.startsWith("http")
+    ? config.placeholderImage
+    : `${Astro.url.origin}${config.placeholderImage.startsWith("/") ? "" : "/"}${config.placeholderImage}`);
 ---
 
 <html lang="en">
@@ -9,21 +48,50 @@ import "charm:styles";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{config.title}</title>
+    <FontLoader />
+    <ViewTransitions />
+    <SEO
+      title={title}
+      description={description}
+      openGraph={imgUrl
+        ? {
+            basic: {
+              title: title,
+              type: "blog",
+              image: imgUrl,
+            },
+          }
+        : undefined}
+      twitter={imgUrl
+        ? {
+            title: title,
+            creator: config.author,
+            card:
+              imgUrl && imgUrl.length > 0 ? "summary_large_image" : "summary",
+            image: imgUrl,
+          }
+        : undefined}
+    />
   </head>
   <body>
-    <main class="main-content">
+    <main>
       <slot />
     </main>
   </body>
 </html>
 <style>
-  main.main-content {
+  main {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    min-width: 1000px;
-    margin: 0 8rem;
-    gap: 4rem;
+    width: auto;
+    margin: 0 clamp(2rem, 8vw, 12rem);
+    gap: clamp(2rem, 4vw, 6rem);
+  }
+
+  @media (width <= 52rem) {
+    main {
+      margin-left: clamp(1.5rem, calc(8vw - 2rem), 10rem);
+    }
   }
 </style>

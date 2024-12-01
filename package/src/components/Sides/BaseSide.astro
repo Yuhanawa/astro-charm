@@ -1,84 +1,254 @@
 ---
+import { Icon } from "astro-icon/components";
+import { ShootingStar } from "charm:components";
 import config from "charm:config";
+import { getSpecialsEntries } from "../../utils/collectionUtils";
+import { IconWrapper } from "charm:components";
+
+const specialsEntries = await getSpecialsEntries();
 ---
 
 <div class="side">
-  <div class="side-center-container">
-    <div class="side-center">
-      <nav class="side-nav">
+  <div class="container">
+    <ShootingStar class="shooting-star" />
+
+    <div class="center">
+      <nav>
+        <a
+          href={config.side.navHome!.link}
+          title={config.side.navHome!.title}
+          data-astro-prefetch="viewport"
+        >
+          <div class="item">
+            <span
+              class="title"
+              class:list={[
+                { hidden: config.side.navStyle === "only-icon" },
+                { transparent: config.side.navStyle === "default" },
+              ]}
+            >
+              {config.side.navHome!.title}
+            </span>
+            <IconWrapper
+              name={config.side.navHome!.icon!}
+              active={Astro.url.pathname === config.side.navHome!.link}
+              class="icon"
+              class:list={[{ hidden: config.side.navStyle === "only-title" }]}
+            />
+          </div>
+        </a>
         {
-          config.side.nav!.map((i) => (
-            <div class="side-nav-item">
-              <a href={i.link}>
-                <span class="side-nav-title">{i.title}</span>
-                <div class={`side-nav-icon icon ${i.icon}`} />
+          specialsEntries.map((i) => {
+            if (i.data.title === undefined || i.data.icon === undefined) {
+              if (!i.data.disabled || import.meta.env.PROD) {
+                return null;
+              }
+              throw new Error(
+                "title and icon is required, please check your markdown file in `src/content/specials/`\nwhen production mode, this error will be ignored",
+              );
+            }
+
+            return (
+              <a
+                href={`/${i.slug}`}
+                title={i.data.title}
+                data-astro-prefetch="viewport"
+              >
+                <div class="item">
+                  <span
+                    class="title"
+                    class:list={[
+                      { hidden: config.side.navStyle === "only-icon" },
+                      { transparent: config.side.navStyle === "default" },
+                    ]}
+                  >
+                    {i.data.title}
+                  </span>
+                  <IconWrapper
+                    name={i.data.icon}
+                    active={Astro.url.pathname === `/${i.slug}`}
+                    class="icon"
+                    class:list={[
+                      { hidden: config.side.navStyle === "only-title" },
+                    ]}
+                  />
+                </div>
               </a>
-            </div>
-          ))
+            );
+          })
         }
       </nav>
-      <div class="side-content"><slot /></div>
+      <div class="content"><slot /></div>
     </div>
   </div>
 
-  <div class="side-footer">
+  <div class="footer">
     {
       config.side.footer!.map((i) => (
-        <div class="side-footer-item">
-          <a href={i.link}>
-            <span class="side-footer-title">{i.title}</span>
-            <div class={`side-footer-icon icon ${i.icon}`} />
-          </a>
-        </div>
+        <a href={i.link}>
+          <div
+            class="item"
+            class:list={[
+              { "width-2": config.side.footerStyle !== "only-title" },
+            ]}
+          >
+            <span
+              class="title"
+              class:list={[
+                {
+                  hidden: config.side.footerStyle === "only-icon",
+                  transparent: config.side.footerStyle === "default",
+                },
+              ]}
+            >
+              {i.title}
+            </span>
+            <Icon
+              name={i.icon}
+              class="icon"
+              class:list={[
+                { hidden: config.side.footerStyle === "only-title" },
+              ]}
+            />
+          </div>
+        </a>
       ))
     }
   </div>
 </div>
 <style>
+  .icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+
+  .width-2 {
+    width: 2rem;
+  }
+
   .side {
     position: sticky;
     top: 0;
 
     display: flex;
-    flex-shrink: 0;
+    flex: 0 0 auto;
     flex-direction: column;
     justify-content: space-between;
 
-    width: 20rem;
+    width: clamp(16em, 20em, 24em);
     height: 100vh;
   }
-  .side-center-container {
+
+  .container {
     display: flex;
     align-items: flex-end;
-    height: 60%;  }
-  .side-center {
+    height: 60%;
+  }
+
+  .center {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 1rem;
   }
-  .side-nav {
+
+  nav {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
+    width: 1.5rem;
+
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .title {
+      transform: translateX(-10px);
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    a:hover {
+      .icon {
+        transform: translateX(0.25em);
+      }
+
+      .title {
+        opacity: 1;
+        transform: translateX(0.1em);
+      }
+    }
   }
-  .side-nav-item {
-  }
-  .side-nav-title {
-  }
-  .side-nav-icon {
-  }
-  .side-footer {
+
+  .footer {
     display: flex;
     flex-direction: row;
     align-items: flex-end;
     gap: 1rem;
     padding: 4rem 0;
+    margin-left: 3rem;
+
+    .item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* stylelint-disable-next-line no-descending-specificity */
+    .title {
+      transform: translateX(-50%);
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    a:hover {
+      .title {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-0.25em);
+      }
+
+      .icon {
+        transform: translateY(-0.25em);
+      }
+    }
   }
-  .side-footer-item {
+
+  @media (width <= 64rem) {
+    .side {
+      width: auto;
+    }
+
+    .content,
+    .footer {
+      display: none;
+    }
   }
-  .side-footer-title {
+
+  @media (width <= 52rem) {
+    nav {
+      .title {
+        transform: translateX(calc(50% + 0.75rem)) translateY(1em);
+      }
+
+      a:hover {
+        .icon {
+          transform: translateY(-0.25em);
+        }
+
+        .title {
+          opacity: 1;
+          transform: translateX(calc(50% + 0.75rem)) translateY(0.75em);
+        }
+      }
+    }
   }
-  .side-footer-icon {
+
+  @media (width <= 42rem) {
+    .side {
+      display: none;
+    }
   }
 </style>

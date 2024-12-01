@@ -5,46 +5,116 @@ body {
   margin: 0;
   padding: 0;
 
-  scroll-behavior: smooth;
-  text-size-adjust: 100%;
-  font-family: "Noto Sans TC", ui-sans-serif, system-ui, -apple-system,
-    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
-    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-    "Noto Color Emoji";
   color: var(--charm-font-color);
-  background-color: var(--charm-background-color);
-  background-image: url("./../assets/bg.png");
-  background-repeat: repeat;
-  background-attachment: fixed;
+  background: url("/lightnoise.png") repeat scroll 0% 0%
+    var(--charm-background-color);
+
+  scroll-behavior: smooth;
 
   font-feature-settings: normal;
   font-variation-settings: normal;
-  line-height: 1.75rem;
+  font-family:
+    "LXGW ZhenKai",
+    "LXGW WenKai",
+    "Noto Sans TC",
+    -apple-system,
+    BlinkMacSystemFont,
+    MiSans,
+    "PingFang SC",
+    "Microsoft YaHei",
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    "Noto Sans",
+    sans-serif;
+
+  font-size: 18px;
+  font-weight: normal;
+
+  text-size-adjust: 100%;
+  text-decoration: none;
+
+  line-height: 1.5rem;
   letter-spacing: 0.025em;
-
-  font-size: 16px;
-  text-decoration: none;
-  text-align: justify;
-}
-main {
 }
 
-p,
-span,
-li,
-a,
-div {
-  font-size: 16px;
+a {
+  color: var(--charm-highlight-color);
   text-decoration: none;
-  text-align: justify;
+  position: relative;
+  transition: color 0.3s ease;
 }
+
+p a,
+a.link-animate {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 2px;
+    opacity: 0.2;
+    background-color: var(--charm-highlight-color);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition:
+      transform 0.3s ease,
+      opacity 0.5s ease;
+  }
+
+  &:hover::after {
+    opacity: 0.9;
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  &:visited {
+    opacity: 0.8;
+  }
+}
+
+code {
+  font-family: "JetBrains Mono", "Fira Code", Monaco, "Courier New", Consolas,
+    monospace;
+}
+
+pre > code *::selection {
+  background-color: var(--charm-font-color);
+  color: inherit;
+}
+
 p {
   margin-top: 1.25em;
   margin-bottom: 0.25em;
+
+  > code {
+    background-color: var(--charm-highlight-color);
+    color: var(--charm-background-color);
+    opacity: 0.85;
+    box-sizing: border-box;
+    border-radius: 0.25em;
+
+    /* 
+    Why make different paddings between top and bottom: 
+    on firefox the `::selection` is not in center of the text, (no problem on chrome)
+    if make same padding on top and bottom, 
+    it will display differently top/bottom padding when select the text.
+    */
+    padding: 0.06em 0.25em 0.05em 0.25em;
+    font-style: italic;
+  }
+
+  > code::selection {
+    background-color: var(--charm-background-color);
+    color: var(--charm-highlight-color);
+  }
 }
+
+
 ul {
-  margin-top: 0.5em;
+  margin-top: 0.5rem;
 }
+
 li {
   margin-top: 0.025em;
 }
@@ -52,6 +122,15 @@ li {
 li::marker {
   content: none;
 }
+
 ::selection {
   color: var(--charm-highlight-color);
+}
+
+.hidden {
+  display: none;
+}
+
+.transparent {
+  opacity: 0;
 }

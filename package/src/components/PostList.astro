@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import { getPostsEntries } from "../utils/collectionUtils";
 const entries = await getPostsEntries();
 let page = Astro.props.page ?? 0;
@@ -8,12 +9,45 @@ let page = Astro.props.page ?? 0;
   {
     entries.length > 20 * page
       ? entries.slice(20 * page, 20 * (page + 1)).map((entry) => (
-          <div class="post-list-item">
-            <a href={`posts/${entry.slug}`}>
-              <span class="post-list-title">{entry.data.title}</span>
+          <div class="item">
+            <a
+              href={`posts/${entry.slug}`}
+              title={entry.data.title}
+              class="link-animate"
+              data-astro-prefetch="hover"
+            >
+              <h3>{entry.data.title}</h3>
             </a>
-            <p class="post-list-description">{entry.data.description}</p>
-            <span class="post-list-published">{entry.data.published}</span>
+            <p>{entry.data.description}</p>
+            <div class="meta">
+              <span>
+                <Icon name="solar:calendar-date-bold-duotone" />
+                <time
+                  datetime={(
+                    entry.data.updated || entry.data.published
+                  ).toISOString()}
+                >
+                  {(
+                    entry.data.updated || entry.data.published
+                  ).toLocaleDateString()}
+                </time>
+              </span>
+              <span>
+                <Icon name="solar:bookmark-bold-duotone" />
+                <span>{entry.data.category}</span>
+              </span>
+              {entry.data.tags && entry.data.tags.length > 0 && (
+                <span>
+                  <Icon name="solar:tag-bold-duotone" />
+                  {entry.data.tags.slice(0, 3).map((tag, i) => (
+                    <span class="post-list-tag-item">
+                      {i !== 0 && ", "}
+                      <span>{tag}</span>
+                    </span>
+                  ))}
+                </span>
+              )}
+            </div>
           </div>
         ))
       : Astro.redirect("/")
@@ -33,13 +67,91 @@ let page = Astro.props.page ?? 0;
   </div>
 </div>
 <style>
+  h3 {
+    display: inline-block;
+    margin: 0;
+    padding: 0.5em 0;
+  }
+
   .post-list {
     display: flex;
     flex-direction: column;
     gap: 2rem;
   }
-  .post-list-item {
+
+  .item {
+    padding: 0.5em 1em;
+    border-radius: 0.5rem;
+    transition:
+      background 0.3s ease,
+      box-shadow 0.3s ease,
+      border 0s linear;
+
+    &:hover {
+      background-color: var(--charm-highlight-color-1);
+      box-shadow:
+        3px 2px 2em 0.5em var(--charm-highlight-color-1),
+        inset -2px -3px 2em 0.1em var(--charm-highlight-color-1);
+      border-left: 0.2em solid var(--charm-highlight-color);
+
+      transition:
+        background 0.5s ease,
+        box-shadow 0.3s ease,
+        border 0.1s linear;
+    }
   }
-  .post-list-title {
+
+  .meta {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    overflow: hidden;
+    font-size: 0.95rem;
+    opacity: 0.9;
+
+    span {
+      display: flex;
+      flex-direction: row;
+      gap: 0.25rem;
+      align-items: center;
+      transition: all 0.3s ease;
+
+      time {
+        opacity: 0.9;
+        transition: all 0.3s ease;
+      }
+
+      &:is(span > span):hover,
+      &:hover time {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+
+      svg {
+        width: 1rem;
+        height: 1rem;
+
+        /* visual alignment */
+        padding-top: 0.1em;
+      }
+    }
+
+    @media (width <= 38rem) {
+      .post-list-tag-item:nth-child(4) {
+        display: none;
+      }
+    }
+
+    @media (width <= 32rem) {
+      .post-list-tag-item:nth-child(3) {
+        display: none;
+      }
+    }
+
+    @media (width <= 28rem) {
+      span:has(.post-list-tag-item) {
+        display: none;
+      }
+    }
   }
 </style>

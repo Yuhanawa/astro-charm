@@ -1,4 +1,5 @@
 import { z, defineCollection } from "astro:content";
+import { iconStringOrLightDarkOrWithStates } from "../../index";
 
 const postCollection = defineCollection({
   type: "content",
@@ -14,6 +15,19 @@ const postCollection = defineCollection({
   }),
 });
 
+const specialsCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(), // not show, only for SEO
+    icon: iconStringOrLightDarkOrWithStates,
+    published: z.date().optional(),
+    updated: z.date().optional(),
+    disabled: z.boolean().default(false),
+  }),
+});
+
 export const collections = {
-  'posts': postCollection,
+  posts: postCollection,
+  specials: specialsCollection,
 };

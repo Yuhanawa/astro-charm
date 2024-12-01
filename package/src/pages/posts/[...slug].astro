@@ -8,7 +8,12 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<PostLayout>
-  
+<PostLayout
+  meta={{
+    title: entry.data.title,
+    description: entry.data.description,
+    image: entry.data.image,
+  }}
+>
   <Content />
 </PostLayout>

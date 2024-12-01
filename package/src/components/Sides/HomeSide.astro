@@ -1,26 +1,29 @@
 ---
 import config from "charm:config";
 import { BaseSide } from "charm:components/sides";
+const { useH1 = false } = Astro.props;
+const Title = useH1 ? "h1" : "strong";
 ---
 
 <BaseSide>
-  <div class="side-home">
-    <li class="side-home-title"><strong>{config.side.title}</strong></li>
+  <ul class="side-home">
+    <li><Title class="side-home-title">{config.side.title}</Title></li>
     <li class="side-home-sub">{config.side.sub}</li>
     <li class="side-home-bio"><p>{config.side.bio}</p></li>
-  </div>
+  </ul>
 </BaseSide>
 <style>
   .side-home {
-      max-width: 80%;
-  },
-
-  .side-home-title {
-
+    max-width: 80%;
   }
 
-  .side-home-sub {
-
+  .side-home-title {
+    display: inline;
+    margin: 0;
+    height: auto;
+    width: auto;
+    font-size: 2rem;
+    font-weight: bold;
   }
 
   .side-home-bio {

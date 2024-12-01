@@ -1,0 +1,36 @@
+---
+import { PostLayout } from "charm:layouts";
+
+import { getSpecialsStaticPaths as getStaticPaths } from "../utils/collectionUtils.ts";
+export { getStaticPaths };
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<PostLayout
+  meta={{
+    title: entry.data.title,
+    description: entry.data.description,
+  }}
+>
+  <Content />
+  <p>
+    <small>
+    {entry.data.published && (
+      <span>published: </span>
+      <time datetime={entry.data.published.toISOString()} >
+        {entry.data.published.toLocaleDateString()}
+      </time>
+    )}
+    {entry.data.published && entry.data.updated && (<span> and </span>)}
+    {entry.data.updated && (
+      <span>updated: </span>
+      <time datetime={entry.data.updated.toISOString()} >
+        {entry.data.updated.toLocaleDateString()}
+      </time>
+    )}
+  </small>  
+  </p>
+
+</PostLayout>

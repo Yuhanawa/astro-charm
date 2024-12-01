@@ -1,0 +1,70 @@
+---
+import { Icon } from "astro-icon/components";
+import type { z } from "astro/zod";
+import { iconStringOrLightDark } from "../../index";
+
+type Props = {
+  name: z.infer<typeof iconStringOrLightDark>;
+} & Omit<Parameters<typeof Icon>[0], "name">;
+
+let { name, ...props } = Astro.props;
+---
+
+{
+  typeof name === "string" ? (
+    <Icon name={name} {...props} />
+  ) : (
+    <div class="icon-wrapper">
+      <Icon
+        {...props}
+        name={name.light}
+        class:list={["light-only", props.class]}
+      />
+      <Icon
+        {...props}
+        name={name.dark}
+        class:list={["dark-only", props.class]}
+      />
+    </div>
+  )
+}
+
+<style>
+  .icon-wrapper {
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+  }
+
+  .light-only,
+  .dark-only {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .light-only {
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+  }
+
+  :global(.dark) {
+    .light-only {
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+    }
+
+    .dark-only {
+      opacity: 1;
+      pointer-events: auto;
+      position: relative;
+    }
+  }
+</style>

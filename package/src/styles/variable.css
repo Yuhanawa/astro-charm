@@ -1,7 +1,21 @@
-@layer charm{
-    :root{
-        --charm-highlight-color: #E06458;
-        --charm-background-color: #FCFAF2;
-        --charm-font-color: #374151;
-    }
+@layer charm {
+  :root {
+    /* 
+        9: "e6",
+        8: "cc",
+        7: "b3",
+        6: "99",
+        5: "80",
+        4: "66",
+        3: "4d",
+        2: "33",
+        1: "1a",
+    */
+    --charm-highlight-color: #e06458;
+    --charm-highlight-color-2: #e0645833;
+    --charm-highlight-color-1: #e064581a;
+    --charm-background-color: #fcfaf2;
+    --charm-font-color: #374151;
+    --charm-font-light-color: #ffffffe6;
+  }
 }

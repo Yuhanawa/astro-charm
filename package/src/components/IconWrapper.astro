@@ -1,0 +1,87 @@
+---
+import { Icon } from "astro-icon/components";
+import type { z } from "astro/zod";
+import { iconStringOrLightDarkOrWithStates } from "../../index";
+import { IconLightDarkWrapper } from "charm:components";
+
+type Props = {
+  name: z.infer<typeof iconStringOrLightDarkOrWithStates>;
+  active?: boolean;
+} & Omit<Parameters<typeof Icon>[0], "name">;
+
+let { name, active, ...props } = Astro.props;
+---
+
+{
+  typeof name === "string" || ("light" in name && "dark" in name) ? (
+    <IconLightDarkWrapper {...props} name={name} />
+  ) : (
+    <div class="icon-state-wrapper" data-active={active}>
+      <IconLightDarkWrapper
+        {...props}
+        name={name.default}
+        class:list={["default", props.class]}
+      />
+      <IconLightDarkWrapper
+        {...props}
+        name={name.hover}
+        class:list={["hover", props.class]}
+      />
+      <IconLightDarkWrapper
+        {...props}
+        name={name.active}
+        class:list={["active", props.class]}
+      />
+    </div>
+  )
+}
+
+<style>
+  .icon-state-wrapper {
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+  }
+
+  .default,
+  .hover,
+  .active {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .default {
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+  }
+
+  :hover .hover {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  :hover .default {
+    opacity: 0;
+  }
+
+  :active,
+  [data-active],
+  [aria-active] {
+    .active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .default,
+    .hover {
+      opacity: 0 !important;
+    }
+  }
+</style>
