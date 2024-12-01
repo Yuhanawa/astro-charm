@@ -10,8 +10,13 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.13.1",
-    "astro-page-insight": "^0.8.5",
+    "astro": "^4.16.16",
+    "astro-icon": "^1.1.4",
+    "astro-page-insight": "0.9.0",
     "charm": "workspace:^"
+  },
+  "devDependencies": {
+    "@iconify-json/simple-icons": "^1.2.13",
+    "@iconify-json/solar": "^1.2.1"
   }
 }

@@ -3,16 +3,44 @@
   "version": "0.0.1",
   "description": "My awesome Astro theme created using `astro-theme-provider`!",
   "license": "MIT",
+  "author": {
+    "name": "Yuhanawa"
+  },
+  "homepage": "https://github.com/Yuhanawa/astro-charm",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Yuhanawa/astro-charm",
+    "directory": "package"
+  },
+  "browserslist": [
+    "last 2 versions, not dead, > 0.2%"
+  ],
   "keywords": [
     "astro",
     "withastro",
-    "astro-integration"
+    "astro-integration",
+    "astro-theme"
   ],
-  "scripts": {},
+  "scripts": {
+    "check": "astro check && stylelint \"**/*.{css,html,astro}\""
+  },
   "devDependencies": {
-    "astro": "^4.13.1"
+    "@astrojs/check": "^0.9.4",
+    "@iconify-json/simple-icons": "^1.2.13",
+    "@iconify-json/solar": "^1.2.1",
+    "@types/node": "^22.10.1",
+    "astro": "^4.16.16",
+    "postcss-html": "^1.7.0",
+    "postcss-preset-env": "^10.1.1",
+    "stylelint": "^16.11.0",
+    "stylelint-config-html": "^1.1.0",
+    "stylelint-config-standard": "^36.0.1",
+    "typescript": "^5.7.2"
   },
   "dependencies": {
-    "astro-theme-provider": "^0.6.1"
+    "astro-icon": "^1.1.4",
+    "astro-seo": "^0.8.4",
+    "astro-theme-provider": "^0.6.1",
+    "rehype-external-links": "^3.0.0"
   }
 }

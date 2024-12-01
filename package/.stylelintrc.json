@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-html/html",
+    "stylelint-config-html/svelte",
+    "stylelint-config-html/astro"
+  ],
+  "rules": {
+    "alpha-value-notation": "number",
+    "declaration-empty-line-before": null,
+    "color-function-notation": null,
+    "custom-property-pattern": "charm-.{2,12}",
+    "no-descending-specificity": [true, { "ignore": ["selectors-within-list"] }]
+  }
+}
