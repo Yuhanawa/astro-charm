@@ -46,6 +46,10 @@ a {
   transition: color 0.3s ease;
 }
 
+a[data-external]::before {
+  content: "🔗";
+}
+
 p a,
 a.link-animate {
   &::after {
@@ -73,9 +77,35 @@ a.link-animate {
   }
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  .anchor {
+    margin: 0 0.5rem;
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &:hover .anchor {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
 code {
   font-family: "JetBrains Mono", "Fira Code", Monaco, "Courier New", Consolas,
     monospace;
+}
+
+pre {
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
 }
 
 pre > code *::selection {
@@ -84,10 +114,10 @@ pre > code *::selection {
 }
 
 p {
-  margin-top: 1.25em;
+  margin-top: 1em;
   margin-bottom: 0.25em;
 
-  > code {
+  code {
     background-color: var(--charm-highlight-color);
     color: var(--charm-background-color);
     opacity: 0.85;
@@ -100,16 +130,20 @@ p {
     if make same padding on top and bottom, 
     it will display differently top/bottom padding when select the text.
     */
-    padding: 0.06em 0.25em 0.05em 0.25em;
+    padding: 0.06em 0.25em 0.05em;
     font-style: italic;
   }
 
-  > code::selection {
+  code::selection {
     background-color: var(--charm-background-color);
     color: var(--charm-highlight-color);
   }
 }
 
+hr {
+  border-color: var(--charm-background-color);
+  border-style: dashed;
+}
 
 ul {
   margin-top: 0.5rem;
@@ -123,6 +157,16 @@ li::marker {
   content: none;
 }
 
+img {
+  border-radius: 0.5rem;
+}
+
+iframe {
+  border-radius: 0.5rem;
+  margin-inline: auto;
+  max-width: 100%;
+}
+
 ::selection {
   color: var(--charm-highlight-color);
 }
@@ -133,4 +177,18 @@ li::marker {
 
 .transparent {
   opacity: 0;
+}
+
+@keyframes pulsate {
+  0% {
+    opacity: 0.15;
+  }
+
+  50% {
+    opacity: 0.25;
+  }
+
+  100% {
+    opacity: 0.15;
+  }
 }

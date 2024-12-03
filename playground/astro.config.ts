@@ -3,14 +3,13 @@ import Charm from "charm";
 
 import pageInsight from "astro-page-insight";
 
-import icon from "astro-icon";
-
 export default defineConfig({
   prefetch: true,
 
   integrations: [
     Charm({
       config: {
+        lang: "en",
         title: "My Awesome Theme",
         description: "My awesome theme is currently under construction!",
         side: {
@@ -23,7 +22,6 @@ export default defineConfig({
       overrides: {},
     }),
     pageInsight(),
-    icon(),
   ],
   vite: {
     build: {

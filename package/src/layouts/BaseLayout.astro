@@ -42,7 +42,7 @@ imgUrl ??=
     : `${Astro.url.origin}${config.placeholderImage.startsWith("/") ? "" : "/"}${config.placeholderImage}`);
 ---
 
-<html lang="en">
+<html lang={config.lang}>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

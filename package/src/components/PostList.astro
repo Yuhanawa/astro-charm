@@ -18,7 +18,7 @@ let page = Astro.props.page ?? 0;
             >
               <h3>{entry.data.title}</h3>
             </a>
-            <p>{entry.data.description}</p>
+            <p class="description">{entry.data.description}</p>
             <div class="meta">
               <span>
                 <Icon name="solar:calendar-date-bold-duotone" />
@@ -70,7 +70,7 @@ let page = Astro.props.page ?? 0;
   h3 {
     display: inline-block;
     margin: 0;
-    padding: 0.5em 0;
+    padding: 0.2em 0;
   }
 
   .post-list {
@@ -99,12 +99,17 @@ let page = Astro.props.page ?? 0;
         box-shadow 0.3s ease,
         border 0.1s linear;
     }
+
+    .description {
+      margin-top: 0;
+    }
   }
 
   .meta {
     display: flex;
     flex-direction: row;
     gap: 1rem;
+    margin: 0.2em 0;
     overflow: hidden;
     font-size: 0.95rem;
     opacity: 0.9;
