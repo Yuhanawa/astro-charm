@@ -5,7 +5,7 @@
   "scripts": {
     "playground:dev": "pnpm --filter playground dev",
     "package:check": "pnpm --filter charm check",
-    "format": "prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\""
+    "format": "prettier --write  \"**/*.{js,ts,astro}\""
   },
   "devDependencies": {
     "astro": "^4.16.16",
