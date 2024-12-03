@@ -5,7 +5,7 @@ A astro theme use [`Astro Theme Provider`](https://github.com/astrolicious/astro
 # ‼️ WORK IN PROGRESS ‼️
 # ‼️ WORK IN PROGRESS ‼️
 
-![screenshot-2024-12-04](docs/screenshot-2024-12-04.png, "screenshot-2024-12-04")
+![screenshot-2024-12-04](docs/screenshot-2024-12-04.png "screenshot-2024-12-04")
 
 # How to use
 
