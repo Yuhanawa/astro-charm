@@ -9,7 +9,7 @@
     "alpha-value-notation": "number",
     "declaration-empty-line-before": null,
     "color-function-notation": null,
-    "custom-property-pattern": "charm-.{2,12}",
+    "custom-property-pattern": "(charm-.{2,12})|.{1,5}|(code-block-.+)",
     "no-descending-specificity": [true, { "ignore": ["selectors-within-list"] }]
   }
 }
