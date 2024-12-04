@@ -3,7 +3,6 @@ import { visit } from "unist-util-visit";
 
 export default function parseDirectiveNode() {
   return (tree, {}) => {
-    // NOTE: { data }
     visit(tree, (node) => {
       if (
         node.type === "containerDirective" ||

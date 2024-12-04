@@ -40,7 +40,7 @@ Create a GitHub repository card with the code `::github{repo="<owner>/<repo>"}`.
 
 ## Admonitions
 
-Following types of admonitions are supported: `note` `tip` `important` `warning` `caution` `danger`
+Following types of admonitions are supported: `note` `tip` `question` `warning` `notice` `important` `caution` `danger`
 
 :::note
 Highlights information that users should take into account, even when skimming.
@@ -103,3 +103,64 @@ This is a note with a custom title.
 > [!TIP]
 > The GitHub syntax is also supported.
 ```
+
+## Code blocks
+
+We support the following features:
+
+- Syntax highlighting
+- Copy button
+- Colorized Brackets
+  - Enable by default
+- Notation Diff
+  - Use `!code ++` and `!code --` to mark added and removed lines.
+- Notation Highlight
+  - Allow using `!code highlight` notation in code to mark highlighted lines.
+- Notation Word Highlight
+  - Highlight words based on the meta string provided on the code snippet.
+- Notation Focus
+  - Allow using `!code focus` notation in code to mark focused lines.
+- Notation Error Level
+  - Allow using `!code error` `!code warning` notation in code to mark highlighted lines.
+- Meta Highlight
+  - Allow using `{1,3-5}` in the code snippet meta to mark highlighted lines.
+- Meta Word Highlight
+  - Allow using `/word/` in the code snippet meta to mark highlighted words.
+- Remove Notation Escape
+  - Remove notation escapes. Useful when you want to write `// [!code]` in markdown. If you process `// [\!code ...]` expression, you can get `// [!code ...]` in the output.
+- TypeScript Twoslash
+  - need explicit trigger or configuration
+
+Some references for you might need:
+
+[shiki transformers](https://shiki.style/packages/transformers)
+
+```ts twoslash title="TypeScript Twoslash"
+// @errors: 2540
+interface Todo {
+  title: string
+}
+
+const todo: Readonly<Todo> = {
+  title: 'Delete inactive users'.toUpperCase(),
+//  ^?
+}
+
+todo.title = 'Hello'
+
+Number.parseInt('123', 10)
+//      ^|
+```
+
+Custom twoslash message
+```ts twoslash
+// @log: You can use `// @log message` to make custom message
+const log = "custom message"
+// @annotate: `@error` `@warn` and `@annotate` are also supported
+type type = "log" | "error" | "warn" | "annotate"
+// @error: It can't be done
+const perpetual_motion_machine = "cat" + "butter" 
+// @warn: Cat couldn't touch water
+const cat_touch_water = "cat" + "water"
+```
+

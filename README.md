@@ -18,7 +18,8 @@ A astro theme use [`Astro Theme Provider`](https://github.com/astrolicious/astro
 
 - [ ] upgrade to Astro v5
 - [ ] guide docs
-- [ ] code copy button
+- [x] code copy button
+- [x] better code block
 - [ ] youtube and bilibili video component
 - [ ] search
 - [ ] category and tag page

@@ -72,6 +72,15 @@ importers:
       '@astrojs/check':
         specifier: ^0.9.4
         version: 0.9.4(prettier-plugin-astro@0.14.1)(prettier@3.4.1)(typescript@5.7.2)
+      '@shikijs/colorized-brackets':
+        specifier: ^1.24.0
+        version: 1.24.0
+      '@shikijs/transformers':
+        specifier: ^1.24.0
+        version: 1.24.0
+      '@shikijs/twoslash':
+        specifier: ^1.24.0
+        version: 1.24.0(typescript@5.7.2)
       '@types/mdast':
         specifier: ^4.0.4
         version: 4.0.4
@@ -99,12 +108,12 @@ importers:
       astro:
         specifier: ^4.16.16
         version: 4.16.16(@types/node@22.10.1)(rollup@4.27.4)(typescript@5.7.2)
+      astro-charm:
+        specifier: workspace:^
+        version: link:../package
       astro-page-insight:
         specifier: 0.9.0
         version: 0.9.0(astro@4.16.16(@types/node@22.10.1)(rollup@4.27.4)(typescript@5.7.2))(typescript@5.7.2)
-      charm:
-        specifier: workspace:^
-        version: link:../package
     devDependencies:
       '@iconify-json/simple-icons':
         specifier: ^1.2.13
@@ -760,6 +769,9 @@ packages:
     resolution: {integrity: sha512-XZsPcBHoYu4+HYn14IOnhabUZgCF99Xn4IdWn8Hjs/c+VPtuAVDhRTsfPyPrpY3OcN8DgO5fZX4qcv/6kNbX1A==}
     engines: {node: '>=8'}
 
+  '@shikijs/colorized-brackets@1.24.0':
+    resolution: {integrity: sha512-Z8A7z5ln6POp+XgM9lPvVmbCSsh6+TsS7n4B3pM3s6xsKNnnOk5PuhO1MzAp3jBhMzXh/d/OWAfvBj3vOPuT1w==}
+
   '@shikijs/core@1.24.0':
     resolution: {integrity: sha512-6pvdH0KoahMzr6689yh0QJ3rCgF4j1XsXRHNEeEN6M4xJTfQ6QPWrmHzIddotg+xPJUPEPzYzYCKzpYyhTI6Gw==}
 
@@ -768,6 +780,12 @@ packages:
 
   '@shikijs/engine-oniguruma@1.24.0':
     resolution: {integrity: sha512-Eua0qNOL73Y82lGA4GF5P+G2+VXX9XnuUxkiUuwcxQPH4wom+tE39kZpBFXfUuwNYxHSkrSxpB1p4kyRW0moSg==}
+
+  '@shikijs/transformers@1.24.0':
+    resolution: {integrity: sha512-Qf/hby+PRPkoHncjYnJf5svK1aCsOUtQhuLzKPnmeXJtuUZCmbH0pTpdNtXe9tgln/RHlyRJnv7q46HHS1sO0Q==}
+
+  '@shikijs/twoslash@1.24.0':
+    resolution: {integrity: sha512-ELyIoD54dFDlb4eGt5sy54WhFeJ39N1hR9W7ADwHWn3XH7cOPjj320EPCh2t76fIoLb0auD46tVLQVVMn93qsA==}
 
   '@shikijs/types@1.24.0':
     resolution: {integrity: sha512-aptbEuq1Pk88DMlCe+FzXNnBZ17LCiLIGWAeCWhoFDzia5Q5Krx3DgnULLiouSdd6+LUM39XwXGppqYE0Ghtug==}
@@ -835,6 +853,11 @@ packages:
 
   '@types/yauzl@2.10.3':
     resolution: {integrity: sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q==}
+
+  '@typescript/vfs@1.6.0':
+    resolution: {integrity: sha512-hvJUjNVeBMp77qPINuUvYXj4FyWeeMMKZkxEATEU3hqBAQ7qdTBCUFT7Sp0Zu0faeEtFf+ldXxMEDr/bk73ISg==}
+    peerDependencies:
+      typescript: '*'
 
   '@ungap/structured-clone@1.2.0':
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
@@ -2751,6 +2774,14 @@ packages:
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
+  twoslash-protocol@0.2.12:
+    resolution: {integrity: sha512-5qZLXVYfZ9ABdjqbvPc4RWMr7PrpPaaDSeaYY55vl/w1j6H6kzsWK/urAEIXlzYlyrFmyz1UbwIt+AA0ck+wbg==}
+
+  twoslash@0.2.12:
+    resolution: {integrity: sha512-tEHPASMqi7kqwfJbkk7hc/4EhlrKCSLcur+TcvYki3vhIfaRMXnXjaYFgXpoZRbT6GdprD4tGuVBEmTpUgLBsw==}
+    peerDependencies:
+      typescript: '*'
+
   type-fest@4.29.0:
     resolution: {integrity: sha512-RPYt6dKyemXJe7I6oNstcH24myUGSReicxcHTvCLgzm4e0n8y05dGvcGB15/SoPRBmhlMthWQ9pvKyL81ko8nQ==}
     engines: {node: '>=16'}
@@ -3761,6 +3792,10 @@ snapshots:
     dependencies:
       '@sentry/types': 7.120.0
 
+  '@shikijs/colorized-brackets@1.24.0':
+    dependencies:
+      shiki: 1.24.0
+
   '@shikijs/core@1.24.0':
     dependencies:
       '@shikijs/engine-javascript': 1.24.0
@@ -3780,6 +3815,19 @@ snapshots:
     dependencies:
       '@shikijs/types': 1.24.0
       '@shikijs/vscode-textmate': 9.3.0
+
+  '@shikijs/transformers@1.24.0':
+    dependencies:
+      shiki: 1.24.0
+
+  '@shikijs/twoslash@1.24.0(typescript@5.7.2)':
+    dependencies:
+      '@shikijs/core': 1.24.0
+      '@shikijs/types': 1.24.0
+      twoslash: 0.2.12(typescript@5.7.2)
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
 
   '@shikijs/types@1.24.0':
     dependencies:
@@ -3856,6 +3904,13 @@ snapshots:
     dependencies:
       '@types/node': 22.10.1
     optional: true
+
+  '@typescript/vfs@1.6.0(typescript@5.7.2)':
+    dependencies:
+      debug: 4.3.7
+      typescript: 5.7.2
+    transitivePeerDependencies:
+      - supports-color
 
   '@ungap/structured-clone@1.2.0': {}
 
@@ -6349,6 +6404,16 @@ snapshots:
       typescript: 5.7.2
 
   tslib@2.8.1: {}
+
+  twoslash-protocol@0.2.12: {}
+
+  twoslash@0.2.12(typescript@5.7.2):
+    dependencies:
+      '@typescript/vfs': 1.6.0(typescript@5.7.2)
+      twoslash-protocol: 0.2.12
+      typescript: 5.7.2
+    transitivePeerDependencies:
+      - supports-color
 
   type-fest@4.29.0: {}
 

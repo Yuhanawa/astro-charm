@@ -3,6 +3,21 @@ import defineTheme from "astro-theme-provider";
 import { z } from "astro/zod";
 import icon from "astro-icon";
 
+// shiki transformers
+import { transformerColorizedBrackets } from "@shikijs/colorized-brackets";
+import {
+  transformerNotationDiff,
+  transformerNotationHighlight,
+  transformerNotationWordHighlight,
+  transformerNotationFocus,
+  transformerNotationErrorLevel,
+  transformerMetaHighlight,
+  transformerMetaWordHighlight,
+  transformerRemoveNotationEscape,
+} from "@shikijs/transformers";
+import { transformerTwoslash } from "@shikijs/twoslash";
+import transformerCopyButton from "./src/plugins/shiki-transformer-code-block.mjs";
+
 // remark plugins
 import remarkToc from "remark-toc";
 import remarkMath from "remark-math";
@@ -10,6 +25,7 @@ import remarkReadingTime from "remark-reading-time";
 import remarkExcerpt from "remark-excerpt";
 import remarkGithubAdmonitionsToDirectives from "remark-github-admonitions-to-directives";
 import remarkDirective from "remark-directive";
+import parseDirectiveNode from "./src/plugins/remark-directive-rehype.mjs";
 
 // rehype plugins
 import rehypeKatex from "rehype-katex";
@@ -17,8 +33,6 @@ import rehypeExternalLinks from "rehype-external-links";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeComponents from "rehype-components";
 import rehypeSlug from "rehype-slug";
-
-import parseDirectiveNode from "./src/plugins/remark-directive-rehype.js";
 import AdmonitionComponent from "./src/plugins/rehype-component-admonition.mjs";
 import GithubCardComponent from "./src/plugins/rehype-component-github-card.mjs";
 
@@ -86,6 +100,20 @@ const configSchema = z.object({
       .enum(["default", "only-icon", "only-title"])
       .default("default"),
   }),
+  markdown: z
+    .object({
+      colorizedBrackets: z
+        .object({
+          explicitTrigger: z.boolean().default(false), // if true, ```ts colorize-brackets
+        })
+        .default({}),
+      twoslash: z
+        .object({
+          explicitTrigger: z.boolean().default(true), // if true, ```ts twoslash
+        })
+        .default({}),
+    })
+    .default({}),
 });
 
 const theme = defineTheme({
@@ -129,7 +157,8 @@ export default function (
     throw new Error("No Charm configuration found, please add configuration");
   }
   const integration = theme(themeOptions);
-  const config = themeOptions.config;
+  const rawConfig = themeOptions.config;
+  const config = configSchema.parse(rawConfig);
 
   const initHook =
     (integration: AstroIntegration) =>
@@ -152,6 +181,32 @@ export default function (
   hook("astro:config:setup", (options) => {
     options.updateConfig({
       markdown: {
+        shikiConfig: {
+          themes: {
+            light: "vitesse-light",
+            dark: "vitesse-dark",
+          },
+          // wrap: false,
+          transformers: [
+            transformerColorizedBrackets({
+              explicitTrigger:
+                config.markdown?.colorizedBrackets?.explicitTrigger,
+            }),
+            // https://shiki.style/packages/transformers
+            transformerNotationDiff(),
+            transformerNotationHighlight(),
+            transformerNotationWordHighlight(),
+            transformerNotationFocus(),
+            transformerNotationErrorLevel(),
+            transformerMetaHighlight(),
+            transformerMetaWordHighlight(),
+            transformerRemoveNotationEscape(),
+            transformerTwoslash({
+              explicitTrigger: config.markdown?.twoslash?.explicitTrigger,
+            }),
+            transformerCopyButton(),
+          ],
+        },
         remarkPlugins: [
           remarkToc,
           remarkMath,
