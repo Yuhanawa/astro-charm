@@ -1,26 +1,59 @@
-# Charm
+# Astro Charm
 A astro theme use [`Astro Theme Provider`](https://github.com/astrolicious/astro-theme-provider)
 
-# ‼️ WORK IN PROGRESS ‼️
-# ‼️ WORK IN PROGRESS ‼️
-# ‼️ WORK IN PROGRESS ‼️
+## ‼️ WORK IN PROGRESS ‼️
+## ‼️ WORK IN PROGRESS ‼️
+## ‼️ WORK IN PROGRESS ‼️
 
 ![screenshot-2024-12-04](docs/screenshot-2024-12-04.png "screenshot-2024-12-04")
 
-# How to use
+## Install
 
-1. create a Astro project(if has, skip)
-2. `pnpm astro add ...`
-3. config in your `astro.config.ts`
-4. enjoy
+1. Create an empty Astro project(if has, skip):
 
-# TODO
+```bash
+pnpm create astro@latest my-website --template minimal -y
+```
+
+2. Add the theme to your project:
+
+```bash
+pnpm astro add charm
+```
+
+3. Config in your `astro.config.ts`:
+
+```ts
+import { defineConfig } from "astro/config";
+import Charm from "charm";
+
+export default defineConfig({
+    integrations: [
+        Charm({
+            config: {
+                title: "Your Blog",
+                description: "Your blog description",
+                side: {
+                    title: "Title",
+                    sub: "Sub Title",
+                    bio: "Bio",
+                },
+                // for more config, see `https://github.com/Yuhanawa/astro-charm/blob/main/package/index.ts#L55-L117`
+            },
+        })
+    ],
+});
+```
+
+4. Enjoy it!
+
+## TODO
 
 - [ ] upgrade to Astro v5
 - [ ] guide docs
 - [x] code copy button
 - [x] better code block
-- [ ] youtube and bilibili video component
+- [x] youtube and bilibili video component
 - [ ] search
 - [ ] category and tag page
 - [ ] init command
@@ -30,6 +63,7 @@ A astro theme use [`Astro Theme Provider`](https://github.com/astrolicious/astro
 - [ ] comments
 - [ ] sitemap
 - [ ] analytics
+  - [x] now can use custom script instead temporary
 
 # very thankful
 
