@@ -35,6 +35,7 @@ import rehypeComponents from "rehype-components";
 import rehypeSlug from "rehype-slug";
 import AdmonitionComponent from "./src/plugins/rehype-component-admonition.mjs";
 import GithubCardComponent from "./src/plugins/rehype-component-github-card.mjs";
+import remarkComponentEmbed from "./src/plugins/remark-component-embed.mjs";
 
 // The Charm theme uses `astro-icon`. For usage details, see: https://github.com/natemoo-re/astro-icon?tab=readme-ov-file#iconify-icons
 // By default, the Charm theme uses `@iconify-json/simple-icons` and `@iconify-json/solar`. You need to install these two packages.
@@ -208,6 +209,7 @@ export default function (
           ],
         },
         remarkPlugins: [
+          remarkComponentEmbed,
           remarkToc,
           remarkMath,
           remarkReadingTime,
