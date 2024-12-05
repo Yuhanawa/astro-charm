@@ -64,7 +64,10 @@ function life() {
 
 ---
 
-## YouTube Videos
+## Videos
+
+You can copy the embed code from YouTube or other platforms, and paste it in the markdown file.
+We also provide a convenient method in [markdown-extended#video-embed](/posts/markdown-extended#video-embed)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/oZpYEEcvu5I?si=y7J4aWD-zKxI8ugx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 

@@ -3,7 +3,7 @@ title: Markdown Extended Features
 published: 2024-05-01
 description: "Read more about Markdown features"
 image: ""
-tags: [Demo, Example, Markdown]
+tags: [Demo, Markdown, Feature]
 category: "Examples"
 draft: false
 ---
@@ -104,6 +104,27 @@ This is a note with a custom title.
 > The GitHub syntax is also supported.
 ```
 
+## Video embed
+
+You can copy the embed code from YouTube or other platforms, and paste it in the markdown file.
+Or paste youtube or bilibili link to embed a video.
+
+:::note
+We support two YouTube link formats: `https://www.youtube.com/watch?v=id` and `https://youtu.be/id`.
+For Bilibili, we accept both plain `link` and `【title】 link` formats.
+Any URL parameters beyond the video ID (such as tracking parameters) will be disregarded.
+:::
+
+```markdown
+https://www.youtube.com/watch?v=oZpYEEcvu5I
+
+【【乐正绫AI】《世末歌者》——“我仍然在无人问津的阴雨霉湿之地”【原创PV付】】 https://www.bilibili.com/video/BV1jG4y1C7uv/?share_source=copy_web
+```
+
+https://www.youtube.com/watch?v=oZpYEEcvu5I
+
+【【乐正绫AI】《世末歌者》——“我仍然在无人问津的阴雨霉湿之地”【原创PV付】】 https://www.bilibili.com/video/BV1jG4y1C7uv/?share_source=copy_web
+
 ## Code blocks
 
 We support the following features:
@@ -131,9 +152,8 @@ We support the following features:
 - TypeScript Twoslash
   - need explicit trigger or configuration
 
-Some references for you might need:
+The reference for you might need: [shiki transformers](https://shiki.style/packages/transformers)
 
-[shiki transformers](https://shiki.style/packages/transformers)
 
 ```ts twoslash title="TypeScript Twoslash"
 // @errors: 2540
@@ -142,11 +162,11 @@ interface Todo {
 }
 
 const todo: Readonly<Todo> = {
-  title: 'Delete inactive users'.toUpperCase(),
+  title: 'Go to bed early'.toUpperCase(),
 //  ^?
 }
 
-todo.title = 'Hello'
+todo.title = 'Go to bed Right now'.toUpperCase()
 
 Number.parseInt('123', 10)
 //      ^|
