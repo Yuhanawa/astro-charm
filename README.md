@@ -18,18 +18,18 @@ pnpm create astro@latest my-website --template minimal -y
 2. Add the theme to your project:
 
 ```bash
-pnpm astro add charm
+pnpm astro add astro-charm
 ```
 
 3. Config in your `astro.config.ts`:
 
 ```ts
 import { defineConfig } from "astro/config";
-import Charm from "charm";
+import astroCharm from "astro-charm";
 
 export default defineConfig({
     integrations: [
-        Charm({
+        astroCharm({
             config: {
                 title: "Your Blog",
                 description: "Your blog description",
