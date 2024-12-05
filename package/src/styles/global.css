@@ -235,7 +235,7 @@ pre {
 }
 
 pre > code *::selection {
-  /* background-color: var(--charm-font-color); */
+  background-color: var(--charm-contrast-color-8);
   color: inherit;
 }
 
@@ -254,11 +254,11 @@ li {
     border-radius: 0.25em;
 
     /* 
-  Why make different paddings between top and bottom: 
-  on firefox the `::selection` is not in center of the text, (no problem on chrome)
-  if make same padding on top and bottom, 
-  it will display differently top/bottom padding when select the text.
-  */
+    Why make different paddings between top and bottom: 
+    on firefox the `::selection` is not in center of the text, (no problem on chrome)
+    if make same padding on top and bottom, 
+    it will display differently top/bottom padding when select the text.
+    */
     padding: 0.06em 0.25em 0.05em;
     font-style: italic;
 
@@ -294,6 +294,12 @@ iframe {
 
 ::selection {
   color: var(--charm-highlight-color);
+}
+
+article {
+  ::selection {
+    background-color: var(--charm-contrast-color-5);
+  }
 }
 
 .hidden {

@@ -18,6 +18,9 @@
     --charm-font-color: #374151;
     --charm-font-light-color: #ffffffe6;
     --charm-github-card-background: #fdfefb;
+    --charm-contrast-color: #cad6ff;
+    --charm-contrast-color-8: #cad6ffcc;
+    --charm-contrast-color-5: #cad6ff80;
 
     /* code block */
     --code-block-border-radius: 0.375em;

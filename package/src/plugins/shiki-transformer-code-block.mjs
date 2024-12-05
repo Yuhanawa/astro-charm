@@ -9,8 +9,8 @@ export default () => ({
       h("div", { class: `code-header ${title?"has-title":""}` }, [
         h("span", { class: `code-title ${title?"":"hidden"}` }, title),
         h("span", { class: "code-language"}, this.options.lang),
-        h("button", { class: "code-copy", onclick: 
-          /*js*/ `navigator.clipboard.writeText(this.parentElement.parentElement.querySelector("code")?.innerText ?? "Copy failed");
+        h("button", { class: "code-copy", "data-code": this.source, onclick: 
+          /*js*/ `navigator.clipboard.writeText(this.dataset.code ?? "Copy failed");
                   this.classList.add("copied"); setTimeout(() => this.classList.remove("copied"), 1000);`},
           " ")]),
       node,

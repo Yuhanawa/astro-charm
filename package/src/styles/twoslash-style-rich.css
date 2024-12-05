@@ -261,8 +261,8 @@
   display: flex;
   align-items: center;
   gap: 0.3em;
-  min-width: 100%;
-  width: max-content;
+  width: 100%;
+  max-width: max-content;
 }
 
 .twoslash .twoslash-tag-line .twoslash-tag-icon {
