@@ -19,7 +19,14 @@ export default defineConfig({
         },
       },
       pages: {},
-      overrides: {},
+      overrides: {
+        components: {
+          // you can add custom script by overriding CustomScriptComponent,
+          // it will be added to the end of `<head>`.
+          // example:
+          // CustomScriptComponent: "./src/components/CustomScriptComponent.astro",
+        },
+      },
     }),
     pageInsight(),
   ],
