@@ -1,7 +1,7 @@
 {
   "name": "astro-charm",
-  "version": "0.1.2",
-  "description": "My awesome Astro theme created using `astro-theme-provider`!",
+  "version": "0.1.3",
+  "description": "Beautiful and easy-to-use blog theme",
   "license": "MIT",
   "author": {
     "name": "Yuhanawa"
@@ -12,23 +12,27 @@
     "url": "https://github.com/Yuhanawa/astro-charm",
     "directory": "package"
   },
-  "browserslist": [
-    "last 2 versions, not dead, > 0.2%"
-  ],
   "keywords": [
     "astro",
     "withastro",
     "astro-integration",
     "astro-theme"
   ],
+  "type": "module",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "files": [
+    "public",
+    "src",
+    "index.ts",
+    "init.config.json"
+  ],
   "scripts": {
     "check": "astro check && stylelint \"**/*.{css,html,astro}\""
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
-    "@shikijs/colorized-brackets": "^1.24.0",
-    "@shikijs/transformers": "^1.24.0",
-    "@shikijs/twoslash": "^1.24.0",
     "@types/mdast": "^4.0.4",
     "@types/node": "^22.10.1",
     "astro": "^4.16.16",
@@ -38,6 +42,9 @@
     "typescript": "^5.7.2"
   },
   "dependencies": {
+    "@shikijs/colorized-brackets": "^1.24.0",
+    "@shikijs/transformers": "^1.24.0",
+    "@shikijs/twoslash": "^1.24.0",
     "astro-icon": "^1.1.4",
     "astro-seo": "^0.8.4",
     "astro-theme-provider": "^0.6.1",

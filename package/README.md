@@ -1,50 +1,33 @@
 # Astro Charm
-A astro theme use [`Astro Theme Provider`](https://github.com/astrolicious/astro-theme-provider)
+
+Beautiful and easy-to-use blog theme
 
 [more information](https://github.com/Yuhanawa/astro-charm/)
 
+**!WIP!**
 ## ‼️ WORK IN PROGRESS ‼️
 ## ‼️ WORK IN PROGRESS ‼️
 ## ‼️ WORK IN PROGRESS ‼️
 
-## Install
+<!-- ## How to use
 
-1. Create an empty Astro project(if has, skip):
+just run the following command:
 
 ```bash
-pnpm create astro@latest my-website --template minimal -y
+pnpm create astro-theme@latest with-theme astro-charm
 ```
 
-2. Add the theme to your project:
+<details>
+  <summary>if you already have an Astro project</summary>
+
+you can add charm theme to your project by the following command:
 
 ```bash
 pnpm astro add astro-charm
 ```
 
-3. Config in your `astro.config.ts`:
+</details> -->
 
-```ts
-import { defineConfig } from "astro/config";
-import astroCharm from "astro-charm";
-
-export default defineConfig({
-    integrations: [
-        astroCharm({
-            config: {
-                title: "Your Blog",
-                description: "Your blog description",
-                side: {
-                    title: "Title",
-                    sub: "Sub Title",
-                    bio: "Bio",
-                },
-                // for more config, see `https://github.com/Yuhanawa/astro-charm/blob/main/package/index.ts#L55-L117`
-            },
-        })
-    ],
-});
-```
-
-4. Enjoy it!
+## Enjoy it!
 
 [more information](https://github.com/Yuhanawa/astro-charm/)

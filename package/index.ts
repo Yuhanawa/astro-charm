@@ -92,7 +92,7 @@ const configSchema = z.object({
         },
         {
           title: "GitHub",
-          link: "https://github.com/",
+          link: "https://github.com/yuhanawa/astro-charm",
           icon: "simple-icons:github",
         },
       ]),

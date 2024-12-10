@@ -1,0 +1,46 @@
+{
+  "minimal": {
+    "config": {
+      "object": {
+        "lang": "en",
+        "title": "Blog Title",
+        "description": "Blog Description",
+        "side": {
+          "title": "sidebar Title",
+          "sub": "A blog",
+          "bio": "using Astro Charm Theme"
+        }
+      }
+    }
+  },
+  "recommended": {
+    "config": {
+      "object": {
+        "lang": "en",
+        "title": "Blog Title",
+        "description": "Blog Description",
+        "author": "Your Name",
+        "side": {
+          "title": "sidebar Tile",
+          "sub": "A blog",
+          "bio": "using Astro Charm Theme"
+        },
+        "navHome": {
+          "title": "Home"
+        },
+        "footer": [
+          {
+            "title": "Twitter",
+            "link": "https://x.com/",
+            "icon": "simple-icons:twitter"
+          },
+          {
+            "title": "GitHub",
+            "link": "https://github.com/yuhanawa/astro-charm",
+            "icon": "simple-icons:github"
+          }
+        ]
+      }
+    }
+  }
+}

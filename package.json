@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "playground:dev": "pnpm --filter playground dev",
-    "package:check": "pnpm --filter charm check",
+    "package:check": "pnpm --filter astro-charm check",
     "format": "prettier --write  \"**/*.{js,ts,astro}\""
   },
   "devDependencies": {
