@@ -1,0 +1,169 @@
+---
+import { getPostEntries } from "./../utils/collectionUtils";
+const entries = await getPostEntries();
+
+// Process the entries to create the data for the TagMindMap
+const tagMap = new Map();
+const tagLinks = new Map();
+
+entries.forEach((entry) => {
+  entry.data.tags?.forEach((tag) => {
+    if (!tagMap.has(tag)) {
+      tagMap.set(tag, { id: tag, name: tag, count: 1 });
+    } else {
+      tagMap.get(tag).count++;
+    }
+
+    // Create links between tags in the same post
+    entry.data.tags?.forEach((otherTag) => {
+      if (tag !== otherTag) {
+        const linkKey = [tag, otherTag].sort().join("-");
+        if (!tagLinks.has(linkKey)) {
+          tagLinks.set(linkKey, { source: tag, target: otherTag, value: 1 });
+        } else {
+          tagLinks.get(linkKey).value++;
+        }
+      }
+    });
+  });
+});
+
+const tagData = {
+  nodes: Array.from(tagMap.values()),
+  links: Array.from(tagLinks.values()),
+};
+---
+
+<div class="tag-mind-map">
+  <svg id="tag-svg" width="800" height="600" viewBox="0 0 800 600"></svg>
+</div>
+
+<script is:inline id="tag-data-nodes" define:vars={{ tagData }}>
+  window.tagData = tagData;
+</script>
+
+<script>
+  import * as d3 from "d3";
+
+  const tagData = window.tagData;
+
+  const svg = d3.select("#tag-svg");
+  const width = 800;
+  const height = 600;
+
+  const simulation = d3
+    .forceSimulation(tagData.nodes)
+    .force(
+      "link",
+      d3
+        .forceLink(tagData.links)
+        .id((d) => d.id)
+        .distance(100),
+    )
+    .force("charge", d3.forceManyBody().strength(-200))
+    .force("center", d3.forceCenter(width / 2, height / 2));
+
+  const links = svg
+    .append("g")
+    .selectAll("line")
+    .data(tagData.links)
+    .join("line")
+    .attr("class", "link");
+
+  const nodes = svg
+    .append("g")
+    .selectAll("g")
+    .data(tagData.nodes)
+    .join("g")
+    .attr("class", "node")
+    .call(
+      d3
+        .drag()
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended),
+    );
+
+  nodes.append("rect").attr("class", "tag-bg").attr("rx", 6).attr("ry", 6);
+
+  const texts = nodes
+    .append("text")
+    .text((d) => `${d.name} (${d.count})`)
+    .attr("class", "tag-text")
+    .attr("x", 8)
+    .attr("y", 20);
+
+  nodes
+    .selectAll("rect")
+    .attr("width", function (d, i) {
+      return this.parentNode.querySelector("text").getComputedTextLength() + 16;
+    })
+    .attr("height", 30);
+
+  simulation.on("tick", () => {
+    links
+      .attr("x1", (d) => d.source.x)
+      .attr("y1", (d) => d.source.y)
+      .attr("x2", (d) => d.target.x)
+      .attr("y2", (d) => d.target.y);
+
+    nodes.attr("transform", (d) => `translate(${d.x - 40},${d.y - 15})`);
+  });
+
+  function dragstarted(event) {
+    if (!event.active) simulation.alphaTarget(0.3).restart();
+    event.subject.fx = event.subject.x;
+    event.subject.fy = event.subject.y;
+  }
+
+  function dragged(event) {
+    event.subject.fx = event.x;
+    event.subject.fy = event.y;
+  }
+
+  function dragended(event) {
+    if (!event.active) simulation.alphaTarget(0);
+    event.subject.fx = null;
+    event.subject.fy = null;
+  }
+</script>
+
+<style is:global>
+  .tag-mind-map {
+    width: 100%;
+    height: 600px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .link {
+    stroke: #999;
+    stroke-opacity: 0.6;
+    stroke-width: 1;
+    stroke-dasharray: 3, 3;
+  }
+
+  .tag-bg {
+    fill: #e2e8f0;
+    stroke: #cbd5e1;
+    stroke-width: 1;
+  }
+
+  .tag-text {
+    font-family:
+      system-ui,
+      -apple-system,
+      sans-serif;
+    font-size: 14px;
+    fill: #1e293b;
+  }
+
+  .node:hover {
+    cursor: pointer;
+  }
+
+  .node:hover .tag-bg {
+    fill: #f1f5f9;
+  }
+</style>

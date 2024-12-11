@@ -1,8 +1,14 @@
 ---
 import { Icon } from "astro-icon/components";
-import { getPostsEntries } from "../utils/collectionUtils";
-const entries = await getPostsEntries();
-let page = Astro.props.page ?? 0;
+import { getPostEntries } from "../utils/collectionUtils";
+
+type Props = {
+  page?: number;
+  entries: Awaited<ReturnType<typeof getPostEntries>>;
+};
+
+const { entries } = Astro.props;
+const page = Astro.props.page ?? 0;
 ---
 
 <div class="post-list">

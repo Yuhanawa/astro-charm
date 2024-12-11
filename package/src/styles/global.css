@@ -236,7 +236,7 @@ pre {
 }
 
 pre > code *::selection {
-  background-color: var(--charm-contrast-color-8);
+  background-color: var(--charm-contrast-color-5);
   color: inherit;
 }
 
@@ -299,7 +299,7 @@ iframe {
 
 article {
   ::selection {
-    background-color: var(--charm-contrast-color-3);
+    background-color: var(--charm-contrast-color-1);
   }
 }
 

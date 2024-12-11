@@ -1,9 +1,11 @@
 ---
 import { HomeLayout } from "charm:layouts";
 import { PostList } from "charm:components";
-import { getPostEntries } from "../utils/collectionUtils";
+import { getTagStaticPaths as getStaticPaths } from "../../utils/collectionUtils";
+import { getPostEntriesByTag } from "../../utils/collectionUtils";
+export { getStaticPaths };
 
-const entries = await getPostEntries();
+const entries = await getPostEntriesByTag(Astro.params.tag!);
 const p = Astro.url.searchParams.get("p");
 const page = p ? parseInt(p) : 0;
 ---

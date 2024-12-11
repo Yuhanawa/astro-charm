@@ -12,6 +12,9 @@
   "[astro]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "stylelint.validate": ["html", "svelte", "astro"],
   "[markdown]": {
     "editor.defaultFormatter": "yzhang.markdown-all-in-one"
@@ -22,5 +25,5 @@
     // _italic: use `_` or `\_`\_
     // I don't know how to solve this
     // so I use markdown-all-in-one instead
-  }
+  },
 }

@@ -2,10 +2,10 @@
 import { Icon } from "astro-icon/components";
 import { ShootingStar } from "charm:components";
 import config from "charm:config";
-import { getSpecialsEntries } from "../../utils/collectionUtils";
+import { getSpecialEntries } from "../../utils/collectionUtils";
 import { IconWrapper } from "charm:components";
 
-const specialsEntries = await getSpecialsEntries();
+const specialsEntries = await getSpecialEntries();
 ---
 
 <div class="side">
