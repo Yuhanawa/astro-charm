@@ -2,27 +2,21 @@
 import { getPostEntries } from "./../utils/collectionUtils";
 const entries = await getPostEntries();
 
-// Process the entries to create the data for the TagMindMap
 const tagMap = new Map();
 const tagLinks = new Map();
 
 entries.forEach((entry) => {
   entry.data.tags?.forEach((tag) => {
-    if (!tagMap.has(tag)) {
-      tagMap.set(tag, { id: tag, name: tag, count: 1 });
-    } else {
-      tagMap.get(tag).count++;
-    }
+    if (!tagMap.has(tag)) tagMap.set(tag, { tag, count: 1 });
+    else tagMap.get(tag).count++;
 
     // Create links between tags in the same post
     entry.data.tags?.forEach((otherTag) => {
       if (tag !== otherTag) {
         const linkKey = [tag, otherTag].sort().join("-");
-        if (!tagLinks.has(linkKey)) {
+        if (!tagLinks.has(linkKey))
           tagLinks.set(linkKey, { source: tag, target: otherTag, value: 1 });
-        } else {
-          tagLinks.get(linkKey).value++;
-        }
+        else tagLinks.get(linkKey).value++;
       }
     });
   });
@@ -34,129 +28,199 @@ const tagData = {
 };
 ---
 
-<div class="tag-mind-map">
-  <svg id="tag-svg" width="800" height="600" viewBox="0 0 800 600"></svg>
+<div id="tag-mind-map-bar" class:list={["hidden", "bar"]}>
+  <a id="bar-visit-Link" class="link" href="#">Visit Tag</a>
 </div>
-
-<script is:inline id="tag-data-nodes" define:vars={{ tagData }}>
-  window.tagData = tagData;
-</script>
+<div id="tag-mind-map" data-value={JSON.stringify(tagData)}></div>
 
 <script>
   import * as d3 from "d3";
 
-  const tagData = window.tagData;
+  const container = document.getElementById("tag-mind-map")!;
+  const tagDataAttr = container.getAttribute("data-value");
+  const bar = document.getElementById("tag-mind-map-bar")!;
+  const visitLink = document.getElementById(
+    "bar-visit-Link",
+  ) as HTMLAnchorElement;
 
-  const svg = d3.select("#tag-svg");
-  const width = 800;
-  const height = 600;
+  const changeVisit = (tag, x, y) => {
+    visitLink.href = `/tags/${tag}`;
+    bar.style.left = x - bar.getBoundingClientRect().width / 2 + "px";
+    bar.style.top = y + 24 + "px";
+    bar.style.display = "block";
+  };
 
-  const simulation = d3
-    .forceSimulation(tagData.nodes)
-    .force(
-      "link",
-      d3
-        .forceLink(tagData.links)
-        .id((d) => d.id)
-        .distance(100),
-    )
-    .force("charge", d3.forceManyBody().strength(-200))
-    .force("center", d3.forceCenter(width / 2, height / 2));
+  if (container && tagDataAttr) {
+    const width = parseInt(container.getAttribute("width") || "400");
+    const height = parseInt(container.getAttribute("height") || "300");
+    const tagData = JSON.parse(tagDataAttr);
 
-  const links = svg
-    .append("g")
-    .selectAll("line")
-    .data(tagData.links)
-    .join("line")
-    .attr("class", "link");
+    const svg = d3
+      .create("svg")
+      .attr("id", "tag-svg")
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("preserveAspectRatio", "xMidYMid meet");
+    container.appendChild(svg.node()!);
 
-  const nodes = svg
-    .append("g")
-    .selectAll("g")
-    .data(tagData.nodes)
-    .join("g")
-    .attr("class", "node")
-    .call(
-      d3
-        .drag()
-        .on("start", dragstarted)
-        .on("drag", dragged)
-        .on("end", dragended),
-    );
+    const simulation = d3
+      .forceSimulation(tagData.nodes)
+      .force(
+        "link",
+        d3
+          .forceLink(tagData.links)
+          // @ts-ignore
+          .id((d) => d.tag)
+          .distance(100),
+      )
+      .force("charge", d3.forceManyBody().strength(-200))
+      .force("center", d3.forceCenter(width / 2, height / 2));
 
-  nodes.append("rect").attr("class", "tag-bg").attr("rx", 6).attr("ry", 6);
+    // 创建链接线
+    const links = svg
+      .append("g")
+      .selectAll("line")
+      .data(tagData.links)
+      .join("line")
+      .attr("class", "link");
 
-  const texts = nodes
-    .append("text")
-    .text((d) => `${d.name} (${d.count})`)
-    .attr("class", "tag-text")
-    .attr("x", 8)
-    .attr("y", 20);
+    // 创建节点组
+    const nodes = svg
+      .append("g")
+      .selectAll("g")
+      .data(tagData.nodes)
+      .join("g")
+      .attr("class", "node")
+      // @ts-ignore
+      .attr("data-tag", (d) => d.tag)
+      .call(
+        d3
+          .drag()
+          .on("start", dragstarted.bind(this))
+          .on("drag", dragged.bind(this))
+          .on("end", dragended.bind(this)),
+      );
 
-  nodes
-    .selectAll("rect")
-    .attr("width", function (d, i) {
-      return this.parentNode.querySelector("text").getComputedTextLength() + 16;
-    })
-    .attr("height", 30);
+    const nodeRects = nodes
+      .append("rect")
+      .attr("class", "tag-bg")
+      .attr("rx", 6)
+      .attr("ry", 6);
 
-  simulation.on("tick", () => {
-    links
-      .attr("x1", (d) => d.source.x)
-      .attr("y1", (d) => d.source.y)
-      .attr("x2", (d) => d.target.x)
-      .attr("y2", (d) => d.target.y);
+    const _nodeTexts = nodes
+      .append("text")
+      // @ts-ignore
+      .text((d) => `${d.tag}(${d.count})`)
+      .attr("class", "tag-text")
+      .attr("x", 8)
+      .attr("y", 20);
 
-    nodes.attr("transform", (d) => `translate(${d.x - 40},${d.y - 15})`);
-  });
+    nodeRects
+      .attr("width", function () {
+        return (
+          (this!.parentNode!.querySelector("text")?.getComputedTextLength() ??
+            16) + 16
+        );
+      })
+      .attr("height", 30);
 
-  function dragstarted(event) {
-    if (!event.active) simulation.alphaTarget(0.3).restart();
-    event.subject.fx = event.subject.x;
-    event.subject.fy = event.subject.y;
-  }
+    simulation.on("tick", () => {
+      links
+        // @ts-ignore
+        .attr("x1", (d) => d.source.x)
+        // @ts-ignore
+        .attr("y1", (d) => d.source.y)
+        // @ts-ignore
+        .attr("x2", (d) => d.target.x)
+        // @ts-ignore
+        .attr("y2", (d) => d.target.y);
+      // @ts-ignore
+      nodes.attr("transform", (d) => `translate(${d.x - 40},${d.y - 15})`);
+    });
 
-  function dragged(event) {
-    event.subject.fx = event.x;
-    event.subject.fy = event.y;
-  }
+    container.querySelectorAll(".node").forEach((node) => {
+      const hover = (e) => {
+        const centerX =
+          node.getBoundingClientRect().left +
+          node.getBoundingClientRect().width / 2 +
+          Math.ceil(e.movementX);
+        const centerY =
+          node.getBoundingClientRect().top +
+          node.getBoundingClientRect().height / 2 +
+          Math.ceil(e.movementY);
+        changeVisit(node.getAttribute("data-tag"), centerX, centerY);
+      };
+      node.addEventListener("mouseover", hover);
+    });
 
-  function dragended(event) {
-    if (!event.active) simulation.alphaTarget(0);
-    event.subject.fx = null;
-    event.subject.fy = null;
+    function dragstarted(event) {
+      if (!event.active) simulation.alphaTarget(0.3).restart();
+      event.subject.fx = event.subject.x;
+      event.subject.fy = event.subject.y;
+      changeVisit(
+        event.subject.tag,
+        event.sourceEvent.clientX,
+        event.sourceEvent.clientY,
+      );
+    }
+
+    function dragged(event) {
+      event.subject.fx = event.x;
+      event.subject.fy = event.y;
+      changeVisit(
+        event.subject.tag,
+        event.sourceEvent.clientX,
+        event.sourceEvent.clientY,
+      );
+    }
+
+    function dragended(event) {
+      if (!event.active) simulation.alphaTarget(0);
+      event.subject.fx = null;
+      event.subject.fy = null;
+      changeVisit(
+        event.subject.tag,
+        event.sourceEvent.clientX,
+        event.sourceEvent.clientY,
+      );
+    }
   }
 </script>
 
 <style is:global>
-  .tag-mind-map {
-    width: 100%;
-    height: 600px;
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
+  .bar {
+    position: fixed;
+    padding: 0.25rem 0.5rem;
+    top: 0;
+    left: 0;
+    height: fit-content;
+    width: fit-content;
+    background: var(--charm-card-background-8);
+    border-radius: 0.5em;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+
+    opacity: 0.8;
+    backdrop-filter: blur(10px) saturate(200%);
+    transition: all 150ms linear;
   }
 
   .link {
-    stroke: #999;
+    stroke: var(--charm-contrast-color-8);
     stroke-opacity: 0.6;
     stroke-width: 1;
     stroke-dasharray: 3, 3;
   }
 
   .tag-bg {
-    fill: #e2e8f0;
-    stroke: #cbd5e1;
+    fill: var(--charm-card-background-8);
+    stroke: var(--charm-contrast-color-3);
     stroke-width: 1;
   }
 
   .tag-text {
-    font-family:
-      system-ui,
-      -apple-system,
-      sans-serif;
-    font-size: 14px;
-    fill: #1e293b;
+    font-family: inherit;
+    font-size: 1rem;
+    fill: var(--charm-font-color);
   }
 
   .node:hover {
@@ -164,6 +228,6 @@ const tagData = {
   }
 
   .node:hover .tag-bg {
-    fill: #f1f5f9;
+    fill: var(--charm-contrast-color-3);
   }
 </style>

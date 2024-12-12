@@ -17,7 +17,7 @@ const page = Astro.props.page ?? 0;
       ? entries.slice(20 * page, 20 * (page + 1)).map((entry) => (
           <div class="item">
             <a
-              href={`posts/${entry.slug}`}
+              href={`/posts/${entry.slug}`}
               title={entry.data.title}
               class="link-animate"
               data-astro-prefetch="hover"
@@ -40,7 +40,9 @@ const page = Astro.props.page ?? 0;
               </span>
               <span>
                 <Icon name="solar:bookmark-bold-duotone" />
-                <span>{entry.data.category}</span>
+                <a href={`/categories/${entry.data.category}`}>
+                  {entry.data.category}
+                </a>
               </span>
               {entry.data.tags && entry.data.tags.length > 0 && (
                 <span>
@@ -48,7 +50,7 @@ const page = Astro.props.page ?? 0;
                   {entry.data.tags.slice(0, 3).map((tag, i) => (
                     <span class="post-list-tag-item">
                       {i !== 0 && ", "}
-                      <span>{tag}</span>
+                      <a href={`/tags/${tag}`}>{tag}</a>
                     </span>
                   ))}
                 </span>
@@ -127,12 +129,21 @@ const page = Astro.props.page ?? 0;
       align-items: center;
       transition: all 0.3s ease;
 
-      time {
-        opacity: 0.9;
-        transition: all 0.3s ease;
+      a {
+        color: inherit;
+        transition: inherit;
+
+        &:hover {
+          color: var(--charm-highlight-color);
+        }
       }
 
-      &:is(span > span):hover,
+      time {
+        opacity: 0.9;
+        transition: inherit;
+      }
+
+      a:hover,
       &:hover time {
         opacity: 1;
         transform: scale(1.05);

@@ -11,5 +11,6 @@ const page = p ? parseInt(p) : 0;
 ---
 
 <HomeLayout useH1>
+  <h2>Tag: {Astro.params.tag}</h2>
   <PostList {page} {entries} />
 </HomeLayout>

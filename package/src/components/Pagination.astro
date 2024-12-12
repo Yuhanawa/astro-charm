@@ -1,0 +1,76 @@
+---
+type Props = {
+  current?: number;
+  total: number;
+};
+
+const { current: currentPage = 0, total: totalPages } = Astro.props;
+---
+
+{
+  totalPages > 1 && (
+    <nav class="pagination" aria-label="Pagination">
+      <a
+        class="pagination-button"
+        href={`?p=${currentPage - 1}`}
+        aria-disabled={currentPage === 1}
+        aria-label="Go to previous page"
+      >
+        Prev
+      </a>
+      <span class="pagination-current" aria-current="page">
+        Page {currentPage + 1} of {totalPages}
+      </span>
+      <a
+        class="pagination-button"
+        href={`?p=${currentPage + 1}`}
+        aria-disabled={currentPage === totalPages}
+        aria-label="Go to next page"
+      >
+        Next
+      </a>
+    </nav>
+  )
+}
+<style>
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .pagination-button {
+    padding: 0.5rem 1rem;
+    background: var(--charm-card-background);
+    border: none;
+    border-radius: 0.25rem;
+    color: var(--charm-font-color);
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .pagination-button:hover {
+    background: #fecaca;
+  }
+
+  .pagination-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .pagination-current {
+    padding: 0.5rem 1rem;
+    background: var(--charm-card-background);
+    border-radius: 0.25rem;
+  }
+
+  .pagination::before {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: -30px;
+    height: 30px;
+    border-left: 2px solid var(--charm-contrast-color-5);
+  }
+</style>

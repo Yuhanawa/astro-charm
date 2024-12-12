@@ -39,6 +39,10 @@ body {
   letter-spacing: 0.025em;
 }
 
+::selection {
+  color: var(--charm-highlight-color);
+}
+
 a {
   color: var(--charm-highlight-color);
   text-decoration: none;
@@ -291,10 +295,6 @@ iframe {
   border-radius: 0.5rem;
   margin-inline: auto;
   max-width: 100%;
-}
-
-::selection {
-  color: var(--charm-highlight-color);
 }
 
 article {

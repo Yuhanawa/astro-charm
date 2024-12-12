@@ -11,7 +11,9 @@
         2: "33",
         1: "1a",
     */
-    --charm-highlight-color: #e06458;
+    --charm-highlight-color-new: #f66a6a;
+    --charm-highlight-color-old: #e06458;
+    --charm-highlight-color: var(--charm-highlight-color-new);
     --charm-highlight-color-2: #e0645833;
     --charm-highlight-color-1: #e064581a;
     --charm-background-color: #fcfaf2;
@@ -19,6 +21,7 @@
     --charm-font-light-color: #ffffffe6;
     --charm-github-card-background: #fdfefb;
     --charm-card-background: #fdfefb;
+    --charm-card-background-8: #fdfefbcc;
     --charm-contrast-color: #cad6ff;
     --charm-contrast-color-8: #cad6ffcc;
     --charm-contrast-color-5: #cad6ff80;
