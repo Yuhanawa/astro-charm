@@ -1,5 +1,5 @@
 import { defineConfig } from "astro/config";
-import Charm from "charm";
+import astroCharm from "astro-charm";
 
 import pageInsight from "astro-page-insight";
 
@@ -7,7 +7,7 @@ export default defineConfig({
   prefetch: true,
 
   integrations: [
-    Charm({
+    astroCharm({
       config: {
         lang: "en",
         title: "My Awesome Theme",

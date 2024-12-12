@@ -136,12 +136,12 @@ export default function (
     console.info(
       `
     import { defineConfig } from 'astro/config';
-    import Charm from '@charmjs/theme';
+    import astroCharm from 'astro-charm';
   
     export default defineConfig({
       // ... other config
       integrations: [
-        Charm({
+        astroCharm({
           config: {
             title: 'My Blog',
             // ... other options
@@ -149,9 +149,6 @@ export default function (
         })
       ]
     });`,
-    );
-    console.info(
-      "In future, we will add a command(like `npx charm init`) to initialize the config.",
     );
     console.info("Please wait for updates and add configuration right now!");
 
