@@ -122,7 +122,7 @@ const theme = defineTheme({
   schema: configSchema,
   integrations: [icon()],
   imports: {
-    "components/sides": "components/sides/**.astro",
+    sideComponents: "components/sides/**.astro",
   },
 });
 
