@@ -2,10 +2,15 @@ import { defineConfig } from "astro/config";
 import astroCharm from "astro-charm";
 
 import pageInsight from "astro-page-insight";
+import playformCompress from "@playform/compress";
+import vercel from "@astrojs/vercel";
 
 export default defineConfig({
   prefetch: true,
   site: "https://astro-charm.vercel.app/",
+
+  output: "server",
+  adapter: vercel(),
 
   integrations: [
     astroCharm({
@@ -30,5 +35,6 @@ export default defineConfig({
       },
     }),
     pageInsight(),
+    playformCompress(),
   ],
 });
