@@ -1,0 +1,18 @@
+---
+import { HomeLayout } from "charm:layouts";
+import Search from "astro-pagefind/components/Search";
+
+// Only work on SSR mode
+export const prerender = false;
+const q = Astro.url.searchParams.get("q") ?? undefined;
+---
+
+<HomeLayout useH1>
+  <h2>Search</h2>
+  <Search
+    id="search"
+    className="pagefind-ui"
+    query={q}
+    uiOptions={{ showImages: false }}
+  />
+</HomeLayout>

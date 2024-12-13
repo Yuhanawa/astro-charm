@@ -2,6 +2,7 @@ import type { AstroIntegration } from "astro";
 import defineTheme from "astro-theme-provider";
 import { z } from "astro/zod";
 import icon from "astro-icon";
+import pagefind from "astro-pagefind";
 
 // shiki transformers
 import { transformerColorizedBrackets } from "@shikijs/colorized-brackets";
@@ -120,7 +121,7 @@ const configSchema = z.object({
 const theme = defineTheme({
   name: "charm",
   schema: configSchema,
-  integrations: [icon()],
+  integrations: [icon(), pagefind()],
 });
 
 export default function (
@@ -175,6 +176,9 @@ export default function (
 
   hook("astro:config:setup", (options) => {
     options.updateConfig({
+      build: {
+        format: "file",
+      },
       markdown: {
         shikiConfig: {
           themes: {

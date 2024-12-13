@@ -1,11 +1,14 @@
 ---
 import { TagMindMap } from "charm:components";
 import { HomeLayout } from "charm:layouts";
+
+import { getPostEntries } from "../../utils/collectionUtils";
+const entries = await getPostEntries();
 ---
 
 <HomeLayout title="Blog Tags">
   <h1>Tags Mind Map</h1>
-  <TagMindMap />
+  <TagMindMap {entries} />
 </HomeLayout>
 
 <style>

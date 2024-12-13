@@ -1,7 +1,7 @@
 ---
 import { HomeSide } from "charm:components";
 import { MainLayout } from "charm:layouts";
-import "charm:styles";
+import { Icon } from "astro-icon/components";
 
 const { useH1, ...props } = Astro.props;
 ---
@@ -9,4 +9,36 @@ const { useH1, ...props } = Astro.props;
 <MainLayout {...props}>
   <HomeSide useH1={useH1} slot="side" />
   <slot />
+  <a href="/search">
+    <Icon name="solar:card-search-bold-duotone" />
+    <span>Search</span>
+  </a>
 </MainLayout>
+
+<style>
+  a {
+    position: fixed;
+    top: 0.5rem;
+    right: 1rem;
+
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    border-radius: 0.25rem;
+    padding: 0 0.3rem;
+
+    color: var(--charm-font-color);
+    opacity: 0.5;
+    transition:
+      opacity 0.3s ease,
+      background-color 0.5s ease,
+      color 0.3s ease;
+
+    &:hover {
+      opacity: 1;
+      background-color: var(--charm-contrast-color-2);
+      color: var(--charm-highlight-color);
+    }
+  }
+</style>

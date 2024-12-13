@@ -275,8 +275,7 @@ li {
 }
 
 hr {
-  border-color: var(--charm-background-color);
-  border-style: dashed;
+  border-color: var(--charm-contrast-color);
 }
 
 ul {

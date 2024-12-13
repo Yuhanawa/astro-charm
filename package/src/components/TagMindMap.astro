@@ -1,6 +1,9 @@
 ---
-import { getPostEntries } from "./../utils/collectionUtils";
-const entries = await getPostEntries();
+import type { getPostEntries } from "../utils/collectionUtils";
+type Props = {
+  entries: Awaited<ReturnType<typeof getPostEntries>>;
+};
+const { entries } = Astro.props;
 
 const tagMap = new Map();
 const tagLinks = new Map();
@@ -34,154 +37,159 @@ const tagData = {
 <div id="tag-mind-map" data-value={JSON.stringify(tagData)}></div>
 
 <script>
-  import * as d3 from "d3";
+  if (
+    document.location.pathname === "/tags" ||
+    document.location.pathname === "/tags/"
+  ) {
+    const d3 = await import("d3");
 
-  const container = document.getElementById("tag-mind-map")!;
-  const tagDataAttr = container.getAttribute("data-value");
-  const bar = document.getElementById("tag-mind-map-bar")!;
-  const visitLink = document.getElementById(
-    "bar-visit-Link",
-  ) as HTMLAnchorElement;
+    const container = document.getElementById("tag-mind-map")!;
+    const tagDataAttr = container.getAttribute("data-value");
+    const bar = document.getElementById("tag-mind-map-bar")!;
+    const visitLink = document.getElementById(
+      "bar-visit-Link",
+    ) as HTMLAnchorElement;
 
-  const changeVisit = (tag, x, y) => {
-    visitLink.href = `/tags/${tag}`;
-    bar.style.left = x - bar.getBoundingClientRect().width / 2 + "px";
-    bar.style.top = y + 24 + "px";
-    bar.style.display = "block";
-  };
+    const changeVisit = (tag, x, y) => {
+      visitLink.href = `/tags/${tag}`;
+      bar.style.left = x - bar.getBoundingClientRect().width / 2 + "px";
+      bar.style.top = y + 24 + "px";
+      bar.style.display = "block";
+    };
 
-  if (container && tagDataAttr) {
-    const width = parseInt(container.getAttribute("width") || "400");
-    const height = parseInt(container.getAttribute("height") || "300");
-    const tagData = JSON.parse(tagDataAttr);
+    if (container && tagDataAttr) {
+      const width = parseInt(container.getAttribute("width") || "400");
+      const height = parseInt(container.getAttribute("height") || "300");
+      const tagData = JSON.parse(tagDataAttr);
 
-    const svg = d3
-      .create("svg")
-      .attr("id", "tag-svg")
-      .attr("viewBox", `0 0 ${width} ${height}`)
-      .attr("preserveAspectRatio", "xMidYMid meet");
-    container.appendChild(svg.node()!);
+      const svg = d3
+        .create("svg")
+        .attr("id", "tag-svg")
+        .attr("viewBox", `0 0 ${width} ${height}`)
+        .attr("preserveAspectRatio", "xMidYMid meet");
+      container.appendChild(svg.node()!);
 
-    const simulation = d3
-      .forceSimulation(tagData.nodes)
-      .force(
-        "link",
-        d3
-          .forceLink(tagData.links)
-          // @ts-ignore
-          .id((d) => d.tag)
-          .distance(100),
-      )
-      .force("charge", d3.forceManyBody().strength(-200))
-      .force("center", d3.forceCenter(width / 2, height / 2));
+      const simulation = d3
+        .forceSimulation(tagData.nodes)
+        .force(
+          "link",
+          d3
+            .forceLink(tagData.links)
+            // @ts-ignore
+            .id((d) => d.tag)
+            .distance(100),
+        )
+        .force("charge", d3.forceManyBody().strength(-200))
+        .force("center", d3.forceCenter(width / 2, height / 2));
 
-    // 创建链接线
-    const links = svg
-      .append("g")
-      .selectAll("line")
-      .data(tagData.links)
-      .join("line")
-      .attr("class", "link");
+      // 创建链接线
+      const links = svg
+        .append("g")
+        .selectAll("line")
+        .data(tagData.links)
+        .join("line")
+        .attr("class", "link");
 
-    // 创建节点组
-    const nodes = svg
-      .append("g")
-      .selectAll("g")
-      .data(tagData.nodes)
-      .join("g")
-      .attr("class", "node")
-      // @ts-ignore
-      .attr("data-tag", (d) => d.tag)
-      .call(
-        d3
-          .drag()
-          .on("start", dragstarted.bind(this))
-          .on("drag", dragged.bind(this))
-          .on("end", dragended.bind(this)),
-      );
-
-    const nodeRects = nodes
-      .append("rect")
-      .attr("class", "tag-bg")
-      .attr("rx", 6)
-      .attr("ry", 6);
-
-    const _nodeTexts = nodes
-      .append("text")
-      // @ts-ignore
-      .text((d) => `${d.tag}(${d.count})`)
-      .attr("class", "tag-text")
-      .attr("x", 8)
-      .attr("y", 20);
-
-    nodeRects
-      .attr("width", function () {
-        return (
-          (this!.parentNode!.querySelector("text")?.getComputedTextLength() ??
-            16) + 16
+      // 创建节点组
+      const nodes = svg
+        .append("g")
+        .selectAll("g")
+        .data(tagData.nodes)
+        .join("g")
+        .attr("class", "node")
+        // @ts-ignore
+        .attr("data-tag", (d) => d.tag)
+        .call(
+          d3
+            .drag()
+            .on("start", dragstarted.bind(this))
+            .on("drag", dragged.bind(this))
+            .on("end", dragended.bind(this)),
         );
-      })
-      .attr("height", 30);
 
-    simulation.on("tick", () => {
-      links
+      const nodeRects = nodes
+        .append("rect")
+        .attr("class", "tag-bg")
+        .attr("rx", 6)
+        .attr("ry", 6);
+
+      const _nodeTexts = nodes
+        .append("text")
         // @ts-ignore
-        .attr("x1", (d) => d.source.x)
+        .text((d) => `${d.tag}(${d.count})`)
+        .attr("class", "tag-text")
+        .attr("x", 8)
+        .attr("y", 20);
+
+      nodeRects
+        .attr("width", function () {
+          return (
+            (this!.parentNode!.querySelector("text")?.getComputedTextLength() ??
+              16) + 16
+          );
+        })
+        .attr("height", 30);
+
+      simulation.on("tick", () => {
+        links
+          // @ts-ignore
+          .attr("x1", (d) => d.source.x)
+          // @ts-ignore
+          .attr("y1", (d) => d.source.y)
+          // @ts-ignore
+          .attr("x2", (d) => d.target.x)
+          // @ts-ignore
+          .attr("y2", (d) => d.target.y);
         // @ts-ignore
-        .attr("y1", (d) => d.source.y)
-        // @ts-ignore
-        .attr("x2", (d) => d.target.x)
-        // @ts-ignore
-        .attr("y2", (d) => d.target.y);
-      // @ts-ignore
-      nodes.attr("transform", (d) => `translate(${d.x - 40},${d.y - 15})`);
-    });
+        nodes.attr("transform", (d) => `translate(${d.x - 40},${d.y - 15})`);
+      });
 
-    container.querySelectorAll(".node").forEach((node) => {
-      const hover = (e) => {
-        const centerX =
-          node.getBoundingClientRect().left +
-          node.getBoundingClientRect().width / 2 +
-          Math.ceil(e.movementX);
-        const centerY =
-          node.getBoundingClientRect().top +
-          node.getBoundingClientRect().height / 2 +
-          Math.ceil(e.movementY);
-        changeVisit(node.getAttribute("data-tag"), centerX, centerY);
-      };
-      node.addEventListener("mouseover", hover);
-    });
+      container.querySelectorAll(".node").forEach((node) => {
+        const hover = (e) => {
+          const centerX =
+            node.getBoundingClientRect().left +
+            node.getBoundingClientRect().width / 2 +
+            Math.ceil(e.movementX);
+          const centerY =
+            node.getBoundingClientRect().top +
+            node.getBoundingClientRect().height / 2 +
+            Math.ceil(e.movementY);
+          changeVisit(node.getAttribute("data-tag"), centerX, centerY);
+        };
+        node.addEventListener("mouseover", hover);
+      });
 
-    function dragstarted(event) {
-      if (!event.active) simulation.alphaTarget(0.3).restart();
-      event.subject.fx = event.subject.x;
-      event.subject.fy = event.subject.y;
-      changeVisit(
-        event.subject.tag,
-        event.sourceEvent.clientX,
-        event.sourceEvent.clientY,
-      );
-    }
+      function dragstarted(event) {
+        if (!event.active) simulation.alphaTarget(0.3).restart();
+        event.subject.fx = event.subject.x;
+        event.subject.fy = event.subject.y;
+        changeVisit(
+          event.subject.tag,
+          event.sourceEvent.clientX,
+          event.sourceEvent.clientY,
+        );
+      }
 
-    function dragged(event) {
-      event.subject.fx = event.x;
-      event.subject.fy = event.y;
-      changeVisit(
-        event.subject.tag,
-        event.sourceEvent.clientX,
-        event.sourceEvent.clientY,
-      );
-    }
+      function dragged(event) {
+        event.subject.fx = event.x;
+        event.subject.fy = event.y;
+        changeVisit(
+          event.subject.tag,
+          event.sourceEvent.clientX,
+          event.sourceEvent.clientY,
+        );
+      }
 
-    function dragended(event) {
-      if (!event.active) simulation.alphaTarget(0);
-      event.subject.fx = null;
-      event.subject.fy = null;
-      changeVisit(
-        event.subject.tag,
-        event.sourceEvent.clientX,
-        event.sourceEvent.clientY,
-      );
+      function dragended(event) {
+        if (!event.active) simulation.alphaTarget(0);
+        event.subject.fx = null;
+        event.subject.fy = null;
+        changeVisit(
+          event.subject.tag,
+          event.sourceEvent.clientX,
+          event.sourceEvent.clientY,
+        );
+      }
     }
   }
 </script>

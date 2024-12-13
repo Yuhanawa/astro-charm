@@ -4,6 +4,7 @@ import { PostList } from "charm:components";
 import { getTagStaticPaths as getStaticPaths } from "../../utils/collectionUtils";
 import { getPostEntriesByTag } from "../../utils/collectionUtils";
 export { getStaticPaths };
+export const prerender = true;
 
 const entries = await getPostEntriesByTag(Astro.params.tag!);
 const p = Astro.url.searchParams.get("p");

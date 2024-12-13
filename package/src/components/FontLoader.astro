@@ -6,10 +6,20 @@
 // script not will auto reload when use ViewTransitions, so add listener on astro:page-load
 ---
 
-<script is:inline lang="javascript">
+<link
+  rel="preconnect"
+  href="https://static.zeoseven.com"
+  crossorigin="anonymous"
+/>
+<link
+  rel="preload"
+  as="style"
+  href="https://static.zeoseven.com/zsft/2/main/result.css"
+/>
+<script is:inline lang="javascript" data-astro-rerun>
   // prettier-ignore
-  document.addEventListener('astro:page-load', () => ((z,s,f,t)=>{setTimeout(()=>{let a=(b, c)=>{
+  ((z,s,f,t)=>{setTimeout(()=>{let a=(b, c)=>{
    if(s===0){let d=document.createElement('link');d.rel='stylesheet';d.type='text/css';d.href="https://static" + b + "zeoseven.com/zsft/2/main/result.css";
        d.onerror=function(){document.head.removeChild(d);a(c);s++;};document.head.appendChild(d);};};a(z[0],z[1]);t.fontFamily=f;t.fontWeight='normal';
-},0);})(['.','-host.'],0,"LXGW ZhenKai",document.documentElement.style));
+},0);})(['.','-host.'],0,"LXGW ZhenKai",document.documentElement.style);
 </script>

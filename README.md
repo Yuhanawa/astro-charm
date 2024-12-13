@@ -84,9 +84,9 @@ pnpm create astro-theme@latest init astro-charm
 - [x] better code block
 - [x] youtube and bilibili video component
 - [ ] search
-- [ ] category and tag page
+- [x] category and tag page
 - [ ] init command
-- [ ] live demo
+- [x] live demo
 - [ ] customize side
 - [ ] dark mode
 - [ ] comments
