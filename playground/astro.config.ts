@@ -30,15 +30,4 @@ export default defineConfig({
     }),
     pageInsight(),
   ],
-  vite: {
-    build: {
-      rollupOptions: {
-        output: {
-          chunkFileNames: "js/[name]-[hash].js",
-          entryFileNames: "js/[name]-[hash].js",
-          assetFileNames: "[ext]/[name]-[hash].[ext]",
-        },
-      },
-    },
-  },
 });
