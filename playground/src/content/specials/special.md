@@ -21,7 +21,9 @@ example:
 
 if you add `about.md` to the `src/content/specials` directory, you can access the special page by going to `/about`.
 
-special page allows `published` `updated` and `disabled` fields in frontmatter.
+special page allows `title` `icon` `published` `updated` and `disabled` fields in frontmatter.
+
+`title` and `icon` fields are required, only used to display the title and icon of the sidebar item, not displayed in page.
 
 `published` and `updated` fields are optional, if not provided, they will not be displayed.
 
