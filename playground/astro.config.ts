@@ -5,6 +5,7 @@ import pageInsight from "astro-page-insight";
 
 export default defineConfig({
   prefetch: true,
+  site: "https://astro-charm.vercel.app/",
 
   integrations: [
     astroCharm({
