@@ -121,9 +121,6 @@ const theme = defineTheme({
   name: "charm",
   schema: configSchema,
   integrations: [icon()],
-  imports: {
-    sideComponents: "components/sides/**.astro",
-  },
 });
 
 export default function (
