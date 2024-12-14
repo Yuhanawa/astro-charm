@@ -11,11 +11,9 @@
         2: "33",
         1: "1a",
     */
-    --charm-highlight-color-new: #f66a6a;
-    --charm-highlight-color-old: #e06458;
-    --charm-highlight-color: var(--charm-highlight-color-new);
-    --charm-highlight-color-2: #e0645833;
-    --charm-highlight-color-1: #e064581a;
+    --charm-highlight-color: #f66a6a;
+    --charm-highlight-color-2: #f66a6a33;
+    --charm-highlight-color-1: #f66a6a1a;
     --charm-background-color: #fcfaf2;
     --charm-font-color: #374151;
     --charm-font-light-color: #ffffffe6;
@@ -31,5 +29,22 @@
 
     /* code block */
     --code-block-border-radius: 0.375em;
+
+    &.dark {
+      --charm-highlight-color: #e06458;
+      --charm-highlight-color-2: #e0645833;
+      --charm-highlight-color-1: #e064581a;
+      --charm-background-color: #1f2937;
+      --charm-font-color: #f3f4f6ee;
+      --charm-github-card-background: #1f2937;
+      --charm-card-background: #1f2937;
+      --charm-card-background-8: #1f2937cc;
+      --charm-contrast-color: #3b82f6;
+      --charm-contrast-color-8: #3b82f6cc;
+      --charm-contrast-color-5: #3b82f680;
+      --charm-contrast-color-3: #3b82f64d;
+      --charm-contrast-color-2: #3b82f633;
+      --charm-contrast-color-1: #3b82f61a;
+    }
   }
 }

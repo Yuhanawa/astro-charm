@@ -5,6 +5,7 @@ import { ViewTransitions } from "astro:transitions";
 import { FontLoader, CustomScriptComponent } from "charm:components";
 import config from "charm:config";
 import { calculateStringSimilarity } from "../utils/stringUtils";
+import { ThemeScript } from "astro-theme-toggle";
 
 type Props = {
   meta?: {
@@ -50,6 +51,7 @@ imgUrl ??=
     <meta name="generator" content={Astro.generator} />
     <FontLoader />
     <ViewTransitions />
+    <ThemeScript />
     <SEO
       title={title}
       description={description}

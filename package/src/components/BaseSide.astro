@@ -4,6 +4,7 @@ import { ShootingStar } from "charm:components";
 import config from "charm:config";
 import { getSpecialEntries } from "./../utils/collectionUtils";
 import { IconWrapper } from "charm:components";
+import IconLightDarkWrapper from "./IconLightDarkWrapper.astro";
 
 const specialsEntries = await getSpecialEntries();
 ---
@@ -83,6 +84,34 @@ const specialsEntries = await getSpecialEntries();
   </div>
 
   <div class="footer">
+    <a id="theme-toggle" role="button">
+      <div
+        class="item"
+        class:list={[{ "width-2": config.side.footerStyle !== "only-title" }]}
+      >
+        <span
+          class="title"
+          class:list={[
+            {
+              hidden: config.side.footerStyle === "only-icon",
+              transparent: config.side.footerStyle === "default",
+            },
+          ]}
+        >
+          <span class="light">light</span>
+          <span class="dark">dark</span>
+        </span>
+        <IconLightDarkWrapper
+          name={{
+            light: "solar:cloud-sun-2-bold-duotone",
+            dark: "solar:moon-bold-duotone",
+            // dark: "solar:cloudy-moon-bold-duotone",
+          }}
+          class="icon"
+          class:list={[{ hidden: config.side.footerStyle === "only-title" }]}
+        />
+      </div>
+    </a>
     {
       config.side.footer!.map((i) => (
         <a href={i.link}>
@@ -116,6 +145,18 @@ const specialsEntries = await getSpecialEntries();
     }
   </div>
 </div>
+
+<script>
+  import { handleToggleClick } from "astro-theme-toggle";
+  const addListener = () => {
+    document
+      .getElementById("theme-toggle")
+      ?.addEventListener("click", handleToggleClick);
+  };
+  addListener();
+  document.addEventListener("astro:after-swap", addListener);
+</script>
+
 <style>
   .icon {
     width: 1.5rem;
@@ -190,7 +231,11 @@ const specialsEntries = await getSpecialEntries();
     align-items: flex-end;
     gap: 1rem;
     padding: 4rem 0;
-    margin-left: 3rem;
+
+    #theme-toggle {
+      scale: 1.1;
+      margin-right: 2rem;
+    }
 
     .item {
       display: flex;
@@ -199,15 +244,16 @@ const specialsEntries = await getSpecialEntries();
 
     /* stylelint-disable-next-line no-descending-specificity */
     .title {
-      transform: translateX(-50%);
+      transform: translateX(calc(-50% + 0.75rem));
       transition: all 0.3s ease;
       white-space: nowrap;
+      width: fit-content;
     }
 
     a:hover {
       .title {
         opacity: 1;
-        transform: translateX(-50%) translateY(-0.25em);
+        transform: translateX(calc(-50% + 0.75rem)) translateY(-0.25em);
       }
 
       .icon {
@@ -249,6 +295,20 @@ const specialsEntries = await getSpecialEntries();
   @media (width <= 42rem) {
     .side {
       display: none;
+    }
+  }
+
+  .dark {
+    display: none;
+  }
+
+  :global(.dark) {
+    .light {
+      display: none;
+    }
+
+    .dark {
+      display: inline-block;
     }
   }
 </style>

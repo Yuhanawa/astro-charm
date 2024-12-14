@@ -41,6 +41,9 @@ importers:
       astro-theme-provider:
         specifier: ^0.6.1
         version: 0.6.1(astro@4.16.16(@types/node@22.10.1)(lightningcss@1.27.0)(rollup@4.27.4)(terser@5.36.0)(typescript@5.7.2))
+      astro-theme-toggle:
+        specifier: ^0.3.5
+        version: 0.3.5
       d3:
         specifier: ^7.9.0
         version: 7.9.0
@@ -1376,6 +1379,9 @@ packages:
     peerDependenciesMeta:
       '@astrojs/db':
         optional: true
+
+  astro-theme-toggle@0.3.5:
+    resolution: {integrity: sha512-ef5Cend7n4iel4u6mJRoilgYRxRkllWiK4DonssSesm6RPS+/RmXFOyMEOna3sB/Vmav0BXGEN18otdxPPwPeQ==}
 
   astro@4.16.16:
     resolution: {integrity: sha512-H1CttrV6+JFrDBQx0Mcbq5i5AeLhCbztB786+9wEu3svWL/QPNeCGqF0dgNORAYmP+rODGCPu/y9qKSh87iLuA==}
@@ -5259,6 +5265,8 @@ snapshots:
       astro-public: 0.1.0(astro@4.16.16(@types/node@22.10.1)(lightningcss@1.27.0)(rollup@4.27.4)(terser@5.36.0)(typescript@5.7.2))
       callsites: 4.2.0
       fast-glob: 3.3.2
+
+  astro-theme-toggle@0.3.5: {}
 
   astro@4.16.16(@types/node@22.10.1)(lightningcss@1.27.0)(rollup@4.27.4)(terser@5.36.0)(typescript@5.7.2):
     dependencies:
