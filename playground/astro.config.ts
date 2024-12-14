@@ -9,8 +9,8 @@ export default defineConfig({
   prefetch: true,
   site: "https://astro-charm.vercel.app/",
 
-  // output: "static",
-  // adapter: vercel(),
+  output: "hybrid",
+  adapter: vercel(),
 
   integrations: [
     astroCharm({
