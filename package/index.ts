@@ -176,9 +176,9 @@ export default function (
 
   hook("astro:config:setup", (options) => {
     options.updateConfig({
-      build: {
-        format: "file",
-      },
+      // build: {
+      //   format: "file",
+      // },
       markdown: {
         shikiConfig: {
           themes: {
