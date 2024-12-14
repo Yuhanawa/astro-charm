@@ -88,7 +88,7 @@ pnpm create astro-theme@latest init astro-charm
 - [ ] init command
 - [x] live demo
 - [ ] customize side
-- [ ] dark mode
+- [x] dark mode
 - [ ] comments
 - [ ] sitemap
 - [ ] analytics
