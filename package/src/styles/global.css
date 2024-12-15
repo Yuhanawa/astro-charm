@@ -6,7 +6,7 @@ body {
   padding: 0;
 
   color: var(--charm-font-color);
-  background: url("/lightnoise.png") repeat scroll 0% 0%
+  background: var(--light-noise) repeat scroll 0% 0%
     var(--charm-background-color);
 
   scroll-behavior: smooth;
