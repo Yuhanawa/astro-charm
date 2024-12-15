@@ -11,7 +11,7 @@ const specialsEntries = await getSpecialEntries();
 
 <div class="side">
   <div class="container">
-    <ShootingStar class="shooting-star" />
+    {config.shootingStar && <ShootingStar class="shooting-star" />}
 
     <div class="center">
       <nav>
@@ -32,51 +32,41 @@ const specialsEntries = await getSpecialEntries();
             </span>
             <IconWrapper
               name={config.side.navHome!.icon!}
-              active={Astro.url.pathname === config.side.navHome!.link}
+              active={Astro.url.pathname === config.side.navHome!.link ||
+                Astro.url.pathname + "/" === config.side.navHome!.link}
               class="icon"
               class:list={[{ hidden: config.side.navStyle === "only-title" }]}
             />
           </div>
         </a>
         {
-          specialsEntries.map((i) => {
-            if (i.data.title === undefined || i.data.icon === undefined) {
-              if (!i.data.disabled || import.meta.env.PROD) {
-                return null;
-              }
-              throw new Error(
-                "title and icon is required, please check your markdown file in `src/content/specials/`\nwhen production mode, this error will be ignored",
-              );
-            }
-
-            return (
-              <a
-                href={`/${i.slug}`}
-                title={i.data.title}
-                data-astro-prefetch="viewport"
-              >
-                <div class="item">
-                  <span
-                    class="title"
-                    class:list={[
-                      { hidden: config.side.navStyle === "only-icon" },
-                      { transparent: config.side.navStyle === "default" },
-                    ]}
-                  >
-                    {i.data.title}
-                  </span>
-                  <IconWrapper
-                    name={i.data.icon}
-                    active={Astro.url.pathname === `/${i.slug}`}
-                    class="icon"
-                    class:list={[
-                      { hidden: config.side.navStyle === "only-title" },
-                    ]}
-                  />
-                </div>
-              </a>
-            );
-          })
+          specialsEntries.map((i) => (
+            <a
+              href={`/${i.slug}`}
+              title={i.data.title}
+              data-astro-prefetch="viewport"
+            >
+              <div class="item">
+                <span
+                  class="title"
+                  class:list={[
+                    { hidden: config.side.navStyle === "only-icon" },
+                    { transparent: config.side.navStyle === "default" },
+                  ]}
+                >
+                  {i.data.title}
+                </span>
+                <IconWrapper
+                  name={i.data.icon}
+                  active={Astro.url.pathname === `/${i.slug}`}
+                  class="icon"
+                  class:list={[
+                    { hidden: config.side.navStyle === "only-title" },
+                  ]}
+                />
+              </div>
+            </a>
+          ))
         }
       </nav>
       <div class="content"><slot /></div>
@@ -84,7 +74,7 @@ const specialsEntries = await getSpecialEntries();
   </div>
 
   <div class="footer">
-    <a id="theme-toggle" role="button">
+    <a id="theme-toggle" href="javascript:void(0)" role="button">
       <div
         class="item"
         class:list={[{ "width-2": config.side.footerStyle !== "only-title" }]}

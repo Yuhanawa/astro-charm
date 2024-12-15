@@ -8,6 +8,7 @@ icon:
   }
 published: 2024-11-30
 updated: 2024-11-30
+index: 10
 ---
 
 # START YOUR JOURNEY and WRITE YOUR OWN STORY

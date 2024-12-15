@@ -61,6 +61,10 @@ const configSchema = z.object({
   description: z.string().optional(),
   author: z.string().optional(),
   placeholderImage: z.string().min(1).optional(),
+  font: z
+    .enum(["auto", "full", "only-en", "disabled", "dynamic"])
+    .default("auto"),
+  shootingStar: z.boolean().default(true),
   side: z.object({
     title: z.string(),
     sub: z.string(),

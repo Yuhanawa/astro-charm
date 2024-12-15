@@ -8,6 +8,7 @@ icon:
   }
 published: 2024-12-13
 updated: 2024-12-13
+index: 1
 ---
 
 # Projects
