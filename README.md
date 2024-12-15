@@ -93,6 +93,7 @@ pnpm create astro-theme@latest init astro-charm
 - [ ] sitemap
 - [ ] analytics
   - [x] now can use custom script instead temporary
+- [ ] support mobile
 
 # very thankful
 
