@@ -2,13 +2,12 @@
 
 A astro theme use [`Astro Theme Provider`](https://github.com/astrolicious/astro-theme-provider)
 
-## ‼️ WORK IN PROGRESS ‼️
-
-## ‼️ WORK IN PROGRESS ‼️
-
-## ‼️ WORK IN PROGRESS ‼️
+## WIP
 
 ![screenshot-2024-12-04](docs/screenshot-2024-12-04.png "screenshot-2024-12-04")
+
+[Live Demo](https://astro-charm.vercel.app/) | [PageSpeed](https://pagespeed.web.dev/analysis/https-astro-charm-vercel-app/5i3rnbmbpd)
+
 
 ## Install
 
@@ -97,6 +96,6 @@ pnpm create astro-theme@latest init astro-charm
 
 # very thankful
 
-The source of inspiration is chanshiyu's blog, but now it cannot access.
+The source of inspiration is chanshiyu's blog.
 
 When creating this theme, many other excellent projects were referenced.
