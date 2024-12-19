@@ -77,7 +77,7 @@ pnpm create astro-theme@latest init astro-charm
 
 ## TODO
 
-- [ ] upgrade to Astro v5
+- [x] upgrade to Astro v5
 - [ ] guide docs
 - [x] code copy button
 - [x] better code block

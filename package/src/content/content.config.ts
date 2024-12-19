@@ -1,8 +1,9 @@
 import { z, defineCollection } from "astro:content";
 import { iconStringOrLightDarkOrWithStates } from "../../index";
+import { glob } from "astro/loaders";
 
 const postCollection = defineCollection({
-  type: "content",
+  loader: glob({ base: "./src/content/posts", pattern: "**/*.{md,mdx}" }),
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
@@ -17,7 +18,7 @@ const postCollection = defineCollection({
 });
 
 const specialsCollection = defineCollection({
-  type: "content",
+  loader: glob({ base: "./src/content/specials", pattern: "**/*.{md,mdx}" }),
   schema: z.object({
     title: z.string(),
     description: z.string().optional(), // not show, only for SEO

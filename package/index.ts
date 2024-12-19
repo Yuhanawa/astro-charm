@@ -23,7 +23,6 @@ import transformerCopyButton from "./src/plugins/shiki-transformer-code-block.mj
 import remarkToc from "remark-toc";
 import remarkMath from "remark-math";
 import remarkReadingTime from "remark-reading-time";
-import remarkExcerpt from "remark-excerpt";
 import remarkGithubAdmonitionsToDirectives from "remark-github-admonitions-to-directives";
 import remarkDirective from "remark-directive";
 import parseDirectiveNode from "./src/plugins/remark-directive-rehype.mjs";
@@ -215,7 +214,6 @@ export default function (
           remarkToc,
           remarkMath,
           remarkReadingTime,
-          remarkExcerpt,
           remarkGithubAdmonitionsToDirectives,
           remarkDirective,
           parseDirectiveNode,

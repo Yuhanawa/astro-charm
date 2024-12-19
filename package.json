@@ -8,8 +8,8 @@
     "format": "prettier --write  \"**/*.{js,ts,astro}\""
   },
   "devDependencies": {
-    "astro": "^4.16.16",
-    "prettier": "^3.4.1",
+    "astro": "^5.1.0",
+    "prettier": "^3.4.2",
     "prettier-plugin-astro": "^0.14.1"
   }
 }

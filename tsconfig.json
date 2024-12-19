@@ -1,11 +1,15 @@
 {
-  "extends": "astro/tsconfigs/base",
+  "extends": "astro/tsconfigs/strict",
+  "include": [
+    "package/.astro/types.d.ts",
+    "playground/.astro/types.d.ts",
+    "playground/.astro/charm.d.ts",
+    "package/**/*",
+    "playground/**/*"
+  ],
+  "exclude": ["playground/dist"],
   "compilerOptions": {
     "strictNullChecks": true,
-    "plugins": [
-      {
-        "name": "@astrojs/ts-plugin"
-      }
-    ]
+    "allowJs": true
   }
 }
