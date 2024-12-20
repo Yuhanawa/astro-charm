@@ -23,23 +23,23 @@
         "side": {
           "title": "Title",
           "sub": "A blog",
-          "bio": "using Astro Charm Theme"
-        },
-        "navHome": {
-          "title": "Home"
-        },
-        "footer": [
-          {
-            "title": "Twitter",
-            "link": "https://x.com/",
-            "icon": "simple-icons:twitter"
+          "bio": "using Astro Charm Theme",
+          "navHome": {
+            "title": "Home"
           },
-          {
-            "title": "GitHub",
-            "link": "https://github.com/yuhanawa/astro-charm",
-            "icon": "simple-icons:github"
-          }
-        ]
+          "footer": [
+            {
+              "title": "Twitter",
+              "link": "https://x.com/",
+              "icon": "simple-icons:twitter"
+            },
+            {
+              "title": "GitHub",
+              "link": "https://github.com/yuhanawa/astro-charm",
+              "icon": "simple-icons:github"
+            }
+          ]
+        }
       }
     }
   }
