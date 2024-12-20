@@ -16,11 +16,11 @@ export default defineConfig({
     astroCharm({
       config: {
         lang: "en",
-        title: "My Awesome Theme",
-        description: "My awesome theme is currently under construction!",
+        title: "Charm Theme",
+        description: "A beautiful blog theme for Astro",
         side: {
           title: "Charm Theme",
-          sub: "A theme for Astro",
+          sub: "A blog theme for Astro",
           bio: "Cupidatat ex id eiusmod aute do labore ea minim eu fugiat Lorem fugiat adipisicing.",
         },
       },

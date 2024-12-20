@@ -4,30 +4,42 @@ Beautiful and easy-to-use blog theme
 
 [more information](https://github.com/Yuhanawa/astro-charm/)
 
-**!WIP!**
-## ‼️ WORK IN PROGRESS ‼️
-## ‼️ WORK IN PROGRESS ‼️
-## ‼️ WORK IN PROGRESS ‼️
+![screenshot-2024-12-04](https://github.com/Yuhanawa/astro-charm/raw/main/docs/screenshot-2024-12-04.png "screenshot-2024-12-04")
 
-<!-- ## How to use
+[Live Demo](https://astro-charm.vercel.app/) | [PageSpeed](https://pagespeed.web.dev/analysis/https-astro-charm-vercel-app/5i3rnbmbpd)
 
-just run the following command:
+## How to use
 
 ```bash
 pnpm create astro-theme@latest with-theme astro-charm
 ```
 
-<details>
-  <summary>if you already have an Astro project</summary>
+and into the project
 
-you can add charm theme to your project by the following command:
+```bash
+pnpm add @iconify-json/simple-icons
+pnpm add @iconify-json/solar
+```
+
+Enjoy it!
+
+<details>
+  <summary>Install to existing project</summary>
+
+1. Install `astro-charm`, `@iconify-json/simple-icons` and `@iconify-json/solar` to your project.
 
 ```bash
 pnpm astro add astro-charm
+pnpm add @iconify-json/simple-icons
+pnpm add @iconify-json/solar
 ```
 
-</details> -->
+2. Modify `astro.config.ts` file, you can use following command to modify it.
 
-## Enjoy it!
+```bash
+pnpm create astro-theme@latest init astro-charm
+```
+
+</details>
 
 [more information](https://github.com/Yuhanawa/astro-charm/)

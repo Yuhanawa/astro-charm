@@ -131,29 +131,31 @@ export default function (
   themeOptions: Parameters<typeof theme>[0],
 ): AstroIntegration {
   if (!themeOptions || !themeOptions.config) {
-    console.error("No Charm configuration found");
-    console.info("Please add configuration to your astro.config.{ts,js,mjs}:");
+    console.error("No Charm Config Found");
+    console.info(
+      "Please run `pnpm create astro-theme@latest init astro-charm` or add config to your astro.config.{ts,mts,js,mjs} manually",
+    );
     console.info("Here is an example:");
     console.info(
       `
-    import { defineConfig } from 'astro/config';
-    import astroCharm from 'astro-charm';
-  
     export default defineConfig({
-      // ... other config
       integrations: [
-        astroCharm({
+        charm({
           config: {
-            title: 'My Blog',
-            // ... other options
-          }
+            lang: "en",
+            title: "Charm Theme",
+            description: "A beautiful blog theme for Astro",
+            side: {
+              title: "Charm Theme",
+              sub: "A blog theme for Astro",
+              bio: "Cupidatat ex id eiusmod aute do labore ea minim eu fugiat Lorem fugiat adipisicing.",
+            },
+          },
         })
       ]
     });`,
     );
-    console.info("Please wait for updates and add configuration right now!");
-
-    throw new Error("No Charm configuration found, please add configuration");
+    throw new Error("No Charm Config Found");
   }
   const integration = theme(themeOptions);
   const rawConfig = themeOptions.config;

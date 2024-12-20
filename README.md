@@ -1,71 +1,36 @@
 # Astro Charm
 
-A astro theme use [`Astro Theme Provider`](https://github.com/astrolicious/astro-theme-provider)
-
-## WIP
-
 ![screenshot-2024-12-04](docs/screenshot-2024-12-04.png "screenshot-2024-12-04")
 
 [Live Demo](https://astro-charm.vercel.app/) | [PageSpeed](https://pagespeed.web.dev/analysis/https-astro-charm-vercel-app/5i3rnbmbpd)
 
-
-## Install
-
-1. Create an empty Astro project(if has, skip):
+## How to use
 
 ```bash
-pnpm create astro@latest my-website --template minimal -y
+pnpm create astro-theme@latest with-theme astro-charm
 ```
 
-2. Add the theme to your project:
-
-<!-- ```bash
-pnpm astro add astro-charm
-``` -->
+and into the project
 
 ```bash
-pnpm add astro-charm
+pnpm add @iconify-json/simple-icons
+pnpm add @iconify-json/solar
 ```
 
-3. Config in your `astro.config.ts`:
-
-```ts
-import { defineConfig } from "astro/config";
-import astroCharm from "astro-charm";
-
-export default defineConfig({
-  integrations: [
-    astroCharm({
-      config: {
-        title: "Your Blog",
-        description: "Your blog description",
-        side: {
-          title: "Title",
-          sub: "Sub Title",
-          bio: "Bio",
-        },
-        // for more config, see `https://github.com/Yuhanawa/astro-charm/blob/main/package/index.ts#L55-L117`
-      },
-    }),
-  ],
-});
-```
+Enjoy it!
 
 <details>
-  <summary>Other way(WIP, not recommend)</summary>
+  <summary>Install to existing project</summary>
 
-edit your `astro.config.ts`
+1. Install `astro-charm`, `@iconify-json/simple-icons` and `@iconify-json/solar` to your project.
 
-```ts
-import { defineConfig } from "astro/config";
-import astroCharm from "astro-charm";
-
-export default defineConfig({
-  integrations: [astroCharm()],
-});
+```bash
+pnpm astro add astro-charm
+pnpm add @iconify-json/simple-icons
+pnpm add @iconify-json/solar
 ```
 
-and run
+2. Modify `astro.config.ts` file, you can use following command to modify it.
 
 ```bash
 pnpm create astro-theme@latest init astro-charm
@@ -73,7 +38,9 @@ pnpm create astro-theme@latest init astro-charm
 
 </details>
 
-4. Enjoy it!
+## Config
+
+see: <https://github.com/Yuhanawa/astro-charm/blob/main/package/index.ts#L55-L117>
 
 ## TODO
 
@@ -84,7 +51,7 @@ pnpm create astro-theme@latest init astro-charm
 - [x] youtube and bilibili video component
 - [x] search
 - [x] category and tag page
-- [ ] init command
+- [x] init command
 - [x] live demo
 - [ ] customize side
 - [x] dark mode
@@ -93,9 +60,3 @@ pnpm create astro-theme@latest init astro-charm
 - [ ] analytics
   - [x] now can use custom script instead temporary
 - [x] support mobile
-
-# very thankful
-
-The source of inspiration is chanshiyu's blog.
-
-When creating this theme, many other excellent projects were referenced.

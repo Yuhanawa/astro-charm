@@ -6,7 +6,7 @@
         "title": "Blog Title",
         "description": "Blog Description",
         "side": {
-          "title": "sidebar Title",
+          "title": "Title",
           "sub": "A blog",
           "bio": "using Astro Charm Theme"
         }
@@ -21,7 +21,7 @@
         "description": "Blog Description",
         "author": "Your Name",
         "side": {
-          "title": "sidebar Tile",
+          "title": "Title",
           "sub": "A blog",
           "bio": "using Astro Charm Theme"
         },
