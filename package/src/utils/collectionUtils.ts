@@ -30,7 +30,7 @@ export async function getSpecialEntries(options?: { showHidden?: boolean }) {
   return entries.sort(
     (a, b) =>
       (a.data.index ?? 0) - (b.data.index ?? 0) ||
-      a.data.name.localeCompare(b.data.name),
+      a.data.title.localeCompare(b.data.title),
   );
 }
 export async function getSpecialStaticPaths() {
