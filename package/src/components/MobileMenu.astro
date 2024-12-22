@@ -10,7 +10,7 @@ const EntryLength = specialsEntries.length;
 
 <div class="mobile-menu-container">
   <header class="mobile-header">
-    <div class="title">{config.side.title}</div>
+    <a class="title" title={config.side.title} href="/">{config.side.title}</a>
     <button class="menu-toggle" aria-label="Toggle menu">
       <Icon name="solar:hamburger-menu-bold-duotone" class="menu-icon" />
     </button>
@@ -200,11 +200,10 @@ const EntryLength = specialsEntries.length;
 </style>
 
 <script is:inline data-astro-rerun>
-  const menuToggle = document.querySelector(".menu-toggle");
-  const mobileMenu = document.querySelector(".mobile-menu");
-  const menuIcon = document.querySelector(".menu-icon");
+  document.querySelector(".menu-toggle")?.addEventListener("click", () => {
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const menuIcon = document.querySelector(".menu-icon");
 
-  menuToggle?.addEventListener("click", () => {
     mobileMenu?.classList.toggle("active");
     menuIcon?.classList.toggle("active");
     document.body.style.overflow = mobileMenu?.classList.contains("active")
@@ -218,6 +217,9 @@ const EntryLength = specialsEntries.length;
       !event.target.closest(".mobile-menu") &&
       !event.target.closest(".menu-toggle")
     ) {
+      const mobileMenu = document.querySelector(".mobile-menu");
+      const menuIcon = document.querySelector(".menu-icon");
+
       mobileMenu?.classList.remove("active");
       menuIcon?.classList.remove("active");
       document.body.style.overflow = "";
