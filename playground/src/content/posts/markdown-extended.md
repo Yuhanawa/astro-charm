@@ -1,6 +1,7 @@
 ---
 title: Markdown Extended Features
-published: 2024-05-01
+published: 2024-12-01
+updated: 2024-12-22
 description: "Read more about Markdown features"
 image: ""
 tags: [Demo, Markdown, Feature]
@@ -150,7 +151,7 @@ We support the following features:
 - Remove Notation Escape
   - Remove notation escapes. Useful when you want to write `// [!code]` in markdown. If you process `// [\!code ...]` expression, you can get `// [!code ...]` in the output.
 - TypeScript Twoslash
-  - need explicit trigger or configuration
+  - Need explicit trigger
 
 The reference for you might need: [shiki transformers](https://shiki.style/packages/transformers)
 
@@ -174,13 +175,14 @@ Number.parseInt('123', 10)
 
 Custom twoslash message
 ```ts twoslash
-// @log: You can use `// @log message` to make custom message
 const log = "custom message"
-// @annotate: `@error` `@warn` and `@annotate` are also supported
+// @log: You can use `// @log message` to make custom message
 type type = "log" | "error" | "warn" | "annotate"
-// @error: It can't be done
-const perpetual_motion_machine = "cat" + "butter" 
-// @warn: Cat couldn't touch water
+// @annotate: `@error` `@warn` and `@annotate` are also supported
 const cat_touch_water = "cat" + "water"
+// @warn: Cat couldn't touch water
+const perpetual_motion_machine = "cat" + "butter" 
+// @error: It can't be done
+const twoslash = "https://www.typescriptlang.org/dev/twoslash/"
 ```
 
