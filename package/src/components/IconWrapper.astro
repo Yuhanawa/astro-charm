@@ -72,8 +72,8 @@ let { name, active, ...props } = Astro.props;
   }
 
   :active,
-  [data-active],
-  [aria-active] {
+  [data-active="true"],
+  [aria-active="true"] {
     .active {
       opacity: 1;
       pointer-events: auto;
