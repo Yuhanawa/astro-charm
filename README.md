@@ -58,5 +58,10 @@ see: <https://github.com/Yuhanawa/astro-charm/blob/main/package/index.ts#L55-L11
 - [ ] comments
 - [x] sitemap
 - [x] google analytics
-  - [x] now can use custom script instead temporary
+- [x] custom script
+- [ ] custom content in post page
+- [ ] custom background image
 - [x] support mobile
+- [ ] RSS
+- [ ] image in home page
+- [ ] reading time
