@@ -56,7 +56,7 @@ see: <https://github.com/Yuhanawa/astro-charm/blob/main/package/index.ts#L55-L11
 - [ ] customize side
 - [x] dark mode
 - [ ] comments
-- [ ] sitemap
-- [ ] analytics
+- [x] sitemap
+- [x] google analytics
   - [x] now can use custom script instead temporary
 - [x] support mobile

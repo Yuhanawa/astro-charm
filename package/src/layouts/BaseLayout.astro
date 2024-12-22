@@ -6,6 +6,7 @@ import { FontLoader, CustomScriptComponent } from "charm:components";
 import config from "charm:config";
 import { calculateStringSimilarity } from "../utils/stringUtils";
 import { ThemeScript } from "astro-theme-toggle";
+import GoogleAnalytics from "../components/GoogleAnalytics.astro";
 
 type Props = {
   meta?: {
@@ -28,7 +29,9 @@ if (
   calculateStringSimilarity(title, titleSuffix) < 0.8
 )
   title += titleSuffix;
+
 const description = meta?.description || config.description;
+
 let imgUrl = meta?.image
   ? meta.image.startsWith("http")
     ? meta.image
@@ -41,6 +44,8 @@ imgUrl ??=
   (config.placeholderImage.startsWith("http")
     ? config.placeholderImage
     : `${Astro.url.origin}${config.placeholderImage.startsWith("/") ? "" : "/"}${config.placeholderImage}`);
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <html lang={config.lang}>
@@ -55,7 +60,7 @@ imgUrl ??=
     <SEO
       title={title}
       description={description}
-      canonical={Astro.url.href}
+      canonical={canonicalURL}
       openGraph={imgUrl
         ? {
             basic: {
@@ -95,6 +100,11 @@ imgUrl ??=
         `${style.block} ${style.bg} ${style.link}`,
       );
     </script>
+    {
+      config.googleAnalyticsId && (
+        <GoogleAnalytics id={config.googleAnalyticsId} />
+      )
+    }
     <CustomScriptComponent />
   </head>
   <body>

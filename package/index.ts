@@ -3,6 +3,7 @@ import defineTheme from "astro-theme-provider";
 import { z } from "astro/zod";
 import icon from "astro-icon";
 import pagefind from "astro-pagefind";
+import sitemap from "@astrojs/sitemap";
 
 // shiki transformers
 import { transformerColorizedBrackets } from "@shikijs/colorized-brackets";
@@ -60,6 +61,7 @@ const configSchema = z.object({
   description: z.string().optional(),
   author: z.string().optional(),
   placeholderImage: z.string().min(1).optional(),
+  googleAnalyticsId: z.string().optional(),
   font: z
     .enum(["auto", "full", "only-en", "disabled", "dynamic"])
     .default("auto"),
@@ -124,7 +126,12 @@ const configSchema = z.object({
 const theme = defineTheme({
   name: "charm",
   schema: configSchema,
-  integrations: [icon(), pagefind()],
+  integrations: [
+    icon(),
+    pagefind(),
+    ({ integrations }) =>
+      !integrations.includes("@astrojs/sitemap") && sitemap(),
+  ],
 });
 
 export default function (
@@ -150,6 +157,7 @@ export default function (
               sub: "A blog theme for Astro",
               bio: "Cupidatat ex id eiusmod aute do labore ea minim eu fugiat Lorem fugiat adipisicing.",
             },
+            // other config
           },
         })
       ]
@@ -281,10 +289,6 @@ export default function (
   hook("astro:config:done", (options) => {
     if (!options.config.site)
       options.logger.warn("the `site` astro.config option is missing");
-  });
-  hook("astro:build:done", (options) => {
-    // TODO: generate sitemap
-    // TODO: run pagefind to generate search index
   });
 
   return integration;
