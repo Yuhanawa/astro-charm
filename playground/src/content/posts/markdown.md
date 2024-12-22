@@ -57,11 +57,9 @@ function life() {
 
 ## Blockquotes
 
-> Endure hardships and work hard
+> Blockquotes
 >
-> > The sages said we should endure hardships and work hard
-> >
-> > > Nonsense, why don't the sages endure hardships themselves
+> > Nested blockquotes
 
 ---
 
