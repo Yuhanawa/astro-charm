@@ -123,7 +123,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     gap: clamp(2rem, 4vw, 6rem);
   }
 
-  @media (width <= 52rem) {
+  @media (width <= 42rem) {
+    main {
+      display: block;
+    }
+  }
+
+  @media (42 <= width <= 52rem) {
     main {
       margin-left: clamp(1.5rem, calc(8vw - 2rem), 10rem);
     }

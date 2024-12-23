@@ -45,8 +45,8 @@ const EntryLength = specialsEntries.length;
                 <IconWrapper
                   name={i.data.icon}
                   active={
-                    Astro.url.pathname === config.side.navHome!.link ||
-                    Astro.url.pathname + "/" === config.side.navHome!.link
+                    Astro.url.pathname === `/${i.slug}` ||
+                    Astro.url.pathname + "/" === `/${i.slug}`
                   }
                   class="icon"
                 />
@@ -74,7 +74,7 @@ const EntryLength = specialsEntries.length;
     </div>
   </nav>
 </div>
-
+<br />
 <style>
   .mobile-header {
     display: flex;
