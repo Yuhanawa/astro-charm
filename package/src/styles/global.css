@@ -292,6 +292,58 @@ img {
   height: auto;
 }
 
+blockquote {
+  position: relative;
+  margin: 0.5rem 0.25rem;
+  padding: 0.5rem 0.5rem 0.25rem 2.5rem;
+
+  font-size: 1.1rem;
+  font-style: italic;
+  line-height: 1.6;
+
+  background: var(--charm-card-background);
+
+  border: var(--charm-contrast-color-5) 1px solid;
+  border-left: 0.5em solid #78c0a8;
+  border-radius: 0.25rem;
+
+  &::before {
+    content: "\201C";
+    position: absolute;
+    top: -1rem;
+    left: 0.5rem;
+    font-family: Arial, serif;
+    font-size: 4em;
+    color: #78c0a8;
+  }
+
+  blockquote {
+    margin: 0 0 0.25rem 0;
+    padding: 0.25rem 0.5rem;
+    border: none;
+    border-left: 0.25em solid #78c0a8;
+    border-radius: 0.2rem;
+
+    p:first-child {
+      margin-top: 0;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    &::before {
+      content: none;
+      position: absolute;
+      top: -1rem;
+      left: 0.5rem;
+      font-family: Arial, serif;
+      font-size: 4em;
+      color: #78c0a8;
+    }
+  }
+}
+
 iframe {
   border-radius: 0.5rem;
   margin-inline: auto;
