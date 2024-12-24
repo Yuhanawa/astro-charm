@@ -5,7 +5,7 @@ screenshot 2024-12-04
 
 [Live Demo](https://astro-charm.vercel.app/) | [PageSpeed](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fastro-charm.vercel.app%2F)
 
-Note: The image on the right in the Live Dem` is not part of the Charm theme
+Note: The image on the right in the `Live Demo` is not part of the Charm theme
 
 ## How to use
 
