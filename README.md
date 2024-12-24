@@ -1,8 +1,11 @@
 # Astro Charm
 
+screenshot 2024-12-04
 ![screenshot-2024-12-04](docs/screenshot-2024-12-04.png "screenshot-2024-12-04")
 
-[Live Demo](https://astro-charm.vercel.app/) | [PageSpeed](https://pagespeed.web.dev/analysis/https-astro-charm-vercel-app/5i3rnbmbpd)
+[Live Demo](https://astro-charm.vercel.app/) | [PageSpeed](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fastro-charm.vercel.app%2F)
+
+Note: The image on the right in the Live Dem` is not part of the Charm theme
 
 ## How to use
 
@@ -59,9 +62,8 @@ see: <https://github.com/Yuhanawa/astro-charm/blob/main/package/index.ts#L55-L11
 - [x] sitemap
 - [x] google analytics
 - [x] custom script
+- [x] custom style
 - [ ] custom content in post page
-- [ ] custom background image
 - [x] support mobile
-- [ ] RSS
-- [ ] image in home page
+- [x] RSS
 - [ ] reading time

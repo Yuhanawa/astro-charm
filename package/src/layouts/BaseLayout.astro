@@ -1,5 +1,6 @@
 ---
 import "charm:styles";
+import "charm:userCustomStyle";
 import { SEO } from "astro-seo";
 import { ClientRouter } from "astro:transitions";
 import { FontLoader, CustomScriptComponent } from "charm:components";
@@ -48,7 +49,7 @@ imgUrl ??=
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
-<html lang={config.lang}>
+<html lang={config.lang} class="charm">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -80,6 +81,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           }
         : undefined}
     />
+    {
+      config.rss && (
+        <link
+          rel="alternate"
+          title={title}
+          href="/rss.xml"
+          type="application/rss+xml"
+        />
+      )
+    }
     <script>
       import { version } from "../../package.json";
       const style = {

@@ -1,6 +1,6 @@
 {
   "name": "astro-charm",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Beautiful and easy-to-use blog theme",
   "license": "MIT",
   "author": {
@@ -43,6 +43,7 @@
     "typescript": "^5.7.2"
   },
   "dependencies": {
+    "@astrojs/rss": "^4.0.10",
     "@astrojs/sitemap": "^3.2.1",
     "@shikijs/colorized-brackets": "^1.24.0",
     "@shikijs/transformers": "^1.24.0",

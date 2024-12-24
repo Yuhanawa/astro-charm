@@ -37,6 +37,7 @@ import rehypeSlug from "rehype-slug";
 import AdmonitionComponent from "./src/plugins/rehype-component-admonition.mjs";
 import GithubCardComponent from "./src/plugins/rehype-component-github-card.mjs";
 import remarkComponentEmbed from "./src/plugins/remark-component-embed.mjs";
+import { existsSync } from "node:fs";
 
 // The Charm theme uses `astro-icon`. For usage details, see: https://github.com/natemoo-re/astro-icon?tab=readme-ov-file#iconify-icons
 // By default, the Charm theme uses `@iconify-json/simple-icons` and `@iconify-json/solar`. You need to install these two packages.
@@ -61,6 +62,7 @@ const configSchema = z.object({
   description: z.string().optional(),
   author: z.string().optional(),
   placeholderImage: z.string().min(1).optional(),
+  rss: z.boolean().default(true),
   googleAnalyticsId: z.string().optional(),
   font: z
     .enum(["auto", "full", "only-en", "disabled", "dynamic"])
@@ -126,12 +128,10 @@ const configSchema = z.object({
 const theme = defineTheme({
   name: "charm",
   schema: configSchema,
-  integrations: [
-    icon(),
-    pagefind(),
-    ({ integrations }) =>
-      !integrations.includes("@astrojs/sitemap") && sitemap(),
-  ],
+  integrations: [icon(), pagefind(), sitemap()],
+  imports: {
+    userCustomStyle: "./__no_match__",
+  },
 });
 
 export default function (
@@ -165,6 +165,12 @@ export default function (
     );
     throw new Error("No Charm Config Found");
   }
+
+  // if ./src/styles/custom-charm.{css,scss,less,styl} exists, add it to userCustomStyle
+  const customStylePath = "./src/styles/custom-charm.css";
+  if (existsSync(customStylePath))
+    (themeOptions.overrides ??= {}).userCustomStyle ??= [customStylePath];
+
   const integration = theme(themeOptions);
   const rawConfig = themeOptions.config;
   const config = configSchema.parse(rawConfig);
