@@ -5,7 +5,7 @@ html.charm body {
   &::before {
     content: "";
     /* https://civitai.com/images/4176963 */
-    background-image: url(./../assets/engagekiss.png);
+    background-image: url(./../assets/engagekiss.avif);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: right;
