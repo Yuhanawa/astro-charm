@@ -1,20 +1,22 @@
-html.charm body {
-  position: relative;
-  z-index: 0;
+@media (width >= 52rem) {
+  html.charm body {
+    position: relative;
+    z-index: 0;
 
-  &::before {
-    content: "";
-    /* https://civitai.com/images/4176963 */
-    background-image: url(./../assets/engagekiss.avif);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: right;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.6;
-    z-index: -1;
+    &::before {
+      content: "";
+      /* https://civitai.com/images/4176963 */
+      background-image: url(./../assets/engagekiss.avif);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: right;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.6;
+      z-index: -1;
+    }
   }
 }
