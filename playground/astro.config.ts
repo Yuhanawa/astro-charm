@@ -23,6 +23,7 @@ export default defineConfig({
           sub: "A blog theme for Astro",
           bio: "Cupidatat ex id eiusmod aute do labore ea minim eu fugiat Lorem fugiat adipisicing.",
         },
+        licenseId: "CC0-1.0",
       },
       pages: {},
       overrides: {

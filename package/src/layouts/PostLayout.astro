@@ -1,11 +1,15 @@
 ---
-import { HomeSide } from "charm:components";
+import { HomeSide, PostFooter, PostHeader } from "charm:components";
 import MainLayout from "./MainLayout.astro";
+
+const { postData } = Astro.props;
 ---
 
 <MainLayout {...Astro.props}>
   <HomeSide slot="side" />
   <article data-pagefind-body>
+    {postData && <PostHeader {postData} />}
     <slot />
+    {postData && <PostFooter {postData} />}
   </article>
 </MainLayout>

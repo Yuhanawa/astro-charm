@@ -1,0 +1,29 @@
+---
+import licenses from "spdx-license-list";
+
+type Props = {
+  licenseId: string;
+};
+
+let { licenseId } = Astro.props;
+const license = licenses[licenseId];
+---
+
+<div class="admonition notice">
+  <span>Shared With License: {licenseId}</span>
+  {
+    license && (
+      <p>
+        <span>{license.name}</span>
+        <a
+          href={license.url}
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          class="license-link"
+        >
+          <span>view</span>
+        </a>
+      </p>
+    )
+  }
+</div>

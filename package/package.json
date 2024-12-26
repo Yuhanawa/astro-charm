@@ -1,6 +1,6 @@
 {
   "name": "astro-charm",
-  "version": "0.2.6",
+  "version": "0.3.0",
   "description": "Beautiful and easy-to-use blog theme",
   "license": "MIT",
   "author": {
@@ -65,6 +65,7 @@
     "remark-math": "^6.0.0",
     "remark-reading-time": "^2.0.1",
     "remark-toc": "^9.0.0",
+    "spdx-license-list": "^6.9.0",
     "unist-util-visit": "^5.0.0"
   }
 }

@@ -86,6 +86,9 @@ importers:
       remark-toc:
         specifier: ^9.0.0
         version: 9.0.0
+      spdx-license-list:
+        specifier: ^6.9.0
+        version: 6.9.0
       unist-util-visit:
         specifier: ^5.0.0
         version: 5.0.0
@@ -3513,6 +3516,10 @@ packages:
 
   space-separated-tokens@2.0.2:
     resolution: {integrity: sha512-PEGlAwrG8yXGXRjW32fGbg66JAlOAwbObuqVoJpv/mRgoWDQfgH1wDPvtzWyUSNAXBGSk8h755YDbbcEy3SH2Q==}
+
+  spdx-license-list@6.9.0:
+    resolution: {integrity: sha512-L2jl5vc2j6jxWcNCvcVj/BW9A8yGIG02Dw+IUw0ZxDM70f7Ylf5Hq39appV1BI9yxyWQRpq2TQ1qaXvf+yjkqA==}
+    engines: {node: '>=8'}
 
   speedline-core@1.4.3:
     resolution: {integrity: sha512-DI7/OuAUD+GMpR6dmu8lliO2Wg5zfeh+/xsdyJZCzd8o5JgFUjCeLsBDuZjIQJdwXS3J0L/uZYrELKYqx+PXog==}
@@ -8110,6 +8117,8 @@ snapshots:
   source-map@0.6.1: {}
 
   space-separated-tokens@2.0.2: {}
+
+  spdx-license-list@6.9.0: {}
 
   speedline-core@1.4.3:
     dependencies:

@@ -1,0 +1,134 @@
+---
+import { Icon } from "astro-icon/components";
+import { CustomPostHeaderTop, CustomPostHeaderBottom } from "charm:custom";
+
+type Props = {
+  postData: {
+    title: string;
+    description?: string;
+    published: Date;
+    updated?: Date;
+    category?: string;
+    tags?: string[];
+    image?: string;
+    draft?: boolean;
+    hidden?: boolean;
+  };
+};
+
+const { postData } = Astro.props;
+
+const timeData = (postData.updated || postData.published).getTime();
+const years = Math.floor((Date.now() - timeData) / (365 * 24 * 60 * 60 * 1000));
+---
+
+{
+  postData.draft && (
+    <div class="admonition warning">
+      <span class="title">Draft Warning</span>
+      <p>
+        This is a draft article that is still being worked on, It isn't
+        displayed on production site.
+      </p>
+    </div>
+  )
+}
+
+<CustomPostHeaderTop {postData} />
+
+<h1>{postData.title}</h1>
+
+<p class="inline-meta">
+  {
+    postData.published && (
+      <>
+        <span>published: </span>
+        <time datetime={postData.published.toISOString()}>
+          {postData.published.toLocaleDateString()}
+        </time>
+      </>
+    )
+  }
+  {postData.published && postData.updated && <span> and </span>}
+  {
+    postData.updated && (
+      <>
+        <span>updated: </span>
+        <time datetime={postData.updated.toISOString()}>
+          {postData.updated.toLocaleDateString()}
+        </time>
+      </>
+    )
+  }
+</p>
+
+<p class="inline-meta" data-pagefind-ignore>
+  <span class="category">
+    <Icon name="solar:bookmark-bold-duotone" />
+    <a href={`/categories/${postData.category}`}>
+      {postData.category}
+    </a>
+  </span>
+  {
+    postData.tags && postData.tags.length > 0 && (
+      <span class="tags">
+        <Icon name="solar:tag-bold-duotone" />
+        {postData.tags.slice(0, 3).map((tag, i) => (
+          <span class="post-list-tag-item">
+            {i !== 0 && ", "}
+            <a href={`/tags/${tag}`}>{tag}</a>
+          </span>
+        ))}
+      </span>
+    )
+  }
+</p>
+
+{
+  years > 1 && (
+    <div class:list={["admonition", years < 3 ? "note" : "warning"]} data-pagefind-ignore>
+      <span class="title">
+        Timeliness Warning · Last updated
+        {(() => {
+          const months =
+            Math.floor((Date.now() - timeData) / (30 * 24 * 60 * 60 * 1000)) %
+            12;
+          return months === 11
+            ? `${years + 1} years ago`
+            : `${years} year${years > 1 ? "s" : ""}${months > 0 ? ` ${months} month${months > 1 ? "s" : ""}` : ""} ago`;
+        })()}
+      </span>
+      <p>
+        <strong>
+          The information in this article may be outdated. Please verify
+          carefully.
+        </strong>
+      </p>
+    </div>
+  )
+}
+
+{
+  postData.hidden && (
+    <div class="admonition note" data-pagefind-ignore>
+      <span class="title">This article is hidden from post list</span>
+    </div>
+  )
+}
+
+<CustomPostHeaderBottom {postData} />
+
+<style>
+  .inline-meta {
+    font-size: 0.95rem;
+    gap: 0.25em;
+    margin-top: 0.5em;
+    margin-bottom: 0.25em;
+  }
+  .category,
+  .tags {
+    align-items: center;
+    display: inline-flex;
+    gap: 0.25em;
+  }
+</style>

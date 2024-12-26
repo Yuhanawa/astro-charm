@@ -1,0 +1,33 @@
+---
+import config from "charm:config";
+import { LicenseDisplay } from "charm:components";
+import { CustomPostFooterTop, CustomPostFooterBottom } from "charm:custom";
+
+type Props = {
+  postData: {
+    title: string;
+    description?: string;
+    published: Date;
+    updated?: Date;
+    category?: string;
+    tags?: string[];
+    image?: string;
+    draft?: boolean;
+    hidden?: boolean;
+  };
+};
+
+const { postData } = Astro.props;
+---
+
+<footer data-pagefind-ignore>
+  <CustomPostFooterTop {postData} />
+  {config.licenseId && <LicenseDisplay licenseId={config.licenseId} />}
+  <CustomPostFooterBottom {postData} />
+</footer>
+
+<style>
+  footer {
+    margin: 1rem 0;
+  }
+</style>

@@ -1,6 +1,7 @@
 import type { AstroIntegration } from "astro";
 import defineTheme from "astro-theme-provider";
 import { z } from "astro/zod";
+import licenses from "spdx-license-list/simple";
 import icon from "astro-icon";
 import pagefind from "astro-pagefind";
 import sitemap from "@astrojs/sitemap";
@@ -62,6 +63,7 @@ const configSchema = z.object({
   description: z.string().optional(),
   author: z.string().optional(),
   placeholderImage: z.string().min(1).optional(),
+  licenseId: z.enum([...licenses] as [string, ...string[]]).optional(),
   rss: z.boolean().default(true),
   googleAnalyticsId: z.string().optional(),
   font: z
@@ -131,6 +133,15 @@ const theme = defineTheme({
   integrations: [icon(), pagefind(), sitemap()],
   imports: {
     userCustomStyle: "./__no_match__",
+    custom: {
+      exports: {
+        CustomScriptComponent: "./src/components/Empty.astro",
+        CustomPostHeaderTop: "./src/components/Empty.astro",
+        CustomPostHeaderBottom: "./src/components/Empty.astro",
+        CustomPostFooterTop: "./src/components/Empty.astro",
+        CustomPostFooterBottom: "./src/components/Empty.astro",
+      },
+    },
   },
 });
 

@@ -45,25 +45,21 @@ pnpm create astro-theme@latest init astro-charm
 
 see: <https://github.com/Yuhanawa/astro-charm/blob/main/package/index.ts#L55-L117>
 
+## Features
+- Built with Astro v5
+- Desktop and Mobile support
+- High PageSpeed score
+- Category and Tag page
+- Dark mode
+- Code Block
+- Search
+- Google Analytics
+- Sitemap
+- RSS
+- Custom
+
 ## TODO
 
-- [x] upgrade to Astro v5
-- [ ] guide docs
-- [x] code copy button
-- [x] better code block
-- [x] youtube and bilibili video component
-- [x] search
-- [x] category and tag page
-- [x] init command
-- [x] live demo
 - [ ] customize side
-- [x] dark mode
 - [ ] comments
-- [x] sitemap
-- [x] google analytics
-- [x] custom script
-- [x] custom style
-- [ ] custom content in post page
-- [x] support mobile
-- [x] RSS
 - [ ] reading time
