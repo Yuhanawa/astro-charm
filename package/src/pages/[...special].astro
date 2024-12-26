@@ -18,20 +18,27 @@ const { Content } = await entry.render();
   <Content />
   <p>
     <small>
-    {entry.data.published && (
-      <span>published: </span>
-      <time datetime={entry.data.published.toISOString()} >
-        {entry.data.published.toLocaleDateString()}
-      </time>
-    )}
-    {entry.data.published && entry.data.updated && (<span> and </span>)}
-    {entry.data.updated && (
-      <span>updated: </span>
-      <time datetime={entry.data.updated.toISOString()} >
-        {entry.data.updated.toLocaleDateString()}
-      </time>
-    )}
-  </small>  
+      {
+        entry.data.published && (
+          <>
+            <span>published: </span>
+            <time datetime={entry.data.published.toISOString()}>
+              {entry.data.published.toLocaleDateString()}
+            </time>
+          </>
+        )
+      }
+      {entry.data.published && entry.data.updated && <span> and </span>}
+      {
+        entry.data.updated && (
+          <>
+            <span>updated: </span>
+            <time datetime={entry.data.updated.toISOString()}>
+              {entry.data.updated.toLocaleDateString()}
+            </time>
+          </>
+        )
+      }
+    </small>
   </p>
-
 </PostLayout>

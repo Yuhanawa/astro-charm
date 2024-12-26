@@ -86,7 +86,10 @@ const years = Math.floor((Date.now() - timeData) / (365 * 24 * 60 * 60 * 1000));
 
 {
   years > 1 && (
-    <div class:list={["admonition", years < 3 ? "note" : "warning"]} data-pagefind-ignore>
+    <div
+      class:list={["admonition", years < 3 ? "note" : "warning"]}
+      data-pagefind-ignore
+    >
       <span class="title">
         Timeliness Warning · Last updated
         {(() => {
