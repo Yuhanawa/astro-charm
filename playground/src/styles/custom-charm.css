@@ -19,4 +19,10 @@
       z-index: -1;
     }
   }
+
+  html.charm.dark body {
+    &::before {
+      filter: brightness(0.8);
+    }
+  }
 }
