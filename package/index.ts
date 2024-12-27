@@ -125,28 +125,30 @@ const configSchema = z.object({
         .default({}),
     })
     .default({}),
-  giscus: z.object({
-    repo: z.string(),
-    repoId: z.string(),
-    category: z.string(),
-    categoryId: z.string(),
-    mapping: z
-      .enum(["pathname", "url", "title", "og:title"])
-      .default("pathname"),
-    strict: z.boolean().default(false),
-    reactions: z.boolean().default(true),
-    emitMetadata: z.boolean().default(false),
-    inputPosition: z.enum(["top", "bottom"]).default("top"),
-    theme: z
-      .object({
-        light: z.string(),
-        dark: z.string(),
-      })
-      .default({
-        light: "light",
-        dark: "dark",
-      }),
-  }),
+  giscus: z
+    .object({
+      repo: z.string(),
+      repoId: z.string(),
+      category: z.string(),
+      categoryId: z.string(),
+      mapping: z
+        .enum(["pathname", "url", "title", "og:title"])
+        .default("pathname"),
+      strict: z.boolean().default(false),
+      reactions: z.boolean().default(true),
+      emitMetadata: z.boolean().default(false),
+      inputPosition: z.enum(["top", "bottom"]).default("top"),
+      theme: z
+        .object({
+          light: z.string(),
+          dark: z.string(),
+        })
+        .default({
+          light: "light",
+          dark: "dark",
+        }),
+    })
+    .optional(),
 });
 
 const theme = defineTheme({
