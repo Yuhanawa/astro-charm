@@ -2,10 +2,8 @@
 
 screenshot 2024-12-27
 
-<div style="display:flex; justify-content:center; gap:10px;">
-  <img title="screenshot-2024-12-27-light" src="docs/screenshot-2024-12-27-light.png" alt="screenshot-2024-12-27-light">
-  <img title="screenshot-2024-12-27-dark" src="docs/screenshot-2024-12-27-dark.png" alt="screenshot-2024-12-27-dark">
-</div>
+![screenshot-2024-12-27-light](docs/screenshot-2024-12-27-light.png "screenshot-2024-12-27-light")
+<!-- ![screenshot-2024-12-27-dark](docs/screenshot-2024-12-27-dark.png "screenshot-2024-12-27-dark") -->
 
 [Live Demo](https://astro-charm.vercel.app/) | [PageSpeed](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fastro-charm.vercel.app%2F)
 
