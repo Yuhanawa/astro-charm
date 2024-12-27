@@ -1,0 +1,85 @@
+---
+import config from "charm:config";
+---
+
+<section class="giscus"></section>
+
+<style>
+  .giscus {
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+  }
+</style>
+
+<script
+  is:inline
+  data-astro-rerun
+  src="https://giscus.app/client.js"
+  data-repo={config.giscus.repo}
+  data-repo-id={config.giscus.repoId}
+  data-category={config.giscus.category}
+  data-category-id={config.giscus.categoryId}
+  data-mapping={config.giscus.mapping}
+  data-strict={config.giscus.strict ? "1" : "0"}
+  data-reactions-enabled={config.giscus.reactions ? "1" : "0"}
+  data-emit-metadata={config.giscus.emitMetadata ? "1" : "0"}
+  data-input-position={config.giscus.inputPosition}
+  data-theme="preferred_color_scheme"
+  data-lang={config.lang}
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async></script>
+
+<script is:inline data-astro-rerun define:vars={{ theme: config.giscus.theme }}>
+  function updateGiscusTheme() {
+    const theme = document.documentElement.classList.contains("dark")
+      ? theme.dark
+      : theme.light;
+
+    function findIframe() {
+      return new Promise((resolve) => {
+        const checkIframe = () => {
+          const iframe = document.querySelector("iframe.giscus-frame");
+          if (iframe) resolve(iframe);
+          else setTimeout(checkIframe, 250);
+        };
+        checkIframe();
+      });
+    }
+
+    function waitForIframeLoad(iframe) {
+      return new Promise((resolve) => {
+        console.log(iframe);
+        if (
+          iframe.contentWindow &&
+          (iframe.contentDocument?.readyState === "complete" ||
+            iframe.contentDocument === null)
+        ) {
+          resolve(iframe);
+        } else {
+          iframe.addEventListener("load", () => resolve(iframe), {
+            once: true,
+          });
+        }
+      });
+    }
+
+    findIframe()
+      .then(waitForIframeLoad)
+      .then((iframe) => {
+        console.log("Updating giscus theme:", theme);
+        iframe.contentWindow.postMessage(
+          { giscus: { setConfig: { theme } } },
+          "https://giscus.app",
+        );
+      })
+      .catch((error) => {
+        console.error("Error updating giscus theme:", error);
+      });
+  }
+  new MutationObserver(updateGiscusTheme).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+  window.addEventListener("DOMContentLoaded", updateGiscusTheme);
+</script>

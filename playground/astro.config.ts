@@ -24,6 +24,12 @@ export default defineConfig({
           bio: "Cupidatat ex id eiusmod aute do labore ea minim eu fugiat Lorem fugiat adipisicing.",
         },
         licenseId: "CC0-1.0",
+        giscus: {
+          repo: "Yuhanawa/astro-charm",
+          repoId: "R_kgDOMk98JQ",
+          category: "Blog Post Comments",
+          categoryId: "DIC_kwDOMk98Jc4CljB_",
+        },
       },
       pages: {},
       overrides: {

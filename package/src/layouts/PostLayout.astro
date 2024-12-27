@@ -1,6 +1,7 @@
 ---
-import { HomeSide, PostFooter, PostHeader } from "charm:components";
+import { Comments, HomeSide, PostFooter, PostHeader } from "charm:components";
 import MainLayout from "./MainLayout.astro";
+import config from "charm:config";
 
 const { postData } = Astro.props;
 ---
@@ -12,4 +13,5 @@ const { postData } = Astro.props;
     <slot />
     {postData && <PostFooter {postData} />}
   </article>
+  {config.giscus && <Comments />}
 </MainLayout>
