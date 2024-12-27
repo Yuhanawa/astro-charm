@@ -1,26 +1,53 @@
 # Astro Charm
 
-screenshot 2024-12-04
-![screenshot-2024-12-04](docs/screenshot-2024-12-04.png "screenshot-2024-12-04")
+screenshot 2024-12-27
+
+<div style="display:flex; justify-content:center; gap:10px;">
+  <img title="screenshot-2024-12-27-light" src="docs/screenshot-2024-12-27-light.png" alt="screenshot-2024-12-27-light">
+  <img title="screenshot-2024-12-27-dark" src="docs/screenshot-2024-12-27-dark.png" alt="screenshot-2024-12-27-dark">
+</div>
 
 [Live Demo](https://astro-charm.vercel.app/) | [PageSpeed](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fastro-charm.vercel.app%2F)
 
 Note: The image on the right in the `Live Demo` is not part of the Charm theme
 
+## Features
+
+- Built with Astro v5
+- Desktop and Mobile support
+- High PageSpeed score
+  - 100! [Report from Dec 26, 2024](https://pagespeed.web.dev/analysis/https-astro-charm-vercel-app/6oyuwuk8kl)
+  - view new [PageSpeed](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fastro-charm.vercel.app%2F)
+- Category and Tag page
+- Dark mode
+- Code Block
+- Search
+- Comments support (giscus)
+- Google Analytics support
+- Sitemap
+- RSS
+- Custom
+
 ## How to use
+
+1. Run the following command to create a new project with `astro-charm` theme.
 
 ```bash
 pnpm create astro-theme@latest with-theme astro-charm
 ```
 
-and into the project
+2. Into your project and Install `@iconify-json/simple-icons` and `@iconify-json/solar`.
 
 ```bash
 pnpm add @iconify-json/simple-icons
 pnpm add @iconify-json/solar
 ```
 
-Enjoy it!
+3. Modify config and enjoy it!
+
+Note: you need to add `site` to `astro.config.ts` file.
+
+To learn more, see: [Config](#config)
 
 <details>
   <summary>Install to existing project</summary>
@@ -39,27 +66,64 @@ pnpm add @iconify-json/solar
 pnpm create astro-theme@latest init astro-charm
 ```
 
+Or you can modify it manually.
+
+```ts
+import { defineConfig } from "astro/config";
+import charm from "astro-charm";
+
+export default defineConfig({
+  prefetch: true,
+  site: "<your-site-url>",
+
+  integrations: [
+    charm({
+      config: {
+        lang: "en",
+        title: "Charm Theme",
+        description: "A beautiful blog theme for Astro",
+        side: {
+          title: "Charm Theme",
+          sub: "A blog theme for Astro",
+          bio: "Cupidatat ex id eiusmod aute do labore ea minim eu fugiat Lorem fugiat adipisicing.",
+        },
+        // more config
+      },
+    }),
+  ],
+});
+```
+
 </details>
 
 ## Config
 
-see: <https://github.com/Yuhanawa/astro-charm/blob/main/package/index.ts#L55-L117>
+You need to add `site` to `astro.config.ts` file, because `charm` use it for `sitemap` and `rss`.
 
-## Features
-- Built with Astro v5
-- Desktop and Mobile support
-- High PageSpeed score
-- Category and Tag page
-- Dark mode
-- Code Block
-- Search
-- Google Analytics
-- Sitemap
-- RSS
-- Custom
+```ts
+import { defineConfig } from "astro/config";
+import charm from "astro-charm";
 
-## TODO
+export default defineConfig({
+  prefetch: true,
+  site: "<your-site-url>",
 
-- [ ] customize side
-- [ ] comments
-- [ ] reading time
+  integrations: [
+    charm({
+      config: {
+        lang: "en",
+        title: "Charm Theme",
+        description: "A beautiful blog theme for Astro",
+        side: {
+          title: "Charm Theme",
+          sub: "A blog theme for Astro",
+          bio: "Cupidatat ex id eiusmod aute do labore ea minim eu fugiat Lorem fugiat adipisicing.",
+        },
+        // more config
+      },
+    }),
+  ],
+});
+```
+
+more: <https://github.com/Yuhanawa/astro-charm/blob/main/package/index.ts#L55-L117>
