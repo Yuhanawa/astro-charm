@@ -226,3 +226,13 @@ const configSchema = z.object({
     .optional(),
 });
 ```
+
+## Troubleshooting
+
+### [CouldNotTransformImage] Could not transform image
+
+Please install Sharp (`sharp`) manually into your project
+
+```bash
+pnpm add sharp
+```

@@ -13,7 +13,8 @@
     "@playform/compress": "^0.1.6",
     "astro": "^5.1.0",
     "astro-charm": "workspace:^",
-    "astro-page-insight": "^0.10.0"
+    "astro-page-insight": "^0.10.0",
+    "sharp": "^0.33.5"
   },
   "devDependencies": {
     "@iconify-json/simple-icons": "^1.2.13",
