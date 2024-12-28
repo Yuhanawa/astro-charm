@@ -1,15 +1,15 @@
-# Astro Charm
+# Astro Theme: Charm
 
-Beautiful and easy-to-use blog theme
+Beautiful, simple and easy-to-use blog theme
 
 [more information](https://github.com/Yuhanawa/astro-charm/)
 
 screenshot-2024-12-27
 
-![screenshot-2024-12-27-light](docs/screenshot-2024-12-27-light.png "screenshot-2024-12-27-light")
+![screenshot-2024-12-27-light](https://github.com/Yuhanawa/astro-charm/blob/main/docs/screenshot-2024-12-27-light.png "screenshot-2024-12-27-light")
 <!-- ![screenshot-2024-12-27-dark](docs/screenshot-2024-12-27-dark.png "screenshot-2024-12-27-dark") -->
 
-[Live Demo](https://astro-charm.vercel.app/) | [PageSpeed](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fastro-charm.vercel.app%2F)
+[Github](https://github.com/yuhanawa/astro-charm) | [Live Demo](https://astro-charm.vercel.app/) | [PageSpeed](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fastro-charm.vercel.app%2F)
 
 Note: The image on the right in the `Live Demo` is not part of the Charm theme
 
@@ -24,11 +24,12 @@ Note: The image on the right in the `Live Demo` is not part of the Charm theme
 - Dark mode
 - Code Block
 - Search
-- Comments (giscus)
-- Google Analytics
+- Comments support (giscus)
+- Google Analytics support
 - Sitemap
 - RSS
 - Custom
+  - [How to customize the theme](https://astro-charm.vercel.app/posts/custom)
 
 ## How to use
 
@@ -97,5 +98,135 @@ export default defineConfig({
 ```
 
 </details>
+
+## Config
+
+You need to add `site` to `astro.config.ts` file, because `charm` use it for `sitemap` and `rss`.
+
+### Minimal config
+
+```ts
+import { defineConfig } from "astro/config";
+import charm from "astro-charm";
+
+export default defineConfig({
+  prefetch: true,
+  site: "<your-site-url>",
+
+  integrations: [
+    charm({
+      config: {
+        lang: "en",  // for HTML's lang attribute and RSS
+        title: "Title on home page",  // for seo on home page
+        description: "Description on home page",  // for seo on home page
+        side: {  
+          title: "Title",
+          sub: "Sub title",
+          bio: "Your bio, about 50~90 characters, automatic line wrap",
+        },
+      },
+    }),
+  ],
+});
+```
+
+### [Config schema](https://github.com/Yuhanawa/astro-charm/blob/main/package/index.ts#L59-L152)
+
+```ts
+const configSchema = z.object({
+  lang: z.string(),
+  title: z.string(),
+  titleSuffix: z.string().or(z.boolean()).default(true),
+  description: z.string().optional(),
+  author: z.string().optional(),
+  placeholderImage: z.string().min(1).optional(),
+  licenseId: z.enum([...licenses] as [string, ...string[]]).optional(),
+  rss: z.boolean().default(true),
+  googleAnalyticsId: z.string().optional(),
+  font: z
+    .enum(["auto", "full", "only-en", "disabled", "dynamic"])
+    .default("auto"),
+  shootingStar: z.boolean().default(true),
+  side: z.object({
+    title: z.string(),
+    sub: z.string(),
+    bio: z.string(),
+    navHome: z
+      .object({
+        title: z.string().default("Home"),
+        link: z.string().default("/"),
+        icon: iconStringOrLightDarkOrWithStates.default({
+          default: "solar:file-text-broken",
+          hover: "solar:file-smile-outline",
+          active: "solar:file-smile-bold-duotone",
+        }),
+      })
+      .default({}),
+    footer: z
+      .array(
+        z.object({
+          title: z.string(),
+          link: z.string(),
+          icon: iconStringOrLightDarkOrWithStates,
+        }),
+      )
+      .min(1)
+      .default([
+        {
+          title: "Twitter",
+          link: "https://x.com/",
+          icon: "simple-icons:twitter",
+        },
+        {
+          title: "GitHub",
+          link: "https://github.com/yuhanawa/astro-charm",
+          icon: "simple-icons:github",
+        },
+      ]),
+    navStyle: z.enum(["default", "only-icon", "only-title"]).default("default"),
+    footerStyle: z
+      .enum(["default", "only-icon", "only-title"])
+      .default("default"),
+  }),
+  markdown: z
+    .object({
+      colorizedBrackets: z
+        .object({
+          explicitTrigger: z.boolean().default(false), // if true, ```ts colorize-brackets
+        })
+        .default({}),
+      twoslash: z
+        .object({
+          explicitTrigger: z.boolean().default(true), // if true, ```ts twoslash
+        })
+        .default({}),
+    })
+    .default({}),
+  giscus: z
+    .object({
+      repo: z.string(),
+      repoId: z.string(),
+      category: z.string(),
+      categoryId: z.string(),
+      mapping: z
+        .enum(["pathname", "url", "title", "og:title"])
+        .default("pathname"),
+      strict: z.boolean().default(false),
+      reactions: z.boolean().default(true),
+      emitMetadata: z.boolean().default(false),
+      inputPosition: z.enum(["top", "bottom"]).default("top"),
+      theme: z
+        .object({
+          light: z.string(),
+          dark: z.string(),
+        })
+        .default({
+          light: "light",
+          dark: "dark",
+        }),
+    })
+    .optional(),
+});
+```
 
 [more information](https://github.com/Yuhanawa/astro-charm/)

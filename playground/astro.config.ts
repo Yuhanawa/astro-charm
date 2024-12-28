@@ -1,5 +1,5 @@
 import { defineConfig } from "astro/config";
-import astroCharm from "astro-charm";
+import charm from "astro-charm";
 
 import pageInsight from "astro-page-insight";
 import playformCompress from "@playform/compress";
@@ -13,7 +13,7 @@ export default defineConfig({
   adapter: vercel(),
 
   integrations: [
-    astroCharm({
+    charm({
       config: {
         lang: "en",
         title: "Charm Theme",
@@ -34,9 +34,11 @@ export default defineConfig({
       pages: {},
       overrides: {
         components: {
-          // you can add custom script by overriding CustomScriptComponent,
+          // override components
+          // ShootingStar: "./src/components/ShootingStar.astro",
+        },
+        custom: {
           // it will be added to the end of `<head>`.
-          // example:
           // CustomScriptComponent: "./src/components/CustomScriptComponent.astro",
         },
       },

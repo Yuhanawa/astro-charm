@@ -3,12 +3,12 @@
     "config": {
       "object": {
         "lang": "en",
-        "title": "Blog Title",
-        "description": "Blog Description",
+        "title": "Title on home page",
+        "description": "Description on home page",
         "side": {
           "title": "Title",
-          "sub": "A blog",
-          "bio": "using Astro Charm Theme"
+          "sub": "Sub title",
+          "bio": "Your bio, about 50~90 characters, automatic line wrap"
         }
       }
     }
@@ -17,13 +17,14 @@
     "config": {
       "object": {
         "lang": "en",
-        "title": "Blog Title",
-        "description": "Blog Description",
+        "title": "Title on home page",
+        "description": "Description on home page",
         "author": "Your Name",
+        "licenseId": "CC-BY-4.0",
         "side": {
           "title": "Title",
-          "sub": "A blog",
-          "bio": "using Astro Charm Theme",
+          "sub": "Sub title",
+          "bio": "Your bio, about 50~90 characters, automatic line wrap",
           "navHome": {
             "title": "Home"
           },
