@@ -33,7 +33,7 @@ Note: The image on the right in the `Live Demo` is not part of the Charm theme
 - Built with Astro v5
 - Desktop and Mobile support
 - High PageSpeed score
-  - 100! [Report from Dec 26, 2024](https://pagespeed.web.dev/analysis/https-astro-charm-vercel-app/6oyuwuk8kl)
+  - 100! [Report from Dec 29, 2024](https://pagespeed.web.dev/analysis/https-astro-charm-vercel-app/g1cxq98foh)
   - view new [PageSpeed](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fastro-charm.vercel.app%2F)
 - Category and Tag page
 - Dark mode
@@ -63,7 +63,7 @@ pnpm add @iconify-json/solar
 
 3. Modify config and enjoy it!
 
-Note: you need to add `site` to `astro.config.ts` file.
+Note: you need to add `site` to `astro.config.ts` file, because `charm` use it for `sitemap` and `rss`.
 
 To learn more, see: [Config](#config)
 
@@ -97,13 +97,13 @@ export default defineConfig({
   integrations: [
     charm({
       config: {
-        lang: "en",
-        title: "Charm Theme",
-        description: "A beautiful blog theme for Astro",
+        lang: "en", // for HTML's lang attribute and RSS
+        title: "Title on home page", // for seo on home page
+        description: "Description on home page", // for seo on home page
         side: {
-          title: "Charm Theme",
-          sub: "A blog theme for Astro",
-          bio: "Cupidatat ex id eiusmod aute do labore ea minim eu fugiat Lorem fugiat adipisicing.",
+          title: "Title",
+          sub: "Sub title",
+          bio: "Your bio, about 50~90 characters, automatic line wrap",
         },
         // more config
       },
@@ -131,10 +131,10 @@ export default defineConfig({
   integrations: [
     charm({
       config: {
-        lang: "en",  // for HTML's lang attribute and RSS
-        title: "Title on home page",  // for seo on home page
-        description: "Description on home page",  // for seo on home page
-        side: {  
+        lang: "en", // for HTML's lang attribute and RSS
+        title: "Title on home page", // for seo on home page
+        description: "Description on home page", // for seo on home page
+        side: {
           title: "Title",
           sub: "Sub title",
           bio: "Your bio, about 50~90 characters, automatic line wrap",
@@ -243,3 +243,17 @@ const configSchema = z.object({
     .optional(),
 });
 ```
+
+## Troubleshooting
+
+### [CouldNotTransformImage] Could not transform image
+
+Please install Sharp (`sharp`) manually into your project
+
+```bash
+pnpm add sharp
+```
+
+## Questions & Suggestions
+
+If you have any questions or suggestions, feel free to open an issue. All PRs are welcome!

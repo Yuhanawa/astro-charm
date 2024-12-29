@@ -1,61 +1,64 @@
 # Astro Theme: Charm
 
-Beautiful, simple and easy-to-use blog theme
+[English](./README.md) | [日本語](./README-ja.md) | [中文](./README-zh-cn.md)
 
-[more information](https://github.com/Yuhanawa/astro-charm/)
+> 由 AI 翻译  
+> Translation by AI
 
-screenshot 2024-12-27
+漂亮, 简洁且易用的博客主题
 
-![screenshot-2024-12-27-light](https://github.com/Yuhanawa/astro-charm/blob/main/docs/screenshot-2024-12-27-light.png "screenshot-2024-12-27-light")
-<!-- ![screenshot-2024-12-27-dark](docs/screenshot-2024-12-27-dark.png "screenshot-2024-12-27-dark") -->
+2024年12月27日截图
+
+![2024-12-27-浅色主题截图](docs/screenshot-2024-12-27-light.png "2024-12-27-浅色主题截图")
+<!-- ![2024-12-27-深色主题截图](docs/screenshot-2024-12-27-dark.png "2024-12-27-深色主题截图") -->
 
 [Github](https://github.com/yuhanawa/astro-charm) | [Live Demo](https://astro-charm.vercel.app/) | [PageSpeed](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fastro-charm.vercel.app%2F)
 
-Note: The image on the right in the `Live Demo` is not part of the Charm theme
+注意: `Live Demo`中右侧的图片不是 Charm 主题的一部分
 
-## Features
+## 特性
 
-- Built with Astro v5
-- Desktop and Mobile support
-- High PageSpeed score
-  - 100! [Report from Dec 29, 2024](https://pagespeed.web.dev/analysis/https-astro-charm-vercel-app/g1cxq98foh)
-  - view new [PageSpeed](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fastro-charm.vercel.app%2F)
-- Category and Tag page
-- Dark mode
-- Code Block
-- Search
-- Comments support (giscus)
-- Google Analytics support
+- 基于 Astro v5 构建
+- 支持桌面端和移动端
+- PageSpeed 性能优秀
+  - 满分100分！[2024年12月29日的测试报告](https://pagespeed.web.dev/analysis/https-astro-charm-vercel-app/g1cxq98foh)
+  - 查看最新的[PageSpeed测试结果](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fastro-charm.vercel.app%2F)
+- 支持分类和标签页面
+- 深色模式
+- 代码块
+- 搜索功能
+- 评论系统支持（giscus）
+- Google Analytics 支持
 - Sitemap
 - RSS
-- Custom
-  - [How to customize the theme](https://astro-charm.vercel.app/posts/custom)
+- 自定义功能
+  - [如何自定义主题](https://astro-charm.vercel.app/posts/custom)
 
-## How to use
+## 使用方法
 
-1. Run the following command to create a new project with `astro-charm` theme.
+1. 运行以下命令, 使用 `astro-charm` 主题创建新项目
 
 ```bash
 pnpm create astro-theme@latest with-theme astro-charm
 ```
 
-2. Into your project and Install `@iconify-json/simple-icons` and `@iconify-json/solar`.
+2. 进入项目目录并安装 `@iconify-json/simple-icons` 和 `@iconify-json/solar`
 
 ```bash
 pnpm add @iconify-json/simple-icons
 pnpm add @iconify-json/solar
 ```
 
-3. Modify config and enjoy it!
+3. 修改配置并开始使用！
 
-Note: you need to add `site` to `astro.config.ts` file, because `charm` use it for `sitemap` and `rss`.
+你需要在 `astro.config.ts `文件中添加 `site`, 因为 `charm` 主题的 `sitemap` 和 `RSS` 需要它
 
-To learn more, see: [Config](#config)
+更多配置信息请查看: [Config](#config)
 
 <details>
-  <summary>Install to existing project</summary>
+  <summary>在现有项目中安装</summary>
 
-1. Install `astro-charm`, `@iconify-json/simple-icons` and `@iconify-json/solar` to your project.
+1. 在你的项目中安装 `astro-charm`, `@iconify-json/simple-icons` 和 `@iconify-json/solar`:
 
 ```bash
 pnpm astro add astro-charm
@@ -63,13 +66,13 @@ pnpm add @iconify-json/simple-icons
 pnpm add @iconify-json/solar
 ```
 
-2. Modify `astro.config.ts` file, you can use following command to modify it.
+2. 修改`astro.config.ts`文件, 你可以使用以下命令进行修改:
 
 ```bash
 pnpm create astro-theme@latest init astro-charm
 ```
 
-Or you can modify it manually.
+或者手动修改:
 
 ```ts
 import { defineConfig } from "astro/config";
@@ -77,18 +80,18 @@ import charm from "astro-charm";
 
 export default defineConfig({
   prefetch: true,
-  site: "<your-site-url>",
+  site: "<你的网站URL>",
 
   integrations: [
     charm({
       config: {
-        lang: "en", // for HTML's lang attribute and RSS
-        title: "Title on home page", // for seo on home page
-        description: "Description on home page", // for seo on home page
+        lang: "zh", // 用于 HTML 的 lang 属性和 RSS
+        title: "首页标题", // 用于首页 SEO
+        description: "首页描述", // 用于首页 SEO
         side: {
-          title: "Title",
-          sub: "Sub title",
-          bio: "Your bio, about 50~90 characters, automatic line wrap",
+          title: "标题",
+          sub: "副标题",
+          bio: "你的简介, 建议50~90字符, 会自动换行",
         },
         // more config
       },
@@ -101,9 +104,9 @@ export default defineConfig({
 
 ## Config
 
-You need to add `site` to `astro.config.ts` file, because `charm` use it for `sitemap` and `rss`.
+你需要在 `astro.config.ts `文件中添加 `site`, 因为 `charm` 主题的 `sitemap` 和 `RSS` 需要它
 
-### Minimal config
+### 最小配置
 
 ```ts
 import { defineConfig } from "astro/config";
@@ -111,18 +114,18 @@ import charm from "astro-charm";
 
 export default defineConfig({
   prefetch: true,
-  site: "<your-site-url>",
+  site: "<你的网站URL>",
 
   integrations: [
     charm({
       config: {
-        lang: "en", // for HTML's lang attribute and RSS
-        title: "Title on home page", // for seo on home page
-        description: "Description on home page", // for seo on home page
+        lang: "zh", // 用于 HTML 的 lang 属性和 RSS
+        title: "首页标题", // 用于首页 SEO
+        description: "首页描述", // 用于首页 SEO
         side: {
-          title: "Title",
-          sub: "Sub title",
-          bio: "Your bio, about 50~90 characters, automatic line wrap",
+          title: "标题",
+          sub: "副标题",
+          bio: "你的简介, 建议50~90字符, 会自动换行",
         },
       },
     }),
@@ -229,18 +232,16 @@ const configSchema = z.object({
 });
 ```
 
-## Troubleshooting
+## 常见问题
 
 ### [CouldNotTransformImage] Could not transform image
 
-Please install Sharp (`sharp`) manually into your project
+请手动在项目中安装Sharp（`sharp`）
 
 ```bash
 pnpm add sharp
 ```
 
-## Questions & Suggestions
+## 问题与建议
 
-If you have any questions or suggestions, feel free to open an issue. All PRs are welcome!
-
-[more information](https://github.com/Yuhanawa/astro-charm/)
+如果您有任何问题或建议，欢迎提出 Issue。也欢迎所有的 Pull Request！

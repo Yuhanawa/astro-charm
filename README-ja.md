@@ -1,61 +1,64 @@
 # Astro Theme: Charm
 
-Beautiful, simple and easy-to-use blog theme
+[English](./README.md) | [日本語](./README-ja.md) | [中文](./README-zh-cn.md)
 
-[more information](https://github.com/Yuhanawa/astro-charm/)
+> AIによる翻訳  
+> Translation by AI
 
-screenshot 2024-12-27
+美しく、シンプルで使いやすいブログテーマ
 
-![screenshot-2024-12-27-light](https://github.com/Yuhanawa/astro-charm/blob/main/docs/screenshot-2024-12-27-light.png "screenshot-2024-12-27-light")
-<!-- ![screenshot-2024-12-27-dark](docs/screenshot-2024-12-27-dark.png "screenshot-2024-12-27-dark") -->
+2024年12月27日のスクリーンショット
 
-[Github](https://github.com/yuhanawa/astro-charm) | [Live Demo](https://astro-charm.vercel.app/) | [PageSpeed](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fastro-charm.vercel.app%2F)
+![2024年12月27日ライトモード](docs/screenshot-2024-12-27-light.png "2024年12月27日ライトモード")
+<!-- ![2024年12月27日ダークモード](docs/screenshot-2024-12-27-dark.png "2024年12月27日ダークモード") -->
 
-Note: The image on the right in the `Live Demo` is not part of the Charm theme
+[Github](https://github.com/yuhanawa/astro-charm) | [ライブデモ](https://astro-charm.vercel.app/) | [PageSpeed](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fastro-charm.vercel.app%2F)
 
-## Features
+注意：`ライブデモ`の右側の画像はCharmテーマの一部ではありません
 
-- Built with Astro v5
-- Desktop and Mobile support
-- High PageSpeed score
-  - 100! [Report from Dec 29, 2024](https://pagespeed.web.dev/analysis/https-astro-charm-vercel-app/g1cxq98foh)
-  - view new [PageSpeed](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fastro-charm.vercel.app%2F)
-- Category and Tag page
-- Dark mode
-- Code Block
-- Search
-- Comments support (giscus)
-- Google Analytics support
-- Sitemap
+## 特徴
+
+- Astro v5で構築
+- デスクトップとモバイルに対応
+- PageSpeedスコアが優秀
+  - 満点の100点！[2024年12月29日のレポート](https://pagespeed.web.dev/analysis/https-astro-charm-vercel-app/g1cxq98foh)
+  - 最新の[PageSpeedスコア](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fastro-charm.vercel.app%2F)を確認
+- カテゴリーとタグページ
+- ダークモード
+- コードブロック
+- 検索機能
+- コメント機能対応（giscus）
+- Google Analytics対応
+- サイトマップ
 - RSS
-- Custom
-  - [How to customize the theme](https://astro-charm.vercel.app/posts/custom)
+- カスタマイズ
+  - [テーマのカスタマイズ方法](https://astro-charm.vercel.app/posts/custom)
 
-## How to use
+## 使用方法
 
-1. Run the following command to create a new project with `astro-charm` theme.
+1. 以下のコマンドを実行して、`astro-charm`テーマで新しいプロジェクトを作成します。
 
 ```bash
 pnpm create astro-theme@latest with-theme astro-charm
 ```
 
-2. Into your project and Install `@iconify-json/simple-icons` and `@iconify-json/solar`.
+2. プロジェクトに移動し、`@iconify-json/simple-icons`と`@iconify-json/solar`をインストールします。
 
 ```bash
 pnpm add @iconify-json/simple-icons
 pnpm add @iconify-json/solar
 ```
 
-3. Modify config and enjoy it!
+3. 設定を変更して使用開始！
 
-Note: you need to add `site` to `astro.config.ts` file, because `charm` use it for `sitemap` and `rss`.
+注意：`astro.config.ts`ファイルに`site`を追加する必要があります。`charm`は`sitemap`と`RSS`にこれを使用します。
 
-To learn more, see: [Config](#config)
+詳細な設定については：[Config](#config)をご覧ください。
 
 <details>
-  <summary>Install to existing project</summary>
+  <summary>既存のプロジェクトにインストール</summary>
 
-1. Install `astro-charm`, `@iconify-json/simple-icons` and `@iconify-json/solar` to your project.
+1. プロジェクトに`astro-charm`、`@iconify-json/simple-icons`、`@iconify-json/solar`をインストールします。
 
 ```bash
 pnpm astro add astro-charm
@@ -63,13 +66,13 @@ pnpm add @iconify-json/simple-icons
 pnpm add @iconify-json/solar
 ```
 
-2. Modify `astro.config.ts` file, you can use following command to modify it.
+2. `astro.config.ts`ファイルを修正します。以下のコマンドで修正できます。
 
 ```bash
 pnpm create astro-theme@latest init astro-charm
 ```
 
-Or you can modify it manually.
+または手動で修正：
 
 ```ts
 import { defineConfig } from "astro/config";
@@ -77,20 +80,20 @@ import charm from "astro-charm";
 
 export default defineConfig({
   prefetch: true,
-  site: "<your-site-url>",
+  site: "<あなたのサイトURL>",
 
   integrations: [
     charm({
       config: {
-        lang: "en", // for HTML's lang attribute and RSS
-        title: "Title on home page", // for seo on home page
-        description: "Description on home page", // for seo on home page
+        lang: "ja", // HTMLのlang属性とRSS用
+        title: "ホームページのタイトル", // ホームページのSEO用
+        description: "ホームページの説明", // ホームページのSEO用
         side: {
-          title: "Title",
-          sub: "Sub title",
-          bio: "Your bio, about 50~90 characters, automatic line wrap",
+          title: "タイトル",
+          sub: "サブタイトル",
+          bio: "あなたの自己紹介文（50〜90文字程度推奨、自動的に改行されます）",
         },
-        // more config
+        // その他の設定
       },
     }),
   ],
@@ -101,9 +104,9 @@ export default defineConfig({
 
 ## Config
 
-You need to add `site` to `astro.config.ts` file, because `charm` use it for `sitemap` and `rss`.
+`astro.config.ts`ファイルに`site`を追加する必要があります。`charm`は`sitemap`と`RSS`にこれを使用します。
 
-### Minimal config
+### 最小限の設定
 
 ```ts
 import { defineConfig } from "astro/config";
@@ -111,18 +114,18 @@ import charm from "astro-charm";
 
 export default defineConfig({
   prefetch: true,
-  site: "<your-site-url>",
+  site: "<あなたのサイトURL>",
 
   integrations: [
     charm({
       config: {
-        lang: "en", // for HTML's lang attribute and RSS
-        title: "Title on home page", // for seo on home page
-        description: "Description on home page", // for seo on home page
+        lang: "ja", // HTMLのlang属性とRSS用
+        title: "ホームページのタイトル", // ホームページのSEO用
+        description: "ホームページの説明", // ホームページのSEO用
         side: {
-          title: "Title",
-          sub: "Sub title",
-          bio: "Your bio, about 50~90 characters, automatic line wrap",
+          title: "タイトル",
+          sub: "サブタイトル",
+          bio: "あなたの自己紹介文（50〜90文字程度推奨、自動的に改行されます）",
         },
       },
     }),
@@ -229,18 +232,16 @@ const configSchema = z.object({
 });
 ```
 
-## Troubleshooting
+## トラブルシューティング
 
 ### [CouldNotTransformImage] Could not transform image
 
-Please install Sharp (`sharp`) manually into your project
+プロジェクトに手動でSharp（`sharp`）をインストールしてください。
 
 ```bash
 pnpm add sharp
 ```
 
-## Questions & Suggestions
+## 質問と提案
 
-If you have any questions or suggestions, feel free to open an issue. All PRs are welcome!
-
-[more information](https://github.com/Yuhanawa/astro-charm/)
+質問や提案がありましたら、Issueを開いてお気軽にご連絡ください。すべてのPull Requestを歓迎します！
