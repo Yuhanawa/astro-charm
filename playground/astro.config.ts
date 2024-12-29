@@ -39,7 +39,7 @@ export default defineConfig({
         },
         custom: {
           // it will be added to the end of `<head>`.
-          // CustomScriptComponent: "./src/components/CustomScriptComponent.astro",
+          CustomScriptComponent: "./src/components/CustomScriptComponent.astro",
         },
       },
     }),
