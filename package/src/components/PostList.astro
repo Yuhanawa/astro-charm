@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import { getPostEntries } from "../utils/collectionUtils";
+import { Image } from "astro:assets";
 
 type Props = {
   page?: number;
@@ -15,47 +16,57 @@ const page = Astro.props.page ?? 0;
   {
     entries.length > 20 * page
       ? entries.slice(20 * page, 20 * (page + 1)).map((entry) => (
-          <div class="item">
-            <a
-              href={`/posts/${entry.slug}`}
-              title={entry.data.title}
-              class="link-animate"
-              data-astro-prefetch="hover"
-            >
-              <h3>{entry.data.title}</h3>
-            </a>
-            <p class="description">{entry.data.description}</p>
-            <div class="meta">
-              <span>
-                <Icon name="solar:calendar-date-bold-duotone" />
-                <time
-                  datetime={(
-                    entry.data.updated || entry.data.published
-                  ).toISOString()}
-                >
-                  {(
-                    entry.data.updated || entry.data.published
-                  ).toLocaleDateString()}
-                </time>
-              </span>
-              <span>
-                <Icon name="solar:bookmark-bold-duotone" />
-                <a href={`/categories/${entry.data.category}`}>
-                  {entry.data.category}
-                </a>
-              </span>
-              {entry.data.tags && entry.data.tags.length > 0 && (
+          <div class="item-container">
+            <div class="item">
+              <a
+                href={`/posts/${entry.slug}`}
+                title={entry.data.title}
+                class="link-animate"
+                data-astro-prefetch="hover"
+              >
+                <h3>{entry.data.title}</h3>
+              </a>
+              <p class="description">{entry.data.description}</p>
+              <div class="meta">
                 <span>
-                  <Icon name="solar:tag-bold-duotone" />
-                  {entry.data.tags.slice(0, 3).map((tag, i) => (
-                    <span class="post-list-tag-item">
-                      {i !== 0 && ", "}
-                      <a href={`/tags/${tag}`}>{tag}</a>
-                    </span>
-                  ))}
+                  <Icon name="solar:calendar-date-bold-duotone" />
+                  <time
+                    datetime={(
+                      entry.data.updated || entry.data.published
+                    ).toISOString()}
+                  >
+                    {(
+                      entry.data.updated || entry.data.published
+                    ).toLocaleDateString()}
+                  </time>
                 </span>
-              )}
+                <span>
+                  <Icon name="solar:bookmark-bold-duotone" />
+                  <a href={`/categories/${entry.data.category}`}>
+                    {entry.data.category}
+                  </a>
+                </span>
+                {entry.data.tags && entry.data.tags.length > 0 && (
+                  <span>
+                    <Icon name="solar:tag-bold-duotone" />
+                    {entry.data.tags.slice(0, 3).map((tag, i) => (
+                      <span class="post-list-tag-item">
+                        {i !== 0 && ", "}
+                        <a href={`/tags/${tag}`}>{tag}</a>
+                      </span>
+                    ))}
+                  </span>
+                )}
+              </div>
             </div>
+            {entry.data.image &&
+              (typeof entry.data.image === "string" ? (
+                <img src={entry.data.image} alt={entry.data.title} />
+              ) : "skip" in entry.data.image ? (
+                <img src={entry.data.image.skip} alt={entry.data.title} />
+              ) : (
+                <Image src={entry.data.image} alt={entry.data.title} />
+              ))}
           </div>
         ))
       : Astro.redirect("/")
@@ -87,7 +98,7 @@ const page = Astro.props.page ?? 0;
     gap: 2rem;
   }
 
-  .item {
+  .item-container {
     padding: 0.5em 1em;
     border-radius: 0.5rem;
     transition:
@@ -108,6 +119,20 @@ const page = Astro.props.page ?? 0;
         border 0.1s linear;
     }
 
+    display: flex;
+    flex-direction: row;
+    gap: 0.25rem;
+    justify-content: space-between;
+
+    img {
+      border-radius: 0.25rem;
+      max-height: 5rem;
+      max-width: fit-content;
+      image-orientation: from-image;
+      object-fit: contain;
+    }
+  }
+  .item {
     .description {
       margin-top: 0;
     }

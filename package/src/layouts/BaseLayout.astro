@@ -2,19 +2,19 @@
 import "charm:styles";
 import "charm:userCustomStyle";
 import { SEO } from "astro-seo";
+import { ThemeScript } from "astro-theme-toggle";
 import { ClientRouter } from "astro:transitions";
-import { FontLoader } from "charm:components";
+import { FontLoader, GoogleAnalytics } from "charm:components";
 import { CustomScriptComponent } from "charm:custom";
 import config from "charm:config";
 import { calculateStringSimilarity } from "../utils/stringUtils";
-import { ThemeScript } from "astro-theme-toggle";
-import GoogleAnalytics from "../components/GoogleAnalytics.astro";
+import { getImageSrc } from "../utils/imageUtils";
 
 type Props = {
   meta?: {
     title?: string;
     description?: string;
-    image?: string;
+    image?: any;
   };
 };
 
@@ -34,18 +34,21 @@ if (
 
 const description = meta?.description || config.description;
 
-let imgUrl = meta?.image
-  ? meta.image.startsWith("http")
-    ? meta.image
-    : meta.image.length > 0
-      ? `${Astro.url.origin}${meta.image.startsWith("/") ? "" : "/"}${meta.image}`
-      : undefined
-  : undefined;
-imgUrl ??=
-  config.placeholderImage &&
-  (config.placeholderImage.startsWith("http")
-    ? config.placeholderImage
-    : `${Astro.url.origin}${config.placeholderImage.startsWith("/") ? "" : "/"}${config.placeholderImage}`);
+let site = null;
+if (Astro.site) {
+  site = Astro.site.toString();
+  if (site.endsWith("/")) site = site.slice(0, -1);
+}
+
+let imgSrc = getImageSrc(meta?.image);
+if (imgSrc && imgSrc.startsWith("/") && site) imgSrc = site + imgSrc;
+
+if ((!imgSrc || !imgSrc.startsWith("http")) && config.placeholderImage) {
+  if (config.placeholderImage.startsWith("/") && site)
+    imgSrc = site + config.placeholderImage;
+  else if (config.placeholderImage.startsWith("http"))
+    imgSrc = config.placeholderImage;
+}
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -63,22 +66,22 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       title={title}
       description={description}
       canonical={canonicalURL}
-      openGraph={imgUrl
+      openGraph={imgSrc
         ? {
             basic: {
               title: title,
               type: "blog",
-              image: imgUrl,
+              image: imgSrc,
             },
           }
         : undefined}
-      twitter={imgUrl
+      twitter={imgSrc
         ? {
             title: title,
             creator: config.author,
             card:
-              imgUrl && imgUrl.length > 0 ? "summary_large_image" : "summary",
-            image: imgUrl,
+              imgSrc && imgSrc.length > 0 ? "summary_large_image" : "summary",
+            image: imgSrc,
           }
         : undefined}
     />

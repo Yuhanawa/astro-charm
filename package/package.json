@@ -1,6 +1,6 @@
 {
   "name": "astro-charm",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Beautiful and easy-to-use blog theme",
   "license": "MIT",
   "author": {
@@ -20,7 +20,8 @@
   ],
   "type": "module",
   "exports": {
-    ".": "./index.ts"
+    ".": "./index.ts",
+    "./content": "./src/content.config.ts"
   },
   "files": [
     "public",
