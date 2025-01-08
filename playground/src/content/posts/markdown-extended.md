@@ -3,7 +3,6 @@ title: Markdown Extended Features
 published: 2024-12-01
 updated: 2024-12-22
 description: "Read more about Markdown features"
-image: ""
 tags: [Demo, Markdown, Feature]
 category: "Examples"
 draft: false

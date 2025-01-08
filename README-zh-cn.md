@@ -14,7 +14,7 @@
 
 [Github](https://github.com/yuhanawa/astro-charm) | [Live Demo](https://astro-charm.vercel.app/) | [PageSpeed](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fastro-charm.vercel.app%2F)
 
-注意: `Live Demo`中右侧的图片不是 Charm 主题的一部分
+注意: `Live Demo` 中右侧的图片不是 Charm 主题的一部分
 
 ## 特性
 
@@ -32,7 +32,7 @@
 - Sitemap
 - RSS
 - 自定义功能
-  - [如何自定义主题](https://astro-charm.vercel.app/posts/custom)
+  - [如何自定义主题(英文)](https://astro-charm.vercel.app/posts/custom)
 
 ## 使用方法
 
@@ -49,7 +49,17 @@ pnpm add @iconify-json/simple-icons
 pnpm add @iconify-json/solar
 ```
 
-3. 修改配置并开始使用！
+3. 添加 `src/content.config.ts` 到你的项目
+
+```ts
+import { collections as charmCollections } from "astro-charm/content";
+export const collections = {
+  // your other collections
+  ...charmCollections,
+};
+```
+
+4. 修改配置并开始使用！
 
 你需要在 `astro.config.ts `文件中添加 `site`, 因为 `charm` 主题的 `sitemap` 和 `RSS` 需要它
 
@@ -66,7 +76,17 @@ pnpm add @iconify-json/simple-icons
 pnpm add @iconify-json/solar
 ```
 
-2. 修改`astro.config.ts`文件, 你可以使用以下命令进行修改:
+2. 修改 `src/content.config.ts` 文件:
+
+```ts
+import { collections as charmCollections } from "astro-charm/content";
+export const collections = {
+  // your other collections
+  ...charmCollections,
+};
+```
+
+3. 修改 `astro.config.ts` 文件, 你可以使用以下命令进行修改:
 
 ```bash
 pnpm create astro-theme@latest init astro-charm

@@ -46,7 +46,17 @@ pnpm add @iconify-json/simple-icons
 pnpm add @iconify-json/solar
 ```
 
-3. Modify config and enjoy it!
+3. Add `src/content.config.ts` to your project.
+
+```ts
+import { collections as charmCollections } from "astro-charm/content";
+export const collections = {
+  // your other collections
+  ...charmCollections,
+};
+```
+
+4. Modify config and enjoy it!
 
 Note: you need to add `site` to `astro.config.ts` file, because `charm` use it for `sitemap` and `rss`.
 
@@ -63,7 +73,17 @@ pnpm add @iconify-json/simple-icons
 pnpm add @iconify-json/solar
 ```
 
-2. Modify `astro.config.ts` file, you can use following command to modify it.
+2. Modify `src/content.config.ts` file.
+
+```ts
+import { collections as charmCollections } from "astro-charm/content";
+export const collections = {
+  // your other collections
+  ...charmCollections,
+};
+```
+
+3. Modify `astro.config.ts` file, you can use following command to modify it.
 
 ```bash
 pnpm create astro-theme@latest init astro-charm

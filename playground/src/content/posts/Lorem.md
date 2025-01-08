@@ -5,7 +5,6 @@ published: 2024-05-01
 updated: 2024-05-01
 category: "Examples"
 tags: [Demo, Example]
-image: ""
 draft: false
 ---
 

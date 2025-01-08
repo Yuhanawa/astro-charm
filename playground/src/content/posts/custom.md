@@ -5,6 +5,7 @@ published: 2024-12-28
 updated: 2024-12-28
 tags: [Example]
 category: customize
+image: "../../assets/customize_theme.svg"
 ---
 
 ## CSS

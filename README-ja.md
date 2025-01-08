@@ -42,14 +42,24 @@
 pnpm create astro-theme@latest with-theme astro-charm
 ```
 
-2. プロジェクトに移動し、`@iconify-json/simple-icons`と`@iconify-json/solar`をインストールします。
+2. `src/content.config.ts` をプロジェクトに追加します。
+
+```ts
+import { collections as charmCollections } from "astro-charm/content";
+export const collections = {
+  // your other collections
+  ...charmCollections,
+};
+```
+
+3. プロジェクトに移動し、`@iconify-json/simple-icons`と`@iconify-json/solar`をインストールします。
 
 ```bash
 pnpm add @iconify-json/simple-icons
 pnpm add @iconify-json/solar
 ```
 
-3. 設定を変更して使用開始！
+4. 設定を変更して使用開始！
 
 注意：`astro.config.ts`ファイルに`site`を追加する必要があります。`charm`は`sitemap`と`RSS`にこれを使用します。
 
@@ -66,7 +76,17 @@ pnpm add @iconify-json/simple-icons
 pnpm add @iconify-json/solar
 ```
 
-2. `astro.config.ts`ファイルを修正します。以下のコマンドで修正できます。
+2. `src/content.config.ts` ファイルを変更します。
+
+```ts
+import { collections as charmCollections } from "astro-charm/content";
+export const collections = {
+  // your other collections
+  ...charmCollections,
+};
+```
+
+3. `astro.config.ts`ファイルを修正します。以下のコマンドで修正できます。
 
 ```bash
 pnpm create astro-theme@latest init astro-charm
