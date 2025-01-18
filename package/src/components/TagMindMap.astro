@@ -50,7 +50,7 @@ const tagData = {
       "bar-visit-Link",
     ) as HTMLAnchorElement;
 
-    const changeVisit = (tag, x, y) => {
+    const changeVisit = (tag: string, x: number, y: number) => {
       visitLink.href = `/tags/${tag}`;
       bar.style.left = x - bar.getBoundingClientRect().width / 2 + "px";
       bar.style.top = y + 24 + "px";
@@ -99,7 +99,7 @@ const tagData = {
         .attr("class", "node")
         // @ts-ignore
         .attr("data-tag", (d) => d.tag)
-        .call(
+        .call((_selection) =>
           d3
             .drag()
             .on("start", dragstarted.bind(this))
@@ -145,7 +145,7 @@ const tagData = {
       });
 
       container.querySelectorAll(".node").forEach((node) => {
-        const hover = (e) => {
+        const hover = (e: any) => {
           const centerX =
             node.getBoundingClientRect().left +
             node.getBoundingClientRect().width / 2 +
@@ -154,12 +154,12 @@ const tagData = {
             node.getBoundingClientRect().top +
             node.getBoundingClientRect().height / 2 +
             Math.ceil(e.movementY);
-          changeVisit(node.getAttribute("data-tag"), centerX, centerY);
+          changeVisit(node.getAttribute("data-tag") ?? "", centerX, centerY);
         };
         node.addEventListener("mouseover", hover);
       });
 
-      function dragstarted(event) {
+      function dragstarted(event: any) {
         if (!event.active) simulation.alphaTarget(0.3).restart();
         event.subject.fx = event.subject.x;
         event.subject.fy = event.subject.y;
@@ -170,7 +170,7 @@ const tagData = {
         );
       }
 
-      function dragged(event) {
+      function dragged(event: any) {
         event.subject.fx = event.x;
         event.subject.fy = event.y;
         changeVisit(
@@ -180,7 +180,7 @@ const tagData = {
         );
       }
 
-      function dragended(event) {
+      function dragended(event: any) {
         if (!event.active) simulation.alphaTarget(0);
         event.subject.fx = null;
         event.subject.fy = null;
@@ -204,7 +204,7 @@ const tagData = {
     width: fit-content;
     background: var(--charm-card-background-8);
     border-radius: 0.5em;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 10;
 
     opacity: 0.8;

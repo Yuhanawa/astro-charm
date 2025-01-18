@@ -25,34 +25,49 @@ const currentPage = p ? parseInt(p) : 0;
 
   <div>
     {
-      categories.slice(0, 20).map((category) => (
-        <section
-          class="category-container"
-          aria-labelledby={`category-${category.category.toLowerCase()}`}
-        >
-          <h2
-            id={`category-${category.category.toLowerCase()}`}
-            class="category-title"
+      categories
+        .slice(currentPage * 20, (currentPage + 1) * 20)
+        .map((category) => (
+          <section
+            class="category-container"
+            aria-labelledby={`category-${category.category.toLowerCase()}`}
           >
-            {category.category}
-          </h2>
-          <ul class="post-list">
-            {category.posts.slice(0, 3).map((post) => (
-              <li>
-                <a href={`/posts/${post.slug}`} class="post-item">
-                  {post.title}
-                </a>
-              </li>
-            ))}
-          </ul>
-          {category.posts.length > 3 && (
-            <a href={`/categories/${category.category}`} class="view-more">
-              View More
-            </a>
-          )}
-        </section>
-      ))
+            <h2
+              id={`category-${category.category.toLowerCase()}`}
+              class="category-title"
+            >
+              {category.category}
+            </h2>
+            <ul class="post-list">
+              {category.posts.slice(0, 3).map((post) => (
+                <li>
+                  <a href={`/posts/${post.slug}`} class="post-item">
+                    {post.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            {category.posts.length > 3 && (
+              <a href={`/categories/${category.category}`} class="view-more">
+                View More
+              </a>
+            )}
+          </section>
+        ))
     }
+    <div class="pager">
+      {
+        totalPages > currentPage && (
+          <a
+            href={`/?p=${currentPage + 1}`}
+            class={`pager-item ${currentPage === 0 ? "disabled" : ""}`}
+          >
+            {" "}
+            &#60;{" "}
+          </a>
+        )
+      }
+    </div>
   </div>
 </HomeLayout>
 

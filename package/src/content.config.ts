@@ -1,6 +1,5 @@
 import { z, defineCollection } from "astro:content";
 import { iconStringOrLightDarkOrWithStates } from "../index";
-import { glob } from "astro/loaders";
 
 const postCollection = defineCollection({
   // loader: glob({ base: "./src/content/posts", pattern: "**/*.{md,mdx}" }),

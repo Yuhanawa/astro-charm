@@ -112,10 +112,7 @@ const EntryLength = specialsEntries.length;
 
   .mobile-menu {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background-color: var(--charm-card-background-8);
     z-index: 999;
     display: flex;
@@ -171,11 +168,12 @@ const EntryLength = specialsEntries.length;
     align-items: center;
   }
 
-  @keyframes fadeInUp {
+  @keyframes fade-in-up {
     from {
       opacity: 0;
       transform: translateY(20px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -184,7 +182,7 @@ const EntryLength = specialsEntries.length;
 
   .mobile-menu.active .nav-list li,
   .mobile-menu.active .social-link {
-    animation: fadeInUp 0.3s ease-out forwards;
+    animation: fade-in-up 0.3s ease-out forwards;
     opacity: 0;
   }
 

@@ -1,5 +1,7 @@
 ---
 import config from "charm:config";
+if (!config.giscus)
+  throw new Error("'config.giscus' is 'undefined' or 'null'.");
 ---
 
 <section class="giscus"></section>
@@ -34,8 +36,8 @@ import config from "charm:config";
   is:inline
   data-astro-rerun
   define:vars={{
-    light: config.giscus.theme.light,
-    dark: config.giscus.theme.dark,
+    light: config.giscus.theme?.light ?? "light",
+    dark: config.giscus.theme?.dark ?? "dark",
   }}
 >
   function updateGiscusTheme() {
