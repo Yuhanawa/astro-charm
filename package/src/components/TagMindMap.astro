@@ -99,7 +99,8 @@ const tagData = {
         .attr("class", "node")
         // @ts-ignore
         .attr("data-tag", (d) => d.tag)
-        .call((_selection) =>
+        .call(
+          // @ts-ignore
           d3
             .drag()
             .on("start", dragstarted.bind(this))
