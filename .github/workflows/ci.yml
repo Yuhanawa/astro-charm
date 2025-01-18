@@ -32,7 +32,8 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: pnpm --filter astro-charm release
+          publish: pnpm release
+          cwd: ./package
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
