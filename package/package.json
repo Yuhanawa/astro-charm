@@ -30,9 +30,7 @@
     "init.config.json"
   ],
   "scripts": {
-    "check": "astro check && stylelint \"**/*.{css,html,astro}\"",
-    "changeset": "changeset",
-    "release": "changeset publish"
+    "check": "astro check && stylelint \"**/*.{css,html,astro}\""
   },
   "packageManager": "pnpm@8.12.0",
   "engines": {
@@ -40,7 +38,6 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
-    "@changesets/cli": "^2.27.11",
     "@types/d3": "^7.4.3",
     "@types/mdast": "^4.0.4",
     "@types/node": "^22.10.1",
