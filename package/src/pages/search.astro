@@ -1,16 +1,32 @@
 ---
 import { HomeLayout } from "charm:layouts";
-import PageFindUI from "astro-pagefind/components/Search";
+import PageFindSearch from "astro-pagefind/components/Search";
 
 const q = Astro.url.searchParams.get("q") ?? undefined;
 ---
 
 <HomeLayout useH1>
   <h2>Search</h2>
-  <PageFindUI
-    id="search"
-    className="pagefind-ui"
-    query={q}
-    uiOptions={{ showImages: false }}
-  />
+  <div class="pagefind-ui-container">
+    <PageFindSearch query={q} uiOptions={{ showImages: false }} />
+  </div>
 </HomeLayout>
+
+<style>
+  .pagefind-ui-container {
+    --pagefind-ui-primary: var(--charm-highlight-color);
+    --pagefind-ui-text: var(--charm-font-color);
+    --pagefind-ui-background: var(--charm-background-color);
+    --pagefind-ui-border: var(--charm-contrast-color-1);
+    --pagefind-ui-tag: var(--charm-card-background);
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 0.375rem;
+    --pagefind-ui-font: inherit;
+
+    /* unused
+    --pagefind-ui-scale: 1;
+    --pagefind-ui-image-border-radius: 8px;
+    --pagefind-ui-image-box-ratio: 3 / 2; 
+    */
+  }
+</style>
