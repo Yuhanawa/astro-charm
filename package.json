@@ -5,6 +5,7 @@
   "scripts": {
     "playground:dev": "pnpm --filter playground dev",
     "package:check": "pnpm --filter astro-charm check",
+    "package:release": "changeset publish",
     "format": "prettier --write  \"**/*.{js,ts,astro}\""
   },
   "devDependencies": {
