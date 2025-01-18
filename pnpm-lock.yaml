@@ -48,8 +48,8 @@ importers:
         specifier: ^0.7.0
         version: 0.7.0(astro@5.1.0(@types/node@22.10.1)(jiti@2.4.2)(lightningcss@1.27.0)(rollup@4.27.4)(terser@5.36.0)(typescript@5.7.2)(yaml@2.6.1))
       astro-theme-toggle:
-        specifier: ^0.3.5
-        version: 0.3.5
+        specifier: ^0.5.0
+        version: 0.5.0
       d3:
         specifier: ^7.9.0
         version: 7.9.0
@@ -1497,8 +1497,8 @@ packages:
       '@astrojs/db':
         optional: true
 
-  astro-theme-toggle@0.3.5:
-    resolution: {integrity: sha512-ef5Cend7n4iel4u6mJRoilgYRxRkllWiK4DonssSesm6RPS+/RmXFOyMEOna3sB/Vmav0BXGEN18otdxPPwPeQ==}
+  astro-theme-toggle@0.5.0:
+    resolution: {integrity: sha512-AwON99k6kLAEkW0gbdpIjB/vpoZvibi9I/wE/bCTKicnNJwP3RR6gsh80QdfH22JRvJC2DHQF/ErtKZyfv9ycA==}
 
   astro@5.1.0:
     resolution: {integrity: sha512-g/cqwGK84Ozp5jyW45c3+2KQ4BeJtigbfwO8EA3lr7AC+XjE6/5dMvX4/bBaWf3gJVghd0L6cdqwlWikq+/Rrw==}
@@ -5767,7 +5767,7 @@ snapshots:
       callsites: 4.2.0
       fast-glob: 3.3.2
 
-  astro-theme-toggle@0.3.5: {}
+  astro-theme-toggle@0.5.0: {}
 
   astro@5.1.0(@types/node@22.10.1)(jiti@2.4.2)(lightningcss@1.27.0)(rollup@4.27.4)(terser@5.36.0)(typescript@5.7.2)(yaml@2.6.1):
     dependencies:
