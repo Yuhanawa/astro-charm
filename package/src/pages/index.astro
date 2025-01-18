@@ -1,6 +1,6 @@
 ---
 import { HomeLayout } from "charm:layouts";
-import { PostList } from "charm:components";
+import { HomePageHeader, PostList } from "charm:components";
 import { getPostEntries } from "../utils/collectionUtils";
 
 const entries = await getPostEntries();
@@ -9,7 +9,7 @@ const page = p ? parseInt(p) : 0;
 ---
 
 <HomeLayout useH1>
-  <h2>Posts</h2>
+  <HomePageHeader />
   <PostList {page} {entries} />
 </HomeLayout>
 
