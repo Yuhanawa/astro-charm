@@ -6,7 +6,7 @@
     "playground:dev": "pnpm --filter playground dev",
     "package:check": "pnpm --filter astro-charm check",
     "package:release": "changeset publish",
-    "format": "prettier --write  \"**/*.{js,ts,astro}\""
+    "format": "prettier --write  \"**/*.{js,ts,css,astro}\""
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.12",
