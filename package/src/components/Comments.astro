@@ -58,7 +58,6 @@ if (!config.giscus)
 
     function waitForIframeLoad(iframe) {
       return new Promise((resolve) => {
-        console.log(iframe);
         if (
           iframe.contentWindow &&
           (iframe.contentDocument?.readyState === "complete" ||
@@ -76,14 +75,13 @@ if (!config.giscus)
     findIframe()
       .then(waitForIframeLoad)
       .then((iframe) => {
-        console.log("Updating giscus theme:", theme);
         iframe.contentWindow.postMessage(
           { giscus: { setConfig: { theme } } },
           "https://giscus.app",
         );
       })
       .catch((error) => {
-        console.error("Error updating giscus theme:", error);
+        console.warn("Error updating giscus theme:", error);
       });
   }
   new MutationObserver(updateGiscusTheme).observe(document.documentElement, {
