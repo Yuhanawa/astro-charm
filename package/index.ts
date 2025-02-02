@@ -236,8 +236,8 @@ export default function (
       markdown: {
         shikiConfig: {
           themes: {
-            light: "vitesse-light",
-            dark: "vitesse-dark",
+            light: "vitesse-light", // "vitesse-light" "rose-pine-dawn" "everforest-light"
+            dark: "catppuccin-frappe", // "andromeeda" "catppuccin-frappe" "nord" "one-dark-pro" "dracula"
           },
           // wrap: false,
           transformers: [
