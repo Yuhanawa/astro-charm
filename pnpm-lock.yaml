@@ -99,6 +99,12 @@ importers:
       '@astrojs/check':
         specifier: ^0.9.4
         version: 0.9.4(prettier-plugin-astro@0.14.1)(prettier@3.4.2)(typescript@5.7.3)
+      '@iconify-json/simple-icons':
+        specifier: ^1
+        version: 1.2.23
+      '@iconify-json/solar':
+        specifier: ^1
+        version: 1.2.2
       '@types/d3':
         specifier: ^7.4.3
         version: 7.4.3

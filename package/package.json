@@ -41,6 +41,8 @@
     "@types/d3": "^7.4.3",
     "@types/mdast": "^4.0.4",
     "@types/node": "^22.13.0",
+    "@iconify-json/simple-icons": "^1",
+    "@iconify-json/solar": "^1",
     "astro": "^5.2.3",
     "stylelint": "^16.14.1",
     "stylelint-config-html": "^1.1.0",
@@ -72,5 +74,17 @@
     "remark-toc": "^9.0.0",
     "spdx-license-list": "^6.9.0",
     "unist-util-visit": "^5.0.0"
+  },
+  "peerDependencies": {
+    "@iconify-json/simple-icons": "^1",
+    "@iconify-json/solar": "^1"
+  },
+  "peerDependenciesMeta": {
+    "@iconify-json/simple-icons": {
+      "optional": false
+    },
+    "@iconify-json/solar": {
+      "optional": false
+    }
   }
 }
