@@ -1,20 +1,22 @@
 ---
-title: How to customize the theme
-description: customize the CSS and components
+title: 如何个性化主题
+description: 自定义 CSS 和组件（Components）
 published: 2024-12-28
 updated: 2025-02-02
-tags: [Example]
+tags: [Example, 简体中文]
 category: customize
-image: "../../assets/customize_theme.svg"
+image: "../../../assets/customize_theme.svg"
+hidden: true
 ---
 
 ## CSS
 
-Just add `src/styles/custom-charm.css`
+只需添加 `src/styles/custom-charm.css` 文件即可
 
-In this live demo, the image on the right was added by `src/styles/custom-charm.css`
+在 live demo 中，右侧图片正是通过 `src/styles/custom-charm.css` 添加的
 
-Here is the `src/styles/custom-charm.css` for the live demo:
+以下是 live demo 中使用的 `src/styles/custom-charm.css`：
+
 ```css
 @media (width >= 52rem) {
   html.charm body {
@@ -23,7 +25,7 @@ Here is the `src/styles/custom-charm.css` for the live demo:
 
     &::before {
       content: "";
-      /* image from https://civitai.com/images/4176963 */
+      /* 图片来自 https://civitai.com/images/4176963 */
       background-image: url(./../assets/engagekiss.avif);
       background-size: contain;
       background-repeat: no-repeat;
@@ -46,12 +48,12 @@ Here is the `src/styles/custom-charm.css` for the live demo:
 }
 ```
 
-## Components
+## 组件（Components）
 
-### Add custom components
+### 添加自定义组件
 
-You can add custom components by overriding `custom`, 
-These components are empty by default, so you can safely override them.
+通过覆盖 `custom` 配置项可以添加自定义组件，
+这些组件默认都是空的，因此可以放心地进行覆盖。
 
 ```ts
 import { defineConfig } from "astro/config";
@@ -79,22 +81,22 @@ export default defineConfig({
 
 #### CustomScriptComponent
 
-It will be added to the end of `<head>`,
-you can use it to add custom scripts or meta tags.
+该组件会被插添加到 `<head>` 末尾，
+可用于添加自定义脚本或 meta 标签。
 
-#### CustomPostHeaderTop, CustomPostHeaderBottom
+#### CustomPostHeaderTop / CustomPostHeaderBottom
 
-Display above and below the title
+在文章标题的上方/下方显示
 
-#### CustomPostFooterTop, CustomPostFooterBottom
+#### CustomPostFooterTop / CustomPostFooterBottom
 
-Display above and below the License
+在版权声明的上方/下方显示
 
 :::note
-If you do not specify `licenseId` in `config`, the License area will not be displayed.
+如果在 `config` 中未指定 `licenseId`，版权声明区域将不会显示。
 :::
 
-### Override components
+### 覆盖内置组件
 
 ```ts
 import { defineConfig } from "astro/config";

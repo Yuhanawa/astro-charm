@@ -5,7 +5,6 @@ updated: 2024-12-22
 description: "Read more about Markdown features"
 tags: [Demo, Markdown, Feature]
 category: "Examples"
-draft: false
 ---
 
 ## Table of contents

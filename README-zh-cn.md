@@ -2,8 +2,6 @@
 
 [English](./README.md) | [日本語](./README-ja.md) | [中文](./README-zh-cn.md)
 
-> 由 AI 翻译  
-> Translation by AI
 
 漂亮, 简洁且易用的博客主题
 

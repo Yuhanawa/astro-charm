@@ -1,20 +1,22 @@
 ---
-title: How to customize the theme
-description: customize the CSS and components
+title: テーマのカスタマイズ方法
+description: CSSとコンポーネントのカスタマイズ
 published: 2024-12-28
 updated: 2025-02-02
-tags: [Example]
+tags: [Example, 日本語]
 category: customize
-image: "../../assets/customize_theme.svg"
+image: "../../../assets/customize_theme.svg"
+hidden: true
 ---
 
 ## CSS
 
-Just add `src/styles/custom-charm.css`
+`src/styles/custom-charm.css` ファイルを追加するだけでカスタマイズ可能です
 
-In this live demo, the image on the right was added by `src/styles/custom-charm.css`
+ライブデモで右側に表示されている画像は、`src/styles/custom-charm.css` を使用して追加されています
 
-Here is the `src/styles/custom-charm.css` for the live demo:
+以下はライブデモで使用されている `src/styles/custom-charm.css` の例です：
+
 ```css
 @media (width >= 52rem) {
   html.charm body {
@@ -23,7 +25,7 @@ Here is the `src/styles/custom-charm.css` for the live demo:
 
     &::before {
       content: "";
-      /* image from https://civitai.com/images/4176963 */
+      /* 画像出典: https://civitai.com/images/4176963 */
       background-image: url(./../assets/engagekiss.avif);
       background-size: contain;
       background-repeat: no-repeat;
@@ -46,12 +48,12 @@ Here is the `src/styles/custom-charm.css` for the live demo:
 }
 ```
 
-## Components
+## コンポーネント
 
-### Add custom components
+### カスタムコンポーネントの追加
 
-You can add custom components by overriding `custom`, 
-These components are empty by default, so you can safely override them.
+`custom` 設定を上書きすることでカスタムコンポーネントを追加できます。
+これらのコンポーネントはデフォルトで空の状態になっているため、安全に上書きできます。
 
 ```ts
 import { defineConfig } from "astro/config";
@@ -79,22 +81,22 @@ export default defineConfig({
 
 #### CustomScriptComponent
 
-It will be added to the end of `<head>`,
-you can use it to add custom scripts or meta tags.
+`<head>` タグの末尾に追加され、
+カスタムスクリプトやmetaタグの追加に使用できます。
 
-#### CustomPostHeaderTop, CustomPostHeaderBottom
+#### CustomPostHeaderTop / CustomPostHeaderBottom
 
-Display above and below the title
+記事タイトルの上部/下部に表示されます
 
-#### CustomPostFooterTop, CustomPostFooterBottom
+#### CustomPostFooterTop / CustomPostFooterBottom
 
-Display above and below the License
+著作権表示の上部/下部に表示されます
 
 :::note
-If you do not specify `licenseId` in `config`, the License area will not be displayed.
+`config` で `licenseId` を指定しない場合、著作権表示領域は表示されません。
 :::
 
-### Override components
+### 組み込みコンポーネントの上書き
 
 ```ts
 import { defineConfig } from "astro/config";
