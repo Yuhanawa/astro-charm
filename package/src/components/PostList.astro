@@ -131,11 +131,10 @@ const page = Astro.props.page ?? 0;
       border-radius: 0.25rem;
       max-height: 5rem;
       max-width: fit-content;
-      object-fit: contain;
-      overflow: hidden;
 
       img {
         image-orientation: from-image;
+        object-fit: contain;
       }
     }
   }
@@ -193,6 +192,7 @@ const page = Astro.props.page ?? 0;
     }
 
     @media (width <= 38rem) {
+      .item-image,
       .post-list-tag-item:nth-child(4) {
         display: none;
       }
