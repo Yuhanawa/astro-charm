@@ -137,6 +137,12 @@ const page = Astro.props.page ?? 0;
         object-fit: contain;
       }
     }
+
+    @media (width <= 32rem) {
+      .item-image {
+        display: none;
+      }
+    }
   }
 
   .item {
@@ -192,21 +198,18 @@ const page = Astro.props.page ?? 0;
     }
 
     @media (width <= 38rem) {
-      .item-image,
       .post-list-tag-item:nth-child(4) {
         display: none;
       }
     }
 
     @media (width <= 32rem) {
-      .item-image,
       .post-list-tag-item:nth-child(3) {
         display: none;
       }
     }
 
     @media (width <= 28rem) {
-      .item-image,
       span:has(.post-list-tag-item) {
         display: none;
       }
