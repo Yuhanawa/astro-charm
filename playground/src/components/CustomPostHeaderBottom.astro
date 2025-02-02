@@ -1,0 +1,91 @@
+---
+import { glob } from "astro/loaders";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import { getEntry } from "astro:content";
+
+type Props = {
+  postEntry: CollectionEntry<"posts">;
+  /* `CollectionEntry<"posts">`
+    {
+      id: string;
+      render(): Render[".md"];
+      slug: string;
+      body: string;
+      collection: "posts";
+      data: {
+        title: string;
+        published: Date;
+        draft: boolean;
+        hidden: boolean;
+        image?: {
+            src: string;
+            width: number;
+            height: number;
+            format: "png" | "jpg" | "jpeg" | "tiff" | "webp" | "gif" | "svg" | "avif";
+        } | {
+            ...;
+        } | undefined;
+        description?: string | undefined;
+        updated?: Date | undefined;
+        category?: string | undefined;
+        tags?: string[] | undefined;
+      };
+      rendered?: RenderedContent;
+      filePath?: string;
+    };
+  */
+};
+
+const { postEntry } = Astro.props;
+const data = postEntry.data;
+
+const langs = {
+  en: "English",
+  ja: "日本語",
+  "zh-cn": "简体中文",
+};
+const getLangAndId = (id: string): { lang: keyof typeof langs; id: string } => {
+  const splits = id.split("/");
+  let lang = splits[0];
+  if (Object.keys(langs).includes(lang)) id = splits.slice(1).join("/");
+  else lang = "en";
+  return { lang: lang as keyof typeof langs, id };
+};
+
+const { lang, id } = getLangAndId(postEntry.id);
+
+const entries = (await getCollection("posts"))
+  .filter(
+    (entry) => entry.id !== postEntry.id && getLangAndId(entry.id).id === id,
+  )
+  .map((entry) => ({
+    lang: getLangAndId(entry.id).lang,
+    ...entry,
+  }));
+---
+
+{
+  entries.length > 0 && (
+    <div class="admonition note">
+      <span class="title">NOTE</span>
+      <p>
+        This page is available in
+        <a href={`/posts/${postEntry.slug}`} lang={lang}>
+          {langs[lang]}
+        </a>
+        (this page),
+        {entries.map((entry, i) => (
+          <>
+            <a href={`/posts/${entry.slug}`} lang={entry.lang}>
+              {langs[entry.lang]}
+            </a>
+            {i === entries.length - 1 ? ". " : ", "}
+          </>
+        ))}
+        <br />
+        Contributions in other languages are welcome.
+      </p>
+    </div>
+  )
+}
