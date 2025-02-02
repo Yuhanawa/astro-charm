@@ -246,11 +246,21 @@ export default function (
                 config.markdown?.colorizedBrackets?.explicitTrigger,
             }),
             // https://shiki.style/packages/transformers
-            transformerNotationDiff(),
-            transformerNotationHighlight(),
-            transformerNotationWordHighlight(),
-            transformerNotationFocus(),
-            transformerNotationErrorLevel(),
+            transformerNotationDiff({
+              matchAlgorithm: "v3",
+            }),
+            transformerNotationHighlight({
+              matchAlgorithm: "v3",
+            }),
+            transformerNotationWordHighlight({
+              matchAlgorithm: "v3",
+            }),
+            transformerNotationFocus({
+              matchAlgorithm: "v3",
+            }),
+            transformerNotationErrorLevel({
+              matchAlgorithm: "v3",
+            }),
             transformerMetaHighlight(),
             transformerMetaWordHighlight(),
             transformerRemoveNotationEscape(),
