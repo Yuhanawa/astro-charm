@@ -3,7 +3,7 @@ title: 如何个性化主题
 description: 自定义 CSS 和组件（Components）
 published: 2024-12-28
 updated: 2025-02-02
-tags: [Example, 简体中文]
+tags: [Example]
 category: customize
 image: "../../../assets/customize_theme.svg"
 hidden: true

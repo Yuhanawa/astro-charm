@@ -3,7 +3,7 @@ title: Markdown 拡張機能
 published: 2024-12-01
 updated: 2025-02-02
 description: "Markdown の機能について詳しく見る"
-tags: [Demo, Markdown, Feature, 日本語]
+tags: [Demo, Markdown, Feature]
 category: "Examples"
 hidden: true
 ---

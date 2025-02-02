@@ -3,7 +3,7 @@ title: Markdown 扩展功能
 published: 2024-12-01
 updated: 2025-02-02
 description: "了解更多 Markdown 功能"
-tags: [Demo, Markdown, Feature, 简体中文]
+tags: [Demo, Markdown, Feature]
 category: "Examples"
 hidden: true
 ---

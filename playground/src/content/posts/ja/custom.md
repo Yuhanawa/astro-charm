@@ -3,7 +3,7 @@ title: テーマのカスタマイズ方法
 description: CSSとコンポーネントのカスタマイズ
 published: 2024-12-28
 updated: 2025-02-02
-tags: [Example, 日本語]
+tags: [Example]
 category: customize
 image: "../../../assets/customize_theme.svg"
 hidden: true
