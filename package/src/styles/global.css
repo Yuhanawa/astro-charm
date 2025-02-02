@@ -55,8 +55,9 @@
     content: "🔗";
   }
 
+  a.link-animate,
   p a,
-  a.link-animate {
+  div.content-wrapper > article > * a {
     &::after {
       content: "";
       position: absolute;
@@ -118,7 +119,7 @@
         top: 0;
         right: 0;
         border: none;
-        border-radius: var(--astro-code-block-border-radius);
+        border-radius: 0.25rem;
         margin: 0.25rem;
 
         width: 1.5rem;
@@ -176,6 +177,7 @@
 
         .code-language {
           right: 3em;
+          opacity: 0.6;
         }
 
         .code-copy {
@@ -183,13 +185,17 @@
           height: 1.5em;
           right: 1em;
           visibility: visible;
-          opacity: 0.8;
+          opacity: 0.6;
           background-color: var(--charm-background-color) !important;
         }
       }
     }
 
     &:hover .code-header {
+      .code-language {
+        opacity: 0.8;
+      }
+
       .code-copy {
         visibility: visible;
         opacity: 1;
@@ -206,6 +212,8 @@
     }
 
     pre.astro-code {
+      border-radius: 0.5rem;
+
       code {
         .diff.add {
           background-color: #166534;
@@ -235,6 +243,14 @@
     }
   }
 
+  &.dark {
+    .astro-code,
+    .astro-code span {
+      color: var(--shiki-dark) !important;
+      background-color: var(--shiki-dark-bg) !important;
+    }
+  }
+
   pre {
     /* border-radius: 0.25em; */
     padding: 0.25em 0.5em;
@@ -260,17 +276,30 @@
       border-radius: 0.25em;
 
       /* 
-    Why make different paddings between top and bottom: 
-    on firefox the `::selection` is not in center of the text, (no problem on chrome)
-    if make same padding on top and bottom, 
-    it will display differently top/bottom padding when select the text.
-    */
+        Why make different paddings between top and bottom: 
+        on firefox the `::selection` is not in center of the text, (no problem on chrome)
+        if make same padding on top and bottom, 
+        it will display differently top/bottom padding when select the text.
+      */
       padding: 0.06em 0.25em 0.05em;
       font-style: italic;
 
       &::selection {
         background-color: var(--charm-background-color);
         color: var(--charm-highlight-color);
+      }
+    }
+  }
+
+  &.dark {
+    p,
+    li {
+      code {
+        color: var(--charm-font-color);
+
+        &::selection {
+          color: var(--charm-font-color);
+        }
       }
     }
   }
