@@ -1,29 +1,49 @@
 ---
 import { Icon } from "astro-icon/components";
+import type { CollectionEntry } from "astro:content";
 import { CustomPostHeaderTop, CustomPostHeaderBottom } from "charm:custom";
 
 type Props = {
-  postData: {
-    title: string;
-    description?: string;
-    published: Date;
-    updated?: Date;
-    category?: string;
-    tags?: string[];
-    image?: any;
-    draft?: boolean;
-    hidden?: boolean;
-  };
+  postEntry: CollectionEntry<"posts">;
+  /* `CollectionEntry<"posts">`
+    {
+      id: string;
+      render(): Render[".md"];
+      slug: string;
+      body: string;
+      collection: "posts";
+      data: {
+        title: string;
+        published: Date;
+        draft: boolean;
+        hidden: boolean;
+        image?: {
+            src: string;
+            width: number;
+            height: number;
+            format: "png" | "jpg" | "jpeg" | "tiff" | "webp" | "gif" | "svg" | "avif";
+        } | {
+            ...;
+        } | undefined;
+        description?: string | undefined;
+        updated?: Date | undefined;
+        category?: string | undefined;
+        tags?: string[] | undefined;
+      };
+      rendered?: RenderedContent;
+      filePath?: string;
+    };
+  */
 };
 
-const { postData } = Astro.props;
-
-const timeData = (postData.updated || postData.published).getTime();
+const { postEntry } = Astro.props;
+const data = postEntry.data;
+const timeData = (data.updated || data.published).getTime();
 const years = Math.floor((Date.now() - timeData) / (365 * 24 * 60 * 60 * 1000));
 ---
 
 {
-  postData.draft && (
+  data.draft && (
     <div class="admonition warning">
       <span class="title">Draft Warning</span>
       <p>
@@ -34,28 +54,28 @@ const years = Math.floor((Date.now() - timeData) / (365 * 24 * 60 * 60 * 1000));
   )
 }
 
-<CustomPostHeaderTop {postData} />
+<CustomPostHeaderTop postEntry={postEntry} />
 
-<h1>{postData.title}</h1>
+<h1>{data.title}</h1>
 
 <p class="inline-meta">
   {
-    postData.published && (
+    data.published && (
       <>
         <span>published: </span>
-        <time datetime={postData.published.toISOString()}>
-          {postData.published.toLocaleDateString()}
+        <time datetime={data.published.toISOString()}>
+          {data.published.toLocaleDateString()}
         </time>
       </>
     )
   }
-  {postData.published && postData.updated && <span> and </span>}
+  {data.published && data.updated && <span> and </span>}
   {
-    postData.updated && (
+    data.updated && (
       <>
         <span>updated: </span>
-        <time datetime={postData.updated.toISOString()}>
-          {postData.updated.toLocaleDateString()}
+        <time datetime={data.updated.toISOString()}>
+          {data.updated.toLocaleDateString()}
         </time>
       </>
     )
@@ -65,15 +85,15 @@ const years = Math.floor((Date.now() - timeData) / (365 * 24 * 60 * 60 * 1000));
 <p class="inline-meta" data-pagefind-ignore>
   <span class="category">
     <Icon name="solar:bookmark-bold-duotone" />
-    <a href={`/categories/${postData.category}`}>
-      {postData.category}
+    <a href={`/categories/${data.category}`}>
+      {data.category}
     </a>
   </span>
   {
-    postData.tags && postData.tags.length > 0 && (
+    data.tags && data.tags.length > 0 && (
       <span class="tags">
         <Icon name="solar:tag-bold-duotone" />
-        {postData.tags.slice(0, 3).map((tag, i) => (
+        {data.tags.slice(0, 3).map((tag, i) => (
           <span class="post-list-tag-item">
             {i !== 0 && ", "}
             <a href={`/tags/${tag}`}>{tag}</a>
@@ -112,14 +132,14 @@ const years = Math.floor((Date.now() - timeData) / (365 * 24 * 60 * 60 * 1000));
 }
 
 {
-  postData.hidden && (
+  data.hidden && (
     <div class="admonition note" data-pagefind-ignore>
       <span class="title">This article is hidden from post list</span>
     </div>
   )
 }
 
-<CustomPostHeaderBottom {postData} />
+<CustomPostHeaderBottom postEntry={postEntry} />
 
 <style>
   .inline-meta {

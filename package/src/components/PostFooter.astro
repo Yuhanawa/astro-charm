@@ -2,28 +2,48 @@
 import config from "charm:config";
 import { LicenseDisplay } from "charm:components";
 import { CustomPostFooterTop, CustomPostFooterBottom } from "charm:custom";
+import type { CollectionEntry } from "astro:content";
 
 type Props = {
-  postData: {
-    title: string;
-    description?: string;
-    published: Date;
-    updated?: Date;
-    category?: string;
-    tags?: string[];
-    image?: any;
-    draft?: boolean;
-    hidden?: boolean;
-  };
+  postEntry: CollectionEntry<"posts">;
+  /* `CollectionEntry<"posts">`
+    {
+      id: string;
+      render(): Render[".md"];
+      slug: string;
+      body: string;
+      collection: "posts";
+      data: {
+        title: string;
+        published: Date;
+        draft: boolean;
+        hidden: boolean;
+        image?: {
+            src: string;
+            width: number;
+            height: number;
+            format: "png" | "jpg" | "jpeg" | "tiff" | "webp" | "gif" | "svg" | "avif";
+        } | {
+            ...;
+        } | undefined;
+        description?: string | undefined;
+        updated?: Date | undefined;
+        category?: string | undefined;
+        tags?: string[] | undefined;
+      };
+      rendered?: RenderedContent;
+      filePath?: string;
+    };
+  */
 };
 
-const { postData } = Astro.props;
+const { postEntry } = Astro.props;
 ---
 
 <footer data-pagefind-ignore>
-  <CustomPostFooterTop {postData} />
+  <CustomPostFooterTop postEntry={postEntry} />
   {config.licenseId && <LicenseDisplay licenseId={config.licenseId} />}
-  <CustomPostFooterBottom {postData} />
+  <CustomPostFooterBottom postEntry={postEntry} />
 </footer>
 
 <style>

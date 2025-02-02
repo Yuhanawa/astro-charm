@@ -3,15 +3,15 @@ import { Comments, HomeSide, PostFooter, PostHeader } from "charm:components";
 import MainLayout from "./MainLayout.astro";
 import config from "charm:config";
 
-const { postData } = Astro.props;
+const { postEntry } = Astro.props;
 ---
 
 <MainLayout {...Astro.props}>
   <HomeSide slot="side" />
   <article data-pagefind-body>
-    {postData && <PostHeader {postData} />}
+    {postEntry && <PostHeader {postEntry} />}
     <slot />
-    {postData && <PostFooter {postData} />}
+    {postEntry && <PostFooter {postEntry} />}
   </article>
   {config.giscus && <Comments />}
 </MainLayout>
