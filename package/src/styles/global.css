@@ -105,8 +105,8 @@
   }
 
   code {
-    font-family: "JetBrains Mono", "Fira Code", Monaco, "Courier New", Consolas,
-      monospace;
+    font-family:
+      "JetBrains Mono", "Fira Code", Monaco, "Courier New", Consolas, monospace;
   }
 
   .code-block {
