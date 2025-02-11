@@ -1,5 +1,13 @@
 # astro-charm
 
+## 1.2.1
+
+### Patch Changes
+
+- b11b615: chore: update dependencies
+- 4fdac94: feat: now if Astro.site is undefined, it will fallback to Astro.url
+  chore: add iconify-json to peerDependencies
+
 ## 1.2.0
 
 ### Minor Changes
