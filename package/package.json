@@ -40,10 +40,8 @@
     "@astrojs/check": "^0.9.4",
     "@types/d3": "^7.4.3",
     "@types/mdast": "^4.0.4",
-    "@types/node": "^22.13.0",
-    "@iconify-json/simple-icons": "^1",
-    "@iconify-json/solar": "^1",
-    "astro": "^5.2.3",
+    "@types/node": "^22.13.1",
+    "astro": "^5.2.5",
     "stylelint": "^16.14.1",
     "stylelint-config-html": "^1.1.0",
     "stylelint-config-standard": "^37.0.0",
@@ -52,9 +50,11 @@
   "dependencies": {
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.2.1",
-    "@shikijs/colorized-brackets": "^2.2.0",
-    "@shikijs/transformers": "^2.2.0",
-    "@shikijs/twoslash": "^2.2.0",
+    "@iconify-json/simple-icons": "^1.2.24",
+    "@iconify-json/solar": "^1.2.2",
+    "@shikijs/colorized-brackets": "^2.3.2",
+    "@shikijs/transformers": "^2.3.2",
+    "@shikijs/twoslash": "^2.3.2",
     "astro-icon": "^1.1.5",
     "astro-pagefind": "^1.8.0",
     "astro-seo": "^0.8.4",
@@ -76,8 +76,8 @@
     "unist-util-visit": "^5.0.0"
   },
   "peerDependencies": {
-    "@iconify-json/simple-icons": "^1",
-    "@iconify-json/solar": "^1"
+    "@iconify-json/simple-icons": "^1.2",
+    "@iconify-json/solar": "^1.2"
   },
   "peerDependenciesMeta": {
     "@iconify-json/simple-icons": {
