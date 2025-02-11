@@ -5,10 +5,7 @@
 
 漂亮, 简洁且易用的博客主题
 
-2024年12月27日截图
-
-![2024-12-27-浅色主题截图](docs/screenshot-2024-12-27-light.png "2024-12-27-浅色主题截图")
-<!-- ![2024-12-27-深色主题截图](docs/screenshot-2024-12-27-dark.png "2024-12-27-深色主题截图") -->
+![Preview of Live Demo](docs/Charm-Theme-Preview-20250211.png "Charm-Theme-Preview-20250211")
 
 [Github](https://github.com/yuhanawa/astro-charm) | [Live Demo](https://astro-charm.vercel.app/) | [PageSpeed](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fastro-charm.vercel.app%2F)
 

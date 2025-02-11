@@ -5,10 +5,7 @@
 
 美しく、シンプルで使いやすいブログテーマ
 
-2024年12月27日のスクリーンショット
-
-![2024年12月27日ライトモード](docs/screenshot-2024-12-27-light.png "2024年12月27日ライトモード")
-<!-- ![2024年12月27日ダークモード](docs/screenshot-2024-12-27-dark.png "2024年12月27日ダークモード") -->
+![Preview of Live Demo](docs/Charm-Theme-Preview-20250211.png "Charm-Theme-Preview-20250211")
 
 [Github](https://github.com/yuhanawa/astro-charm) | [ライブデモ](https://astro-charm.vercel.app/) | [PageSpeed](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fastro-charm.vercel.app%2F)
 

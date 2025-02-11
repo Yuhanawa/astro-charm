@@ -4,10 +4,7 @@
 
 Beautiful, simple and easy-to-use blog theme
 
-screenshot 2024-12-27
-
-![screenshot-2024-12-27-light](docs/screenshot-2024-12-27-light.png "screenshot-2024-12-27-light")
-<!-- ![screenshot-2024-12-27-dark](docs/screenshot-2024-12-27-dark.png "screenshot-2024-12-27-dark") -->
+![Preview of Live Demo](docs/Charm-Theme-Preview-20250211.png "Charm-Theme-Preview-20250211")
 
 [Github](https://github.com/yuhanawa/astro-charm) | [Live Demo](https://astro-charm.vercel.app/) | [PageSpeed](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fastro-charm.vercel.app%2F)
 
