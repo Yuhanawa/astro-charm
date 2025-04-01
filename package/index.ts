@@ -230,9 +230,15 @@ export default function (
 
   hook("astro:config:setup", (options) => {
     options.updateConfig({
-      // build: {
-      //   format: "file",
-      // },
+      build: {
+        //   format: "file",
+        inlineStylesheets: "always",
+      },
+      vite: {
+        build: {
+          assetsInlineLimit: 50 * 1024,
+        },
+      },
       markdown: {
         shikiConfig: {
           themes: {
