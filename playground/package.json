@@ -9,16 +9,16 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/vercel": "^8.0.6",
-    "@playform/compress": "^0.1.7",
+    "@astrojs/vercel": "^8.1.3",
+    "@playform/compress": "^0.1.8",
     "@vercel/analytics": "^1.5.0",
-    "astro": "^5.2.5",
+    "astro": "^5.5.6",
     "astro-charm": "workspace:^",
     "astro-page-insight": "^0.10.1",
     "sharp": "^0.33.5"
   },
   "devDependencies": {
-    "@iconify-json/simple-icons": "^1.2.24",
+    "@iconify-json/simple-icons": "^1.2.30",
     "@iconify-json/solar": "^1.2.2"
   }
 }

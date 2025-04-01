@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.12",
-    "astro": "^5.2.5",
+    "astro": "^5.5.6",
     "prettier": "^3.5.0",
     "prettier-plugin-astro": "^0.14.1"
   }
