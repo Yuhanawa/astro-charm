@@ -45,7 +45,7 @@ export default defineConfig({
         },
       },
     }),
-    pageInsight(),
-    playformCompress(),
+    // pageInsight(),
+    // playformCompress(),
   ],
 });
