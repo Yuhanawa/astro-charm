@@ -1,5 +1,12 @@
 # astro-charm
 
+## 1.2.2
+
+### Patch Changes
+
+- 7a31f5a: update deps
+- 09fe7c1: fix: flashing when switching pages
+
 ## 1.2.1
 
 ### Patch Changes
