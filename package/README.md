@@ -256,6 +256,20 @@ Please install Sharp (`sharp`) manually into your project
 pnpm add sharp
 ```
 
+### ResponseSentError: The response has already been sent to the browser and cannot be altered.
+
+Please create `posts` folder in `src\content` folder, and create a post ( `.md` file ) in it
+The minimal md file:
+
+```
+---
+title: title
+published: 2025-04-10
+---
+
+```
+
+
 ## Questions & Suggestions
 
 If you have any questions or suggestions, feel free to open an issue. All PRs are welcome!

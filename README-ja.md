@@ -257,6 +257,20 @@ const configSchema = z.object({
 pnpm add sharp
 ```
 
+### ResponseSentError: The response has already been sent to the browser and cannot be altered.
+
+`src\content` フォルダ内に `posts` フォルダを作成し、その中に投稿（`.md` ファイル）を作成してください。
+最小限の md ファイル：
+
+```
+---
+title: title
+published: 2025-04-10
+---
+
+```
+
+
 ## 質問と提案
 
 質問や提案がありましたら、Issueを開いてお気軽にご連絡ください。すべてのPull Requestを歓迎します！

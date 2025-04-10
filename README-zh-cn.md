@@ -257,6 +257,21 @@ const configSchema = z.object({
 pnpm add sharp
 ```
 
+
+### ResponseSentError: The response has already been sent to the browser and cannot be altered.
+
+请在 `src\content` 文件夹中创建 `posts` 文件夹，并在其中创建一篇文章（`.md` 文件）。
+最小 md 文件：
+
+```
+---
+title: title
+published: 2025-04-10
+---
+
+```
+
+
 ## 问题与建议
 
 如果您有任何问题或建议，欢迎提出 Issue。也欢迎所有的 Pull Request！
