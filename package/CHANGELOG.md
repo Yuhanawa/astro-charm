@@ -1,5 +1,11 @@
 # astro-charm
 
+## 1.2.3
+
+### Patch Changes
+
+- 68ca08e: chore: update deps
+
 ## 1.2.2
 
 ### Patch Changes
