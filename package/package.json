@@ -62,6 +62,7 @@
     "astro-theme-toggle": "^0.7.0",
     "d3": "^7.9.0",
     "hastscript": "^9.0.1",
+    "pagefind": "^1.4.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-components": "^0.3.0",
     "rehype-external-links": "^3.0.0",
