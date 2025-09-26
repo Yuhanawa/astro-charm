@@ -2,6 +2,8 @@
 import { HomeLayout } from "charm:layouts";
 import PageFindSearch from "astro-pagefind/components/Search";
 
+export const prerender = true;
+
 const q = Astro.url.searchParams.get("q") ?? undefined;
 ---
 
