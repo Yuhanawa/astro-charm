@@ -3,7 +3,6 @@ import { PostLayout } from "charm:layouts";
 
 import { getSpecialStaticPaths as getStaticPaths } from "../utils/collectionUtils.ts";
 export { getStaticPaths };
-export const prerender = true;
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
