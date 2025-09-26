@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "playground:dev": "pnpm --filter playground dev",
+    "playground:build": "pnpm --filter playground build --outDir ../dist",
     "package:check": "pnpm --filter astro-charm check",
     "package:release": "changeset publish",
     "format": "prettier --write  \"**/*.{js,ts,css,astro}\""
