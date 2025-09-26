@@ -9,7 +9,7 @@ export default defineConfig({
   prefetch: true,
   site: "https://astro-charm.vercel.app/",
 
-  output: "server",
+  output: "static",
   adapter: vercel({
       webAnalytics: {
         enabled: true,
