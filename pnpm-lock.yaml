@@ -150,6 +150,9 @@ importers:
       astro-page-insight:
         specifier: ^0.10.2
         version: 0.10.2(astro@5.14.1(@types/node@22.14.0)(@vercel/functions@2.2.13)(lightningcss@1.30.1)(rollup@4.39.0)(terser@5.42.0)(typescript@5.9.2)(yaml@2.7.1))(typescript@5.9.2)
+      astro-pagefind:
+        specifier: ^1.8.5
+        version: 1.8.5(astro@5.14.1(@types/node@22.14.0)(@vercel/functions@2.2.13)(lightningcss@1.30.1)(rollup@4.39.0)(terser@5.42.0)(typescript@5.9.2)(yaml@2.7.1))
       sharp:
         specifier: ^0.34.4
         version: 0.34.4
