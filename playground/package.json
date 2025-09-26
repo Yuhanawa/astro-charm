@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@astrojs/vercel": "^8.2.8",
-    "@playform/compress": "^0.2.0",
     "astro": "^5.14.1",
     "astro-charm": "workspace:^",
     "astro-page-insight": "^0.10.2",

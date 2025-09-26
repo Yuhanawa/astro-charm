@@ -2,7 +2,6 @@ import { defineConfig } from "astro/config";
 import charm from "astro-charm";
 
 import pageInsight from "astro-page-insight";
-import playformCompress from "@playform/compress";
 import vercel from "@astrojs/vercel";
 import vercelfix from "./src/integrations/vercel-fix.ts"
 
@@ -51,7 +50,6 @@ export default defineConfig({
       },
     }),
     // pageInsight(),
-    playformCompress(),
     vercelfix()
   ],
 });
