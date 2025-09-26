@@ -16,6 +16,7 @@
     "astro-charm": "workspace:^",
     "astro-page-insight": "^0.10.2",
     "astro-pagefind": "^1.8.5",
+    "pagefind": "^1.4.0",
     "sharp": "^0.34.4"
   },
   "devDependencies": {
