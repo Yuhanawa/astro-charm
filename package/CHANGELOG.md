@@ -1,5 +1,11 @@
 # astro-charm
 
+## 1.2.4
+
+### Patch Changes
+
+- f9fe99a: update deps
+
 ## 1.2.3
 
 ### Patch Changes
@@ -40,7 +46,6 @@
 ### Patch Changes
 
 - fee5600: feat:
-
   - add HomePageHeader component
   - add dark mode for search page
 
