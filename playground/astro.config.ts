@@ -3,7 +3,7 @@ import charm from "astro-charm";
 
 import pageInsight from "astro-page-insight";
 import vercel from "@astrojs/vercel";
-import vercelfix from "./src/integrations/vercel-fix.ts"
+import vercelfix from "./src/integrations/vercel-fix.ts";
 
 export default defineConfig({
   prefetch: true,
@@ -11,8 +11,8 @@ export default defineConfig({
 
   output: "static",
   adapter: vercel({
-      webAnalytics: {
-        enabled: true,
+    webAnalytics: {
+      enabled: true,
     },
   }),
 
@@ -50,6 +50,6 @@ export default defineConfig({
       },
     }),
     // pageInsight(),
-    vercelfix()
+    vercelfix(),
   ],
 });
