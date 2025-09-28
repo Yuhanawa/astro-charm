@@ -1,13 +1,31 @@
 ---
-import { Comments, HomeSide, PostFooter, PostHeader } from "charm:components";
-import MainLayout from "./MainLayout.astro";
+import {
+  Comments,
+  TocSide,
+  HomeSide,
+  PostFooter,
+  PostHeader,
+} from "charm:components";
+import { MainLayout } from "charm:layouts";
 import config from "charm:config";
 
-const { postEntry } = Astro.props;
+const { postEntry, headings } = Astro.props;
+const hasToc =
+  config.side.toc?.enabled &&
+  headings &&
+  headings.length > (config.side.toc?.minLength ?? 1);
 ---
 
 <MainLayout {...Astro.props}>
-  <HomeSide slot="side" />
+  {
+    hasToc ? (
+      <div slot="side" id="side-toc">
+        <TocSide headings={headings} />
+      </div>
+    ) : (
+      <HomeSide slot="side" />
+    )
+  }
   <article data-pagefind-body>
     {postEntry && <PostHeader {postEntry} />}
     <slot />
@@ -15,3 +33,38 @@ const { postEntry } = Astro.props;
   </article>
   {config.giscus && <Comments />}
 </MainLayout>
+
+<script lang="javascript" data-astro-rerun is:inline>
+  (() => {
+    let sideToc = document.querySelector("#side-toc"),
+      newSet = new Set(),
+      currentSet = new Set();
+
+    const h = (slug, a) =>
+      slug &&
+      sideToc
+        ?.querySelector(`li.toc-heading[data-toc-slug="${slug}"]`)
+        ?.classList.toggle("toc-heading-in-view", a);
+    const o = new IntersectionObserver(
+      (e) => {
+        e.forEach((i) =>
+          i.isIntersecting
+            ? newSet.add(i.target.id)
+            : newSet.delete(i.target.id),
+        );
+
+        if (!newSet.size) return;
+
+        currentSet.forEach((g) => !newSet.has(g) && h(g, false));
+        newSet.forEach((g) => !currentSet.has(g) && h(g, true));
+
+        currentSet = new Set(newSet);
+      },
+      { threshold: 0.1, delay: 100 },
+    );
+
+    document
+      .querySelectorAll("article[data-pagefind-body] h1,h2,h3,h4,h5,h6")
+      .forEach((e) => o.observe(e));
+  })();
+</script>

@@ -1,0 +1,13 @@
+---
+import config from "charm:config";
+import { BaseSide, Toc } from "charm:components";
+const { postEntry, headings } = Astro.props;
+---
+
+<BaseSide>
+  <Toc
+    title={config.side.toc?.title}
+    headings={headings}
+    maxDepth={config.side.toc?.maxDepth}
+  />
+</BaseSide>

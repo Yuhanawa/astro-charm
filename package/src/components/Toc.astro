@@ -1,0 +1,134 @@
+---
+import type { heading } from "./TocHeading.astro";
+import { TocHeading } from "charm:components";
+
+export interface Props {
+  title?: string;
+  headings: heading[];
+  maxDepth?: number;
+}
+
+var { headings, title, maxDepth } = Astro.props;
+title ??= "Table of Contents";
+---
+
+{
+  headings.length > 0 && (
+    <ul class="toc">
+      <li>
+        <strong class="toc-title">{title}</strong>
+      </li>
+      <ul class="toc-headings">
+        {headings.map((heading) => (
+          <TocHeading heading={heading} maxDepth={maxDepth} depth={1} />
+        ))}
+      </ul>
+    </ul>
+  )
+}
+
+<style>
+  .toc {
+    max-width: 80%;
+    max-height: 80%;
+    overflow: visible;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    word-break: break-word;
+    top: 0;
+    position: absolute;
+    display: contents;
+  }
+
+  .toc-title {
+    display: inline;
+    margin: 0;
+    height: auto;
+    width: auto;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+</style>
+
+<style is:global>
+  .toc {
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    li::marker {
+      content: none;
+    }
+
+    .toc-heading {
+      & > a {
+        border-left: 0.25em solid transparent;
+        border-image-source: linear-gradient(190deg, transparent);
+        padding-left: 0.25em;
+        background-position: 90% 0;
+
+        background-size: 210% 100%;
+        transition:
+          border 0.3s linear 0s,
+          background-position 0.55s ease-out 0.1s,
+          font 0.2s ease-in-out 0.2s;
+      }
+
+      &:has(.toc-heading-in-view) > a {
+        border-left: 0.25em thin transparent;
+
+        border-image-slice: 1;
+
+        border-image-source: linear-gradient(
+          150deg,
+          var(--charm-highlight-color),
+          var(--charm-highlight-color-1),
+          var(--charm-highlight-color-1)
+        );
+      }
+
+      &.toc-heading-in-view > a {
+        font-weight: bold;
+
+        border-image-source: linear-gradient(
+          150deg,
+          var(--charm-highlight-color),
+          var(--charm-highlight-color-2),
+          var(--charm-highlight-color-1)
+        );
+        border-image-slice: 1;
+        background-image: linear-gradient(
+          to right,
+          var(--charm-highlight-color-1) 0%,
+          var(--charm-background-color),
+          transparent 50%,
+          /* --- 50% --- */ transparent 50%,
+          transparent,
+          transparent 100%
+        );
+
+        background-position: 0;
+      }
+
+      &:not(.toc-heading-in-view, &:has(.toc-heading:hover)) > a:hover {
+        background-image: linear-gradient(
+          to left,
+          var(--charm-highlight-color-1) 0%,
+          var(--charm-highlight-color-1),
+          transparent 50%,
+          /* --- 50% --- */ transparent 50%,
+          transparent,
+          transparent 100%
+        );
+      }
+      &.toc-heading-in-view > a:hover {
+        background-image: linear-gradient(
+          to right,
+          var(--charm-highlight-color-1),
+          transparent,
+          var(--charm-highlight-color-1)
+        );
+      }
+    }
+  }
+</style>

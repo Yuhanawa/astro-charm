@@ -1,0 +1,67 @@
+---
+import { TocHeading } from "charm:components";
+
+export type heading = {
+  slug: string;
+  text: string;
+  subheadings?: heading[];
+};
+
+export interface Props {
+  heading: heading;
+  maxDepth?: number; // inclusive
+  depth?: number; // from 1
+}
+
+var { heading, maxDepth, depth } = Astro.props;
+var current: number = depth ?? 1;
+---
+
+<li
+  class={`toc-heading toc-heading-${current}`}
+  data-toc-heading-depth={current}
+  data-toc-slug={heading.slug}
+>
+  <a href={`#${heading.slug}`}>{heading.text}</a>
+
+  {
+    maxDepth && current > maxDepth
+      ? null
+      : heading.subheadings &&
+        heading.subheadings.length > 0 && (
+          <ul class="toc-subheadings">
+            {heading.subheadings.map((subheading) => (
+              <TocHeading
+                heading={subheading}
+                maxDepth={maxDepth}
+                depth={current + 1}
+              />
+            ))}
+          </ul>
+        )
+  }
+</li>
+
+<style>
+  a {
+    color: var(--charm-font-color);
+    text-decoration: none;
+    display: inline-block;
+  }
+  li::marker {
+    content: none;
+  }
+  .toc-heading {
+    list-style: none;
+    padding-left: 0;
+  }
+  .toc-subheadings {
+    padding-left: 0.75em;
+  }
+  li,
+  ul {
+    word-break: normal;
+    white-space: pre-line;
+    margin: 0.25rem 0 0 0;
+  }
+</style>
