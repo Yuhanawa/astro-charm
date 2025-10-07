@@ -31,7 +31,8 @@ export default async function loadIconifyCollections({
       ...(await detectInstalledCollections(root)),
       ...nodeModulesCollections
         .filter((path) => path.startsWith("node_modules/@iconify-json/"))
-        .map((path) => path.substring("node_modules/@iconify-json/".length)),
+        .map((path) => path.substring("node_modules/@iconify-json/".length))
+        .filter((path) => path.length > 0 && !path.includes("/")),
     ]),
   );
   // If icons are installed locally but not explicitly included, include the whole pack
@@ -141,14 +142,18 @@ async function detectInstalledCollections(root: URL) {
 function detectNodeModulesCollections(root: URL): string[] {
   const rootPath = fileURLToPath(root);
   const pattern = "**/node_modules/@iconify-json/*";
+  const pattern_pnpm = "**/node_modules/.pnpm/**/@iconify-json/*";
 
   try {
     const collectionPaths = fg.sync(pattern, {
       cwd: rootPath,
       onlyDirectories: true,
     });
-
-    const packages = new Set(collectionPaths);
+    const collectionPaths_pnpm = fg.sync(pattern_pnpm, {
+      cwd: rootPath,
+      onlyDirectories: true,
+    });
+    const packages = new Set(collectionPaths.concat(collectionPaths_pnpm));
     return Array.from(packages);
   } catch (err) {
     return [];
