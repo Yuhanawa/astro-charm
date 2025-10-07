@@ -19,7 +19,7 @@ interface Props extends HTMLAttributes<"svg"> {
 }
 
 class AstroIconError extends Error {
-  public hint: string = '';
+  public hint: string = "";
 
   constructor(message: string) {
     super(message);
@@ -27,7 +27,13 @@ class AstroIconError extends Error {
 }
 
 const req = Astro.request;
-const { name = "", title, desc, "is:inline": inline = false, ...props } = Astro.props;
+const {
+  name = "",
+  title,
+  desc,
+  "is:inline": inline = false,
+  ...props
+} = Astro.props;
 const map = cache.get(req) ?? new Map();
 const i = map.get(name) ?? 0;
 map.set(name, i + 1);
@@ -112,7 +118,10 @@ if (props.size) {
   delete props.size;
 }
 const renderData = iconToSVG(iconData);
-const normalizedProps = { ...renderData.attributes as Partial<IconifyIconBuildResult['attributes']>, ...props };
+const normalizedProps = {
+  ...(renderData.attributes as Partial<IconifyIconBuildResult["attributes"]>),
+  ...props,
+};
 const normalizedBody = renderData.body;
 
 const { viewBox } = normalizedProps;
@@ -129,7 +138,9 @@ if (includeSymbol) {
       <Fragment id={id} set:html={normalizedBody} />
     ) : (
       <Fragment>
-        {includeSymbol && <symbol id={id} viewBox={viewBox} set:html={normalizedBody} />}
+        {includeSymbol && (
+          <symbol id={id} viewBox={viewBox} set:html={normalizedBody} />
+        )}
         <use href={`#${id}`} />
       </Fragment>
     )
