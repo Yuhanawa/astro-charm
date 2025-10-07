@@ -16,7 +16,5 @@
     "astro-pagefind": "^1.8.5",
     "sharp": "^0.34.4"
   },
-  "devDependencies": {
-
-  }
+  "devDependencies": {}
 }

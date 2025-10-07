@@ -1,5 +1,15 @@
 # astro-charm
 
+## 1.4.0
+
+### Minor Changes
+
+- e8ad133: fix: fork astro-icon to fix "Astro Icons not properly being found when integration comes as part of a library"
+
+### Patch Changes
+
+- e8ad133: docs: update README
+
 ## 1.3.0
 
 ### Minor Changes
