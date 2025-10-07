@@ -1,0 +1,7 @@
+html.charm body {
+  /* your custom css */
+}
+
+html.charm.dark body {
+  /* your custom css for dark mode */
+}

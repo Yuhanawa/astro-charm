@@ -2,7 +2,7 @@ import type { AstroIntegration } from "astro";
 import defineTheme from "astro-theme-provider";
 import { z } from "astro/zod";
 import licenses from "spdx-license-list/simple";
-import icon from "astro-icon";
+import icon from "./src/integrations/astro-icon/src/index";
 import pagefind from "astro-pagefind";
 import sitemap from "@astrojs/sitemap";
 

@@ -1,10 +1,25 @@
-# Astro Theme: Charm
+---
+title: About
+icon:
+  {
+    default: "solar:ghost-broken",
+    hover: "solar:ghost-smile-outline",
+    active: "solar:ghost-smile-bold-duotone",
+  }
+published: 2024-11-30
+updated: 2024-12-28
+index: 10
+---
 
-[English](./README.md) | [日本語](./README-ja.md) | [中文](./README-zh-cn.md)
+# Astro Theme: Charm Readme
 
 Beautiful, simple and easy-to-use blog theme
 
-![Preview of Live Demo](docs/Charm-Theme-Preview-20250211.png "Charm-Theme-Preview-20250211")
+:::tip
+This page is [the README.md of the Github repository](https://github.com/Yuhanawa/astro-charm), but it may not be updated in time.
+:::
+
+![Preview of Live Demo](./../../../../docs/Charm-Theme-Preview-20250211.png "Charm-Theme-Preview-20250211")
 
 [Github](https://github.com/yuhanawa/astro-charm) | [Live Demo](https://astro-charm.vercel.app/) | [PageSpeed](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fastro-charm.vercel.app%2F)
 
@@ -36,7 +51,14 @@ Note: The image on the right in the `Live Demo` is not part of the Charm theme
 pnpm create astro-theme@latest with-theme astro-charm
 ```
 
-2. Add `src/content.config.ts` to your project.
+2. Into your project and Install `@iconify-json/simple-icons` and `@iconify-json/solar`.
+
+```bash
+pnpm add @iconify-json/simple-icons
+pnpm add @iconify-json/solar
+```
+
+3. Add `src/content.config.ts` to your project.
 
 ```ts
 import { collections as charmCollections } from "astro-charm/content";
@@ -46,7 +68,7 @@ export const collections = {
 };
 ```
 
-3. Modify config and enjoy it!
+4. Modify config and enjoy it!
 
 Note: you need to add `site` to `astro.config.ts` file, because `charm` use it for `sitemap` and `rss`.
 
@@ -55,10 +77,12 @@ To learn more, see: [Config](#config)
 <details>
   <summary>Install to existing project</summary>
 
-1. Install `astro-charm` to your project.
+1. Install `astro-charm`, `@iconify-json/simple-icons` and `@iconify-json/solar` to your project.
 
 ```bash
 pnpm astro add astro-charm
+pnpm add @iconify-json/simple-icons
+pnpm add @iconify-json/solar
 ```
 
 2. Modify `src/content.config.ts` file.
@@ -107,6 +131,7 @@ export default defineConfig({
 
 </details>
 
+
 ## Config
 
 You need to add `site` to `astro.config.ts` file, because `charm` use it for `sitemap` and `rss`.
@@ -138,7 +163,7 @@ export default defineConfig({
 });
 ```
 
-### [Config schema](https://github.com/Yuhanawa/astro-charm/blob/main/package/index.ts#L59-L161)
+### [Config schema](https://github.com/Yuhanawa/astro-charm/blob/main/package/index.ts#L59-L152)
 
 ```ts
 const configSchema = z.object({
@@ -195,14 +220,6 @@ const configSchema = z.object({
     footerStyle: z
       .enum(["default", "only-icon", "only-title"])
       .default("default"),
-    toc: z
-      .object({
-        enabled: z.boolean().optional().default(true),
-        title: z.string().optional().default("Table of contents"),
-        minLength: z.number().min(1).max(3).optional(),
-        maxDepth: z.number().min(1).max(6).optional(),
-      })
-      .default({}),
   }),
   markdown: z
     .object({
@@ -216,7 +233,6 @@ const configSchema = z.object({
           explicitTrigger: z.boolean().default(true), // if true, ```ts twoslash
         })
         .default({}),
-      headingAnchor: z.string().default("#"),
     })
     .default({}),
   giscus: z
@@ -255,20 +271,6 @@ Please install Sharp (`sharp`) manually into your project
 ```bash
 pnpm add sharp
 ```
-
-### ResponseSentError: The response has already been sent to the browser and cannot be altered.
-
-Please create `posts` folder in `src\content` folder, and create a post ( `.md` file ) in it
-The minimal md file:
-
-```
----
-title: title
-published: 2025-04-10
----
-
-```
-
 
 ## Questions & Suggestions
 

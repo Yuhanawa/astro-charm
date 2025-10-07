@@ -47,14 +47,7 @@ export const collections = {
 };
 ```
 
-3. プロジェクトに移動し、`@iconify-json/simple-icons`と`@iconify-json/solar`をインストールします。
-
-```bash
-pnpm add @iconify-json/simple-icons
-pnpm add @iconify-json/solar
-```
-
-4. 設定を変更して使用開始！
+3. 設定を変更して使用開始！
 
 注意：`astro.config.ts`ファイルに`site`を追加する必要があります。`charm`は`sitemap`と`RSS`にこれを使用します。
 
@@ -63,12 +56,10 @@ pnpm add @iconify-json/solar
 <details>
   <summary>既存のプロジェクトにインストール</summary>
 
-1. プロジェクトに`astro-charm`、`@iconify-json/simple-icons`、`@iconify-json/solar`をインストールします。
+1. プロジェクトに`astro-charm`をインストールします。
 
 ```bash
 pnpm astro add astro-charm
-pnpm add @iconify-json/simple-icons
-pnpm add @iconify-json/solar
 ```
 
 2. `src/content.config.ts` ファイルを変更します。

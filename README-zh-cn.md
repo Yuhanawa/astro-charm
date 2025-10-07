@@ -37,14 +37,7 @@
 pnpm create astro-theme@latest with-theme astro-charm
 ```
 
-2. 进入项目目录并安装 `@iconify-json/simple-icons` 和 `@iconify-json/solar`
-
-```bash
-pnpm add @iconify-json/simple-icons
-pnpm add @iconify-json/solar
-```
-
-3. 添加 `src/content.config.ts` 到你的项目
+2. 添加 `src/content.config.ts` 到你的项目
 
 ```ts
 import { collections as charmCollections } from "astro-charm/content";
@@ -54,7 +47,7 @@ export const collections = {
 };
 ```
 
-4. 修改配置并开始使用！
+3. 修改配置并开始使用！
 
 你需要在 `astro.config.ts `文件中添加 `site`, 因为 `charm` 主题的 `sitemap` 和 `RSS` 需要它
 
@@ -63,12 +56,10 @@ export const collections = {
 <details>
   <summary>在现有项目中安装</summary>
 
-1. 在你的项目中安装 `astro-charm`, `@iconify-json/simple-icons` 和 `@iconify-json/solar`:
+1. 在你的项目中安装 `astro-charm`:
 
 ```bash
 pnpm astro add astro-charm
-pnpm add @iconify-json/simple-icons
-pnpm add @iconify-json/solar
 ```
 
 2. 修改 `src/content.config.ts` 文件:

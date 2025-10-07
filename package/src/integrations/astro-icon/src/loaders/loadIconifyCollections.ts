@@ -1,0 +1,156 @@
+import type {
+  AstroIconCollectionMap,
+  IconCollection,
+  IntegrationOptions,
+} from "../../typings/integration";
+import type { AutoInstall } from "../../typings/iconify";
+
+import { readFile } from "node:fs/promises";
+import { getIcons } from "@iconify/utils";
+import { loadCollectionFromFS } from "@iconify/utils/lib/loader/fs";
+import { promisify } from "node:util";
+import { exec } from "node:child_process";
+import fg from "fast-glob";
+import { fileURLToPath } from "url";
+import { basename } from "path";
+
+const execa = promisify(exec);
+
+interface LoadOptions {
+  root: URL;
+  include?: IntegrationOptions["include"];
+}
+
+export default async function loadIconifyCollections({
+  root,
+  include = {},
+}: LoadOptions): Promise<AstroIconCollectionMap> {
+  const nodeModulesCollections = detectNodeModulesCollections(root);
+  const installedCollections = Array.from(
+    new Set([
+      ...(await detectInstalledCollections(root)),
+      ...nodeModulesCollections
+        .filter((path) => path.startsWith("node_modules/@iconify-json/"))
+        .map((path) => path.substring("node_modules/@iconify-json/".length)),
+    ]),
+  );
+  // If icons are installed locally but not explicitly included, include the whole pack
+  for (let name of installedCollections) {
+    if (include[name] !== undefined) continue;
+    include[name] = ["*"];
+  }
+  var possibleCollections = await Promise.all(
+    installedCollections.map((collectionName) =>
+      loadCollection(collectionName).then(
+        (possibleCollection) => [collectionName, possibleCollection] as const,
+      ),
+    ),
+  );
+
+  const nodeModulesCollectionsButNotDirect = await Promise.all(
+    nodeModulesCollections
+      .filter((path) => !path.startsWith("node_modules/@iconify-json/"))
+      .filter((path) => path.startsWith("node_modules/"))
+      .map((path) => [
+        basename(path),
+        path.substring(0, path.length - basename(path).length - 1),
+      ])
+      .filter(([name, scope]) => !installedCollections.includes(name))
+      .map(async ([name, scope]) => {
+        if (include[name] === undefined) include[name] = ["*"];
+        const collection = await loadCollectionFromFS(
+          name,
+          false,
+          "./" + scope,
+        );
+        return [name, collection] as const;
+      }),
+  );
+
+  possibleCollections = [
+    ...possibleCollections,
+    ...nodeModulesCollectionsButNotDirect,
+  ];
+
+  const collections = possibleCollections.reduce<AstroIconCollectionMap>(
+    (acc, [name, collection]) => {
+      if (!collection) {
+        console.error(
+          `[astro-icon] "${name}" does not appear to be a valid iconify collection! Did you install the "@iconify-json/${name}" dependency?`,
+        );
+        return acc;
+      }
+
+      const requestedIcons = Array.from(new Set(include[name]));
+
+      // Requested entire icon collection
+      if (requestedIcons.length === 1 && requestedIcons[0] === "*") {
+        acc[name] = collection;
+        return acc;
+      }
+
+      const reducedCollection = getIcons(collection, requestedIcons);
+      if (!reducedCollection) {
+        console.error(
+          `[astro-icon] "${name}" failed to load the specified icons!`,
+        );
+        return acc;
+      } else if (
+        Object.keys(reducedCollection.icons).length !== requestedIcons.length
+      ) {
+        console.error(
+          `[astro-icon] "${name}" failed to load at least one of the specified icons! Verify the icon names are included in the icon collection.`,
+        );
+      }
+
+      acc[name] = reducedCollection;
+      return acc;
+    },
+    {},
+  );
+
+  return collections;
+}
+
+export async function loadCollection(
+  name: string,
+  autoInstall?: AutoInstall,
+  scope?: string,
+): Promise<IconCollection | void> {
+  if (!name) return;
+
+  return loadCollectionFromFS(name, autoInstall, scope);
+}
+
+async function detectInstalledCollections(root: URL) {
+  try {
+    let packages: string[] = [];
+    const text = await readFile(new URL("./package.json", root), {
+      encoding: "utf8",
+    });
+    const { dependencies = {}, devDependencies = {} } = JSON.parse(text);
+    packages.push(...Object.keys(dependencies));
+    packages.push(...Object.keys(devDependencies));
+    const collections = packages
+      .filter((name) => name.startsWith("@iconify-json/"))
+      .map((name) => name.replace("@iconify-json/", ""));
+    return collections;
+  } catch {}
+  return [];
+}
+function detectNodeModulesCollections(root: URL): string[] {
+  const rootPath = fileURLToPath(root);
+  const pattern = "**/node_modules/@iconify-json/*";
+
+  try {
+    const collectionPaths = fg.sync(pattern, {
+      cwd: rootPath,
+      onlyDirectories: true,
+    });
+
+    const packages = new Set(collectionPaths);
+    return Array.from(packages);
+  } catch (err) {
+    return [];
+  }
+}

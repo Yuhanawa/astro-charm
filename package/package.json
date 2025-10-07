@@ -27,7 +27,8 @@
     "public",
     "src",
     "index.ts",
-    "init.config.json"
+    "init.config.json",
+    "config_template"
   ],
   "scripts": {
     "check": "astro check && stylelint \"**/*.{css,html,astro}\""
@@ -52,15 +53,18 @@
     "@astrojs/sitemap": "^3.6.0",
     "@iconify-json/simple-icons": "^1.2.53",
     "@iconify-json/solar": "^1.2.4",
+    "@iconify/tools": "^4.1.4",
+    "@iconify/types": "^2.0.0",
+    "@iconify/utils": "^3.0.2",
     "@shikijs/colorized-brackets": "^3.13.0",
     "@shikijs/transformers": "^3.2.1",
     "@shikijs/twoslash": "^3.2.1",
-    "astro-icon": "^1.1.5",
     "astro-pagefind": "^1.8.5",
     "astro-seo": "^0.8.4",
     "astro-theme-provider": "^0.7.1",
     "astro-theme-toggle": "^0.7.0",
     "d3": "^7.9.0",
+    "fast-glob": "^3.3.3",
     "hastscript": "^9.0.1",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-components": "^0.3.0",
@@ -76,15 +80,7 @@
     "unist-util-visit": "^5.0.0"
   },
   "peerDependencies": {
-    "@iconify-json/simple-icons": "^1.2",
-    "@iconify-json/solar": "^1.2"
-  },
-  "peerDependenciesMeta": {
-    "@iconify-json/simple-icons": {
-      "optional": false
-    },
-    "@iconify-json/solar": {
-      "optional": false
-    }
+    "@iconify-json/simple-icons": "^1.2.0",
+    "@iconify-json/solar": "^1.2.0"
   }
 }
