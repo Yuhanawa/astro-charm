@@ -1,5 +1,11 @@
 # astro-charm
 
+## 1.4.1
+
+### Patch Changes
+
+- 48a0b6b: fix: fork astro-icon to fix "Astro Icons not properly being found when integration comes as part of a library" in pnpm
+
 ## 1.4.0
 
 ### Minor Changes
