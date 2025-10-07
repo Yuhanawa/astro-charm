@@ -1,5 +1,11 @@
 # astro-charm
 
+## 1.4.2
+
+### Patch Changes
+
+- ddff010: fix: fix toc overflow when it so long
+
 ## 1.4.1
 
 ### Patch Changes
