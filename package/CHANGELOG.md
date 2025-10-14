@@ -1,5 +1,12 @@
 # astro-charm
 
+## 1.4.3
+
+### Patch Changes
+
+- e3b7d59: feat: the cursor is now hidden when hovering over menu icons,
+  This behavior is configurable via `config.side.navMenuIconHoverCursor`, which accepts "none" (default) and "pointer"
+
 ## 1.4.2
 
 ### Patch Changes
