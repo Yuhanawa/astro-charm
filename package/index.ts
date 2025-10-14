@@ -107,6 +107,7 @@ const configSchema = z.object({
         },
       ]),
     navStyle: z.enum(["default", "only-icon", "only-title"]).default("default"),
+    navMenuIconHoverCursor: z.enum(["pointer", "none"]).default("none"),
     footerStyle: z
       .enum(["default", "only-icon", "only-title"])
       .default("default"),

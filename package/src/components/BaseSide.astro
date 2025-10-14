@@ -37,7 +37,13 @@ const specialsEntries = await getSpecialEntries();
               active={Astro.url.pathname === config.side.navHome!.link ||
                 Astro.url.pathname + "/" === config.side.navHome!.link}
               class="icon"
-              class:list={[{ hidden: config.side.navStyle === "only-title" }]}
+              class:list={[
+                {
+                  hidden: config.side.navStyle === "only-title",
+                  "hide-cursor-hover":
+                    config.side.navMenuIconHoverCursor === "none",
+                },
+              ]}
             />
           </div>
         </a>
@@ -63,7 +69,11 @@ const specialsEntries = await getSpecialEntries();
                   active={Astro.url.pathname === `/${i.slug}`}
                   class="icon"
                   class:list={[
-                    { hidden: config.side.navStyle === "only-title" },
+                    {
+                      hidden: config.side.navStyle === "only-title",
+                      "hide-cursor-hover":
+                        config.side.navMenuIconHoverCursor === "none",
+                    },
                   ]}
                 />
               </div>
@@ -155,6 +165,10 @@ const specialsEntries = await getSpecialEntries();
     height: 1.5rem;
     flex-shrink: 0;
     transition: transform 0.3s ease;
+  }
+
+  .hide-cursor-hover {
+    cursor: none;
   }
 
   .width-2 {
