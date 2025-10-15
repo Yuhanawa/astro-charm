@@ -1,5 +1,11 @@
 # astro-charm
 
+## 1.4.4
+
+### Patch Changes
+
+- 4609224: chore: no change
+
 ## 1.4.3
 
 ### Patch Changes
