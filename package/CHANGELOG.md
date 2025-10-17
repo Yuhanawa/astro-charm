@@ -1,5 +1,11 @@
 # astro-charm
 
+## 1.4.6
+
+### Patch Changes
+
+- b042846: feat: adapt to the new version of the cli tool(create-astro-theme@1.0.0)
+
 ## 1.4.5
 
 ### Patch Changes
