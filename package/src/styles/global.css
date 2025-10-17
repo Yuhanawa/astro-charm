@@ -35,6 +35,7 @@
 
     text-size-adjust: 100%;
     text-decoration: none;
+    text-autospace: ideograph-alpha ideograph-numeric insert;
 
     line-height: 1.5rem;
     letter-spacing: 0.025em;

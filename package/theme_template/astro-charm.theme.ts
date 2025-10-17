@@ -31,13 +31,10 @@ export default charm({
   pages: {},
   overrides: {
     components: {
-      // override components
-      // ShootingStar: "./src/components/ShootingStar.astro",
+      // your can override components here
     },
     custom: {
-      // it will be added to the end of `<head>`.
-      CustomScriptComponent: "./src/components/CustomScriptComponent.astro",
-      CustomPostHeaderBottom: "./src/components/CustomPostHeaderBottom.astro",
+      // see https://astro-charm.vercel.app/posts/custom#add-custom-components
     },
   },
 });
