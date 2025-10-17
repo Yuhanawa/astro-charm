@@ -1,5 +1,11 @@
 # astro-charm
 
+## 1.4.5
+
+### Patch Changes
+
+- 57ea7fd: feat: add text-autospace for styles and modify `theme_template`
+
 ## 1.4.4
 
 ### Patch Changes
