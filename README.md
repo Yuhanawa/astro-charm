@@ -33,7 +33,7 @@ Note: The image on the right in the `Live Demo` is not part of the Charm theme
 1. Run the following command to create a new project with `astro-charm` theme.
 
 ```bash
-pnpm create astro-theme@latest with-theme astro-charm
+pnpm create astro-theme@latest use astro-charm
 ```
 
 2. Add `src/content.config.ts` to your project.
@@ -71,13 +71,7 @@ export const collections = {
 };
 ```
 
-3. Modify `astro.config.ts` file, you can use following command to modify it.
-
-```bash
-pnpm create astro-theme@latest init astro-charm
-```
-
-Or you can modify it manually.
+3. Modify `astro.config.ts` file.
 
 ```ts
 import { defineConfig } from "astro/config";

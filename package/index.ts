@@ -185,7 +185,7 @@ export default function (
   if (!themeOptions || !themeOptions.config) {
     console.error("No Charm Config Found");
     console.info(
-      "Please run `pnpm create astro-theme@latest init astro-charm` or add config to your astro.config.{ts,mts,js,mjs} manually",
+      "Please add config to your astro.config.{ts,mts,js,mjs}, you can find the example in `https://github.com/Yuhanawa/astro-charm/blob/main/package/theme-example/astro-charm.theme.ts`",
     );
     console.info("Here is an example:");
     console.info(

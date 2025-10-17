@@ -27,8 +27,7 @@
     "public",
     "src",
     "index.ts",
-    "init.config.json",
-    "config_template"
+    "theme-example"
   ],
   "scripts": {
     "check": "astro check && stylelint \"**/*.{css,html,astro}\""

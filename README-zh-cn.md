@@ -34,7 +34,7 @@
 1. 运行以下命令, 使用 `astro-charm` 主题创建新项目
 
 ```bash
-pnpm create astro-theme@latest with-theme astro-charm
+pnpm create astro-theme@latest use astro-charm
 ```
 
 2. 添加 `src/content.config.ts` 到你的项目
@@ -72,13 +72,8 @@ export const collections = {
 };
 ```
 
-3. 修改 `astro.config.ts` 文件, 你可以使用以下命令进行修改:
+3. 修改 `astro.config.ts` 文件:
 
-```bash
-pnpm create astro-theme@latest init astro-charm
-```
-
-或者手动修改:
 
 ```ts
 import { defineConfig } from "astro/config";

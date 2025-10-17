@@ -34,7 +34,7 @@
 1. 以下のコマンドを実行して、`astro-charm`テーマで新しいプロジェクトを作成します。
 
 ```bash
-pnpm create astro-theme@latest with-theme astro-charm
+pnpm create astro-theme@latest use astro-charm
 ```
 
 2. `src/content.config.ts` をプロジェクトに追加します。
@@ -72,13 +72,8 @@ export const collections = {
 };
 ```
 
-3. `astro.config.ts`ファイルを修正します。以下のコマンドで修正できます。
+3. `astro.config.ts`ファイルを修正します：
 
-```bash
-pnpm create astro-theme@latest init astro-charm
-```
-
-または手動で修正：
 
 ```ts
 import { defineConfig } from "astro/config";
